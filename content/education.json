@@ -1,0 +1,26 @@
+{
+  "items": [
+    {
+      "title": "B.Sc. Computer Science & Engineering",
+      "organization": "Southeast University, Dhaka",
+      "description": "Focusing on algorithms, data structures, software engineering, and machine learning. Active in IEEE CS SBC events and workshops.",
+      "period": "2023 — 2028",
+      "badge": "Current",
+      "order": 1,
+      "department": "",
+      "gpa": "",
+      "gpa_label": "CGPA / GPA"
+    },
+    {
+      "title": "Higher Secondary Certificate (Science)",
+      "organization": "Rajshahi Government City College",
+      "description": "Completed HSC with a strong science background that built my analytical thinking and problem-solving foundation.",
+      "period": "2018 — 2020",
+      "badge": "",
+      "order": 2,
+      "department": "",
+      "gpa": "",
+      "gpa_label": "CGPA / GPA"
+    }
+  ]
+}

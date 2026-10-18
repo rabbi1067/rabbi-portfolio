@@ -1,0 +1,29 @@
+{
+  "id": "library-management-system",
+  "title": "Library Management System",
+  "description": "A desktop-based library management app built with JavaFX featuring book inventory, member management, borrowing records, and fine calculation. Implements full OOP principles with clean MVC architecture.",
+  "details": "",
+  "category": "Software",
+  "tags": [],
+  "stack": [
+    "Java",
+    "JavaFX",
+    "OOP",
+    "MVC"
+  ],
+  "icon": "☕",
+  "status": "Completed",
+  "status_style": "status-done",
+  "github_url": "https://github.com/Rabbi1067",
+  "demo_url": "",
+  "documentation_url": "",
+  "links": [],
+  "thumbnail": "",
+  "thumbnail_alt": "",
+  "gallery": [],
+  "featured": true,
+  "order": 4,
+  "published": true,
+  "start_date": "",
+  "completion_date": ""
+}

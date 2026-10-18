@@ -5,30 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
      <!-- Favicon -->
-<link rel="icon" type="image/png" href="./images/fr.png">
+<link rel="icon" type="image/png" href="{{site.seo.favicon}}">
   
   <!-- SEO -->
-  <title>Fazley Rabbi — CSE Student & ML Explorer</title>
-  <meta name="description" content="Portfolio of Fazley Rabbi — CSE student at Southeast University, competitive programmer (ICPC Honorable Mention), and Machine Learning enthusiast." />
-  <meta name="author" content="Fazley Rabbi" />
-  <meta name="keywords" content="Fazley Rabbi, CSE, ML, ICPC, competitive programming, Southeast University, portfolio" />
+  <title>{{site.seo.title}}</title>
+  <meta name="description" content="{{site.seo.description}}" />
+  <meta name="author" content="{{site.seo.author}}" />
+  <meta name="keywords" content="{{site.seo.keywords}}" />
 
   <!-- Open Graph (social share preview) -->
-  <meta property="og:title"       content="Fazley Rabbi — CSE & ML Portfolio" />
-  <meta property="og:description" content="ICPC Honorable Mention · AI+ Certified · ML Explorer" />
-  <meta property="og:url"         content="https://fazleyrabbi.dev" />
-  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="{{site.seo.og_title}}" />
+  <meta property="og:description" content="{{site.seo.og_description}}" />
+  <meta property="og:url"         content="{{site.seo.og_url}}" />
+  <meta property="og:type"        content="{{site.seo.og_type}}" />
 
   <!-- Canonical URL -->
-  <link rel="canonical" href="https://fazleyrabbi.dev" />
+  <link rel="canonical" href="{{site.seo.canonical}}" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/styles.css?v=contrast" />
+  <link rel="stylesheet" href="css/cms-content.css?v=optional-media" />
+  <link rel="stylesheet" href="css/home.css?v=mobile-cue" />
+  <link rel="stylesheet" href="css/reviews.css?v=quote-only" />
+  <link rel="stylesheet" href="css/research.css" />
 </head>
 <body>
 
@@ -43,21 +47,22 @@
   <!-- Logo -->
   <div class="nav-logo">
     <div class="nav-logo-icon">
-      <img src="images/My_pic.jpeg" alt="Fazley Rabbi">
+      <img src="{{profile.profile_photo}}" alt="{{profile.profile_photo_alt}}">
     </div>
-    Fazley<span style="color:#00d4aa">.</span>
+    {{profile.first_name}}<span style="color:#00d4aa">.</span>
   </div>
 
   <!-- Navigation Links -->
-  <ul class="nav-links">
-    <li><a href="#home" class="active">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#competitive">Profiles</a></li>
-    <li><a href="#certifications">Certs</a></li>
-    <li><a href="#contact">Contact</a></li>
+  <ul class="nav-links" id="primary-navigation">
+    <li><a href="#home" class="active">{{site.navigation.home}}</a></li>
+    <li><a href="#about">{{site.navigation.about}}</a></li>
+    <li><a href="#projects">{{site.navigation.projects}}</a></li>
+    <li><a href="#skills">{{site.navigation.skills}}</a></li>
+    <li><a href="#experience">{{site.navigation.experience}}</a></li>
+    <li><a href="#research">{{site.navigation.research}}</a></li>
+    <li><a href="#certifications">{{site.navigation.certifications}}</a></li>
+    <li><a href="#reviews">{{site.navigation.reviews}}</a></li>
+    <li><a href="#contact">{{site.navigation.contact}}</a></li>
   </ul>
 
   <!-- Right Side -->
@@ -90,10 +95,9 @@
 
     </button>
 
-    <button
-      class="nav-hire"
-      onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-      Hire Me
+    <a class="nav-hire" href="{{profile.hire_url}}">{{profile.hire_label}}</a>
+    <button class="nav-menu-toggle" id="navMenuToggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-navigation">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
     </button>
 
   </div>
@@ -102,150 +106,61 @@
 
 
 <!-- ==================== HERO ==================== -->
-<section id="home">
-  <!-- Background decorations -->
-  <div class="hero-blob blob-1"></div>
-  <div class="hero-blob blob-2"></div>
-  <div class="hero-blob blob-3"></div>
-  <div class="hero-grid"></div>
+<section id="home" aria-labelledby="hero-heading" style="--badge-rows: {{render.badge_rows}};">
+  <div class="hero-atmosphere" aria-hidden="true">
+    <div class="hero-aura"></div>
+    <div class="hero-orbit orbit-outer"></div>
+    <div class="hero-orbit orbit-inner"></div>
+    <div class="hero-orbit orbit-equator"></div>
+    <div class="hero-watermark">{{profile.name}}</div>
+    <span class="hero-star star-one"></span><span class="hero-star star-two"></span><span class="hero-star star-three"></span>
+  </div>
 
-  <!-- Left: text content -->
-  <div class="hero-left">
-    <div class="available-badge">
-      <div class="badge-dot"></div>
-      Available for Collaboration
-    </div>
-
-    <h1 class="hero-title">
-      Hi, I'm Md. Fazley Rabbi<br />
-      <span class="hero-title-accent">Competitive Programmer,</span><br />
-      AI Enthusiast & Software Developer
+  <div class="hero-copy">
+    {{{render.availability}}}
+    <h1 class="hero-title" id="hero-heading">
+      <span class="hero-greeting">{{profile.greeting}} {{profile.full_name}}</span>
+      <span class="hero-title-accent">{{profile.hero_accent}}</span>
+      <span class="hero-role">{{profile.hero_subtitle}}</span>
     </h1>
+    <p class="hero-intro">{{profile.introduction}}</p>
+  </div>
 
-    <p class="hero-intro">
-    Passionate Computer Science & Engineering student at Southeast University with strong expertise in Competitive Programming, 
-    Artificial Intelligence, and Machine Learning. I love solving complex problems through efficient algorithms and building 
-    impactful real-world solutions with clean, scalable code.
-    </p>
-
-    <div class="hero-stats">
-      <div class="stat-item">
-        <div class="stat-num">1000<span>+</span></div>
-        <div class="stat-label">Problems Solved</div>
+  <div class="hero-stage">
+    <div class="hero-scene" id="heroScene">
+      <div class="hero-platform" aria-hidden="true"></div>
+      <div class="hero-portrait-wrap">
+        <button class="hero-portrait-trigger" id="heroPortraitTrigger" type="button" aria-label="Show profile tags" aria-expanded="false" aria-controls="hero-badges">
+          <img class="hero-portrait" src="{{render.hero_photo}}" alt="{{profile.profile_photo_alt}}" width="480" height="720" fetchpriority="high" decoding="async" />
+        </button>
       </div>
-      <div class="stat-item">
-        <div class="stat-num">10<span>+</span></div>
-        <div class="stat-label">Certifications</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">ICPC</div>
-        <div class="stat-label">Honorable</div>
-      </div>
-    </div>
-
-    <div class="hero-btns">
- <!-- Improved Download CV Button -->
-  <a href="CV.pdf" target="_blank" class="btn-teal" style="background: #10b981; border: 2px solid #10b981;">
-    <!-- Better CV Download Icon -->
-    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-      <polyline points="14 2 14 8 20 8"/>
-      <path d="M12 18v-6"/>
-      <path d="M9 15l3 3 3-3"/>
-    </svg>
-    Download CV
-  </a>
-      <a href="#skills" class="btn-outline">
-        <!-- Info icon -->
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="12" cy="12" r="10"/>
-          <line x1="12" y1="8"  x2="12"   y2="12"/>
-          <line x1="12" y1="16" x2="12.01" y2="16"/>
-        </svg>
-        View Skills
-      </a>
-    </div>
-
-    <div class="hero-socials">
-      <a href="https://www.linkedin.com/in/fazleyrabbi1067" target="_blank" rel="noopener" class="social-btn" title="LinkedIn" aria-label="LinkedIn">in</a>
-      <a href="https://github.com/Rabbi1067"               target="_blank" rel="noopener" class="social-btn" title="GitHub"   aria-label="GitHub">
-        <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483
-            0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466
-            -.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832
-            .092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688
-            -.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844
-            c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651
-            .64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855
-            0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017
-            C22 6.484 17.522 2 12 2z"/>
-        </svg>
-      </a>
-      <a href="https://codeforces.com/profile/rabbi1067"  target="_blank" rel="noopener" class="social-btn" title="Codeforces" aria-label="Codeforces">CF</a>
-      <a href="https://www.codechef.com/users/rabbi1067"  target="_blank" rel="noopener" class="social-btn" title="CodeChef"   aria-label="CodeChef">CC</a>
+      <div class="hero-badges" id="hero-badges" aria-hidden="true">{{{render.badges}}}</div>
     </div>
   </div>
 
-  <!-- Right: photo card + floating badges -->
-  <div class="hero-right">
-    <div class="photo-frame">
-
-      <!-- Floating badges -->
-      <div class="float-card fc-1">
-        <div class="float-card-icon">🏆</div>
-        <div class="float-card-text">
-          <strong>ICPC Asia Dhaka</strong>
-          <span>Honorable Mention · 2024</span>
-        </div>
-      </div>
-
-      <div class="float-card fc-2">
-        <div class="float-card-icon">🤖</div>
-        <div class="float-card-text">
-          <strong>AI+ Certified</strong>
-          <span>Prompt Engineer Lv.1</span>
-        </div>
-      </div>
-
-      <div class="float-card fc-3">
-        <div class="float-card-icon">📊</div>
-        <div class="float-card-text">
-          <strong>10+ Certifications</strong>
-          <span>Microsoft · IEEE · Udemy</span>
-        </div>
-      </div>
-
-      <!-- Profile card -->
-      <div class="photo-card">
-        <div class="photo-placeholder">
-          <div class="photo-avatar-wrap">
-            <div class="photo-avatar-ring">
-             <img
-                 src="images/My_pic.jpeg"
-                 alt="Fazley Rabbi"
-                class="profile-photo"
-    />
-            </div>
-          </div>
-          <div class="photo-name-card">
-            <h3>Fazley Rabbi</h3>
-            <p>Competitive Programmer · AI Enthusiast</p>
-          </div>
-          <div class="photo-skills-row">
-            <span class="photo-skill-tag">C++</span>
-            <span class="photo-skill-tag">Python</span>
-            <span class="photo-skill-tag">ML</span>
-            <span class="photo-skill-tag">ICPC</span>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /photo-frame -->
-  </div><!-- /hero-right -->
-
-  <div class="scroll-indicator">
-    <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
-    Scroll Down
+  <div class="hero-bottom">
+    <div class="hero-identity">
+      <span class="identity-dot" aria-hidden="true"></span>
+      <strong>{{profile.name}}</strong>
+      <span class="identity-divider" aria-hidden="true"></span>
+      <span>{{profile.professional_title}}</span>
+    </div>
+    <div class="hero-btns">
+      <a href="CV.pdf" target="_blank" rel="noopener" class="btn-teal">
+        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M5 16v4h14v-4" /></svg>
+        {{profile.cv_label}}
+        <span class="button-arrow" aria-hidden="true">↗</span>
+      </a>
+      <a href="{{profile.secondary_cta_url}}" class="btn-outline">
+        {{profile.secondary_cta_label}}
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 4v16m-6-6 6 6 6-6" /></svg>
+      </a>
+    </div>
+    <div class="hero-stats">{{{render.statistics}}}</div>
+    <div class="photo-skills-row" id="hero-skill-tags" aria-label="Programming languages">{{{render.photo_tags}}}</div>
+    <div class="hero-meta">
+      <div class="hero-socials" aria-label="Social profiles">{{{render.hero_socials}}}</div>
+    </div>
   </div>
 </section>
 
@@ -253,56 +168,18 @@
 <!-- ==================== ABOUT ==================== -->
 <section id="about">
   <div class="max-w">
-    <div class="section-label reveal">Get to Know Me</div>
-    <h2 class="section-heading reveal">Who I Am</h2>
+    <div class="section-label reveal">{{site.sections.about.label}}</div>
+    <h2 class="section-heading reveal">{{site.sections.about.heading}}</h2>
 
     <div class="about-grid">
       <div class="about-img-side reveal">
         <div class="about-img-box">
-        <img src="images/me.jpeg" alt="Fazley Rabbi" class="about-photo">
-          <div class="about-stat-grid">
-            <div class="about-stat-box">
-              <div class="num">Southeast </div>
-              <div class="lbl">University</div>
-            </div>
-            <div class="about-stat-box">
-              <div class="num">10+</div>
-              <div class="lbl">Certs</div>
-            </div>
-          </div>
+        <img src="{{profile.about_photo}}" alt="{{profile.about_photo_alt}}" class="about-photo">
+          <div class="about-stat-grid">{{{render.about_statistics}}}</div>
         </div>
       </div>
 
-      <div class="about-text-side reveal">
-        <p>
-          I'm <strong>Fazley Rabbi</strong>, a motivated Computer Science and Engineering student at
-          <strong>Southeast University, Dhaka</strong>. I enjoy solving hard problems, writing efficient
-          algorithms, and building software that makes a difference.
-        </p>
-        <p>
-          My journey into tech started with a love for <strong>problem solving</strong> — that quickly
-          evolved into competitive programming. I earned an
-          <strong>Honorable Mention at ICPC Asia Dhaka 2024</strong> Preliminary Contest, and I'm now
-          deeply interested in <strong>Machine Learning</strong>.
-        </p>
-        <p>
-          Beyond coding, I've worked as a <strong>Research Assistant</strong>, contributed to the THIRA
-          project, and actively participate in IEEE Computer Society events. I also create design work —
-          posters, slides, and social media content using Canva.
-        </p>
-        <p>
-          I'm always looking to learn, collaborate, and build meaningful things.
-          If you have an interesting project or opportunity, let's connect.
-        </p>
-        <div class="about-tags">
-          <span class="about-tag">Problem Solver</span>
-          <span class="about-tag">ML Learner</span>
-          <span class="about-tag">ICPC Contestant</span>
-          <span class="about-tag">Research Assistant</span>
-          <span class="about-tag">IEEE Member</span>
-          <span class="about-tag">AI Enthusiast</span>
-        </div>
-      </div>
+      <div class="about-text-side reveal">{{{render.biography}}}</div>
     </div>
   </div>
 </section>
@@ -311,268 +188,12 @@
 <!-- ==================== PROJECTS ==================== -->
 <section id="projects">
   <div class="max-w">
-    <div class="section-label reveal">My Work</div>
-    <h2 class="section-heading reveal">Featured Projects</h2>
-    <p class="section-sub reveal">A selection of things I've built, researched, and explored.</p>
+    <div class="section-label reveal">{{site.sections.projects.label}}</div>
+    <h2 class="section-heading reveal">{{site.sections.projects.heading}}</h2>
+    <p class="section-sub reveal">{{site.sections.projects.subtitle}}</p>
 
-    <div class="projects-grid">
-
-      <!-- GitHub SVG (reusable shortcut) -->
-      <!-- Project 1: THIRA -->
-      <div class="proj-card reveal">
-        <div class="proj-top">
-          <div class="proj-icon">🧠</div>
-          <div class="proj-links">
-            <a href="https://github.com/Rabbi1067" target="_blank" rel="noopener" class="proj-link" title="GitHub" aria-label="GitHub">
-              <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-            </a>
-          </div>
-        </div>
-        <div>
-          <div class="proj-title">THIRA — Travel Health Impact Research Application</div>
-          <span class="proj-status status-research">Research</span>
-        </div>
-        <p class="proj-desc">Worked as Assistant Coordinator and Data Collector for THIRA — a joint research project of Kyushu University (Japan) and Grameen Communications (Bangladesh). Awarded Certificate of Appreciation.</p>
-        <div class="proj-stack">
-          <span class="proj-tag">Python</span>
-          <span class="proj-tag">Research</span>
-          <span class="proj-tag">LaTeX</span>
-          <span class="proj-tag">IEEE Format</span>
-        </div>
-      </div>
-
-      <!-- Project 2: CP Journey -->
-      <div class="proj-card reveal">
-        <div class="proj-top">
-          <div class="proj-icon">🏆</div>
-          <div class="proj-links">
-            <a href="https://codeforces.com/profile/rabbi1067" target="_blank" rel="noopener" class="proj-link" title="Codeforces" aria-label="Codeforces">CF</a>
-            <a href="https://www.codechef.com/users/rabbi1067"  target="_blank" rel="noopener" class="proj-link" title="CodeChef"   aria-label="CodeChef">CC</a>
-          </div>
-        </div>
-        <div>
-          <div class="proj-title">Competitive Programming Journey</div>
-          <span class="proj-status status-wip">Active</span>
-        </div>
-        <p class="proj-desc">Actively solving algorithmic challenges on Codeforces and CodeChef. Earned ICPC Asia Dhaka 2024 Honorable Mention. Focused on graph theory, dynamic programming, number theory, and data structures.</p>
-        <div class="proj-stack">
-          <span class="proj-tag">C++</span>
-          <span class="proj-tag">Algorithms</span>
-          <span class="proj-tag">Graph Theory</span>
-          <span class="proj-tag">DP</span>
-        </div>
-      </div>
-
-      <!-- Project 3: ML Learning Path -->
-      <div class="proj-card reveal">
-        <div class="proj-top">
-          <div class="proj-icon">🤖</div>
-          <div class="proj-links">
-            <a href="https://github.com/Rabbi1067" target="_blank" rel="noopener" class="proj-link" title="GitHub" aria-label="GitHub">
-              <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-            </a>
-          </div>
-        </div>
-        <div>
-          <div class="proj-title">ML Learning Path — Scikit-learn &amp; NumPy</div>
-          <span class="proj-status status-wip">In Progress</span>
-        </div>
-        <p class="proj-desc">Systematic exploration of machine learning concepts — from linear regression to classification trees. Implementing algorithms from scratch using scikit-learn on real datasets. Completed 99-hour DS/ML/DL/NLP Udemy bootcamp.</p>
-        <div class="proj-stack">
-          <span class="proj-tag">Python</span>
-          <span class="proj-tag">scikit-learn</span>
-          <span class="proj-tag">NumPy</span>
-          <span class="proj-tag">Pandas</span>
-        </div>
-      </div>
-
-      <!-- Project 4: Library Management -->
-      <div class="proj-card reveal">
-        <div class="proj-top">
-          <div class="proj-icon">☕</div>
-          <div class="proj-links">
-            <a href="https://github.com/Rabbi1067" target="_blank" rel="noopener" class="proj-link" title="GitHub" aria-label="GitHub">
-              <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-            </a>
-          </div>
-        </div>
-        <div>
-          <div class="proj-title">Library Management System</div>
-          <span class="proj-status status-done">Completed</span>
-        </div>
-        <p class="proj-desc">A desktop-based library management app built with JavaFX featuring book inventory, member management, borrowing records, and fine calculation. Implements full OOP principles with clean MVC architecture.</p>
-        <div class="proj-stack">
-          <span class="proj-tag">Java</span>
-          <span class="proj-tag">JavaFX</span>
-          <span class="proj-tag">OOP</span>
-          <span class="proj-tag">MVC</span>
-        </div>
-      </div>
-
-      <!-- Project 5: Algorithm Visualizer -->
-      <div class="proj-card reveal">
-        <div class="proj-top">
-          <div class="proj-icon">📊</div>
-          <div class="proj-links">
-            <a href="https://github.com/Rabbi1067" target="_blank" rel="noopener" class="proj-link" title="GitHub" aria-label="GitHub">
-              <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-            </a>
-          </div>
-        </div>
-        <div>
-          <div class="proj-title">Algorithm Visualizer — Sorting &amp; Pathfinding</div>
-          <span class="proj-status status-wip">In Progress</span>
-        </div>
-        <p class="proj-desc">An interactive visualizer for classic algorithms including bubble sort, merge sort, quicksort, and Dijkstra's pathfinding. Step-by-step animation shows time complexity and execution flow.</p>
-        <div class="proj-stack">
-          <span class="proj-tag">Python</span>
-          <span class="proj-tag">Matplotlib</span>
-          <span class="proj-tag">Algorithms</span>
-          <span class="proj-tag">Visualization</span>
-        </div>
-      </div>
-
-      <!-- Project 6: IEEE LaTeX -->
-      <div class="proj-card reveal">
-        <div class="proj-top">
-          <div class="proj-icon">📄</div>
-          <div class="proj-links">
-            <a href="https://github.com/Rabbi1067" target="_blank" rel="noopener" class="proj-link" title="GitHub" aria-label="GitHub">
-              <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-            </a>
-          </div>
-        </div>
-        <div>
-          <div class="proj-title">IEEE Research Paper — LaTeX Template Suite</div>
-          <span class="proj-status status-done">Completed</span>
-        </div>
-        <p class="proj-desc">Developed a reusable LaTeX template suite for IEEE-format academic papers. Includes structured sections, bibliography format, figure/table styling, and math equation environments.</p>
-        <div class="proj-stack">
-          <span class="proj-tag">LaTeX</span>
-          <span class="proj-tag">IEEE Format</span>
-          <span class="proj-tag">Academic Writing</span>
-          <span class="proj-tag">BibTeX</span>
-        </div>
-      </div>
-
-      <!-- Project 7: IEEE Design -->
-      <div class="proj-card reveal">
-        <div class="proj-top">
-          <div class="proj-icon">🎨</div>
-          <div class="proj-links">
-            <a href="https://www.linkedin.com/in/fazleyrabbi1067" target="_blank" rel="noopener" class="proj-link" title="LinkedIn" aria-label="LinkedIn">in</a>
-          </div>
-        </div>
-        <div>
-          <div class="proj-title">IEEE CS SBC — Event Design &amp; Branding</div>
-          <span class="proj-status status-done">Completed</span>
-        </div>
-        <p class="proj-desc">Designed promotional materials for IEEE CS SEU SBC events — programming contest banners, LaTeX workshop posters, and social media creatives — maintaining consistent visual identity using Canva.</p>
-        <div class="proj-stack">
-          <span class="proj-tag">Canva</span>
-          <span class="proj-tag">Graphic Design</span>
-          <span class="proj-tag">Branding</span>
-          <span class="proj-tag">Social Media</span>
-        </div>
-      </div>
-
-        <!-- Project 8: Parking Management System -->
-<div class="proj-card reveal">
-  <div class="proj-top">
-    <div class="proj-icon">🚗</div>
-
-    <div class="proj-links">
-      <a href="https://github.com/Rabbi1067/Parking_Management_System_Java_project"
-         target="_blank"
-         rel="noopener"
-         class="proj-link"
-         title="GitHub"
-         aria-label="GitHub">
-        <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483
-          0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466
-          -.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088
-          2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951
-          0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65
-          0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004
-          1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546
-          1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028
-          2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678
-          1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019
-          10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-        </svg>
-      </a>
-    </div>
-  </div>
-
-  <div>
-    <div class="proj-title">Parking Management System</div>
-    <span class="proj-status status-done">Completed</span>
-  </div>
-
-  <p class="proj-desc">
-    A Java-based Parking Management System for managing vehicle entry,
-    exit, parking slots, fee calculation, and customer records.
-    Developed using Object-Oriented Programming principles.
-  </p>
-
-  <div class="proj-stack">
-    <span class="proj-tag">Java</span>
-    <span class="proj-tag">OOP</span>
-    <span class="proj-tag">File Handling</span>
-    <span class="proj-tag">Desktop App</span>
-  </div>
-</div>
-    <!-- Project 9: BMI Calculator -->
-<div class="proj-card reveal">
-  <div class="proj-top">
-    <div class="proj-icon">⚖️</div>
-
-    <div class="proj-links">
-      <a href="https://github.com/Rabbi1067/python-project-BMI"
-         target="_blank"
-         rel="noopener"
-         class="proj-link"
-         title="GitHub"
-         aria-label="GitHub">
-        <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483
-          0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466
-          -.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088
-          2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951
-          0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65
-          0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004
-          1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546
-          1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028
-          2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678
-          1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019
-          10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-        </svg>
-      </a>
-    </div>
-  </div>
-
-  <div>
-    <div class="proj-title">BMI Calculator</div>
-    <span class="proj-status status-done">Completed</span>
-  </div>
-
-  <p class="proj-desc">
-    A simple desktop BMI Calculator built with Python and Tkinter.
-    Users can calculate Body Mass Index by entering height and weight,
-    with instant health category classification through an intuitive GUI.
-  </p>
-
-  <div class="proj-stack">
-    <span class="proj-tag">Python</span>
-    <span class="proj-tag">Tkinter</span>
-    <span class="proj-tag">GUI</span>
-    <span class="proj-tag">BMI</span>
-  </div>
-</div>
-
-
-    </div><!-- /projects-grid -->
+    {{{render.project_filters}}}
+    <div class="projects-grid" id="project-cards">{{{render.projects}}}</div><!-- /projects-grid -->
   </div>
 </section>
 
@@ -580,116 +201,11 @@
 <!-- ==================== SKILLS ==================== -->
 <section id="skills">
   <div class="max-w">
-    <div class="section-label reveal">Expertise</div>
-    <h2 class="section-heading reveal">Skills &amp; Tools</h2>
-    <p class="section-sub reveal">Technologies and tools I work with on a daily basis.</p>
+    <div class="section-label reveal">{{site.sections.skills.label}}</div>
+    <h2 class="section-heading reveal">{{site.sections.skills.heading}}</h2>
+    <p class="section-sub reveal">{{site.sections.skills.subtitle}}</p>
 
-    <div class="skills-wrapper">
-
-      <div class="skill-card reveal">
-        <div class="sk-head">
-          <div class="sk-icon">⚙️</div>
-          <div class="sk-title">Languages</div>
-        </div>
-        <div class="sk-bars">
-          <div class="sk-bar-item">
-            <div class="sk-bar-label"><span>C / C++</span><span>85%</span></div>
-            <div class="sk-bar-track"><div class="sk-bar-fill" data-w="85"></div></div>
-          </div>
-          <div class="sk-bar-item">
-            <div class="sk-bar-label"><span>Python</span><span>80%</span></div>
-            <div class="sk-bar-track"><div class="sk-bar-fill" data-w="80"></div></div>
-          </div>
-          <div class="sk-bar-item">
-            <div class="sk-bar-label"><span>Java</span><span>70%</span></div>
-            <div class="sk-bar-track"><div class="sk-bar-fill" data-w="70"></div></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="skill-card reveal">
-        <div class="sk-head">
-          <div class="sk-icon">🧠</div>
-          <div class="sk-title">Algorithms &amp; DS</div>
-        </div>
-        <div class="sk-bars">
-          <div class="sk-bar-item">
-            <div class="sk-bar-label"><span>Data Structures</span><span>82%</span></div>
-            <div class="sk-bar-track"><div class="sk-bar-fill" data-w="82"></div></div>
-          </div>
-          <div class="sk-bar-item">
-            <div class="sk-bar-label"><span>Graph Algorithms</span><span>75%</span></div>
-            <div class="sk-bar-track"><div class="sk-bar-fill" data-w="75"></div></div>
-          </div>
-          <div class="sk-bar-item">
-            <div class="sk-bar-label"><span>Dynamic Programming</span><span>70%</span></div>
-            <div class="sk-bar-track"><div class="sk-bar-fill" data-w="70"></div></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="skill-card reveal">
-        <div class="sk-head">
-          <div class="sk-icon">🤖</div>
-          <div class="sk-title">Machine Learning</div>
-        </div>
-        <div class="sk-bars">
-          <div class="sk-bar-item">
-            <div class="sk-bar-label"><span>ML Concepts</span><span>65%</span></div>
-            <div class="sk-bar-track"><div class="sk-bar-fill" data-w="65"></div></div>
-          </div>
-          <div class="sk-bar-item">
-            <div class="sk-bar-label"><span>Python ML Libraries</span><span>60%</span></div>
-            <div class="sk-bar-track"><div class="sk-bar-fill" data-w="60"></div></div>
-          </div>
-          <div class="sk-bar-item">
-            <div class="sk-bar-label"><span>Research &amp; Analysis</span><span>70%</span></div>
-            <div class="sk-bar-track"><div class="sk-bar-fill" data-w="70"></div></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="skill-card reveal">
-        <div class="sk-head">
-          <div class="sk-icon">💻</div>
-          <div class="sk-title">Development</div>
-        </div>
-        <div class="sk-tags">
-          <span class="sk-tag">JavaFX</span>
-          <span class="sk-tag">OOP</span>
-          <span class="sk-tag">Git &amp; GitHub</span>
-          <span class="sk-tag">Linux</span>
-          <span class="sk-tag">VS Code</span>
-        </div>
-      </div>
-
-      <div class="skill-card reveal">
-        <div class="sk-head">
-          <div class="sk-icon">📝</div>
-          <div class="sk-title">Research &amp; Writing</div>
-        </div>
-        <div class="sk-tags">
-          <span class="sk-tag">LaTeX</span>
-          <span class="sk-tag">Academic Writing</span>
-          <span class="sk-tag">Report Writing</span>
-          <span class="sk-tag">IEEE Format</span>
-        </div>
-      </div>
-
-      <div class="skill-card reveal">
-        <div class="sk-head">
-          <div class="sk-icon">🎨</div>
-          <div class="sk-title">Design &amp; Content</div>
-        </div>
-        <div class="sk-tags">
-          <span class="sk-tag">Canva</span>
-          <span class="sk-tag">Poster Design</span>
-          <span class="sk-tag">Presentation</span>
-          <span class="sk-tag">Social Media</span>
-        </div>
-      </div>
-
-    </div><!-- /skills-wrapper -->
+    <div class="skills-wrapper">{{{render.skills}}}</div><!-- /skills-wrapper -->
   </div>
 </section>
 
@@ -697,79 +213,21 @@
 <!-- ==================== EXPERIENCE ==================== -->
 <section id="experience">
   <div class="max-w">
-    <div class="section-label reveal">Background</div>
-    <h2 class="section-heading reveal">Education &amp; Experience</h2>
+    <div class="section-label reveal">{{site.sections.experience.label}}</div>
+    <h2 class="section-heading reveal">{{site.sections.experience.heading}}</h2>
 
     <div class="exp-grid">
 
       <!-- Education column -->
       <div>
-        <div class="exp-col-title reveal">Education <span>Academic</span></div>
-        <div class="timeline">
-
-          <div class="tl-item reveal">
-            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
-            <div class="tl-card">
-              <div class="tl-badge">Current</div>
-              <h4>B.Sc. Computer Science &amp; Engineering</h4>
-              <div class="tl-org">Southeast University, Dhaka</div>
-              <p class="tl-desc">Focusing on algorithms, data structures, software engineering, and machine learning. Active in IEEE CS SBC events and workshops.</p>
-              <div class="tl-year">2023 — 2028</div>
-            </div>
-          </div>
-
-          <div class="tl-item reveal">
-            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
-            <div class="tl-card">
-              <h4>Higher Secondary Certificate (Science)</h4>
-              <div class="tl-org">Rajshahi Government City College</div>
-              <p class="tl-desc">Completed HSC with a strong science background that built my analytical thinking and problem-solving foundation.</p>
-              <div class="tl-year">2018 — 2020</div>
-            </div>
-          </div>
-
-        </div>
+        <div class="exp-col-title reveal">{{site.copy.education_title}} <span>{{site.copy.education_subtitle}}</span></div>
+        <div class="timeline">{{{render.education}}}</div>
       </div>
 
       <!-- Experience column -->
       <div>
-        <div class="exp-col-title reveal">Experience <span>Work</span></div>
-        <div class="timeline">
-
-          <div class="tl-item reveal">
-            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
-            <div class="tl-card">
-              <div class="tl-badge">Research</div>
-              <h4>Research Assistant</h4>
-              <div class="tl-org">THIRA Project — Kyushu University &amp; Grameen Communications</div>
-              <p class="tl-desc">Worked as Assistant Coordinator and Data Collector. Awarded Certificate of Appreciation for contributions in data processing and technical documentation.</p>
-              <div class="tl-year">2023 — Present</div>
-            </div>
-          </div>
-
-          <div class="tl-item reveal">
-            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
-            <div class="tl-card">
-              <div class="tl-badge">Volunteer</div>
-              <h4>IEEE CS SBC Active Member</h4>
-              <div class="tl-org">Southeast University Branch</div>
-              <p class="tl-desc">Participated in programming contests, LaTeX workshops, and research writing seminars. Designed event materials and social media content using Canva.</p>
-              <div class="tl-year">2023 — Present</div>
-            </div>
-          </div>
-
-          <div class="tl-item reveal">
-            <div class="tl-left"><div class="tl-dot"></div></div>
-            <div class="tl-card">
-              <div class="tl-badge">CP</div>
-              <h4>Competitive Programmer</h4>
-              <div class="tl-org">Codeforces · CodeChef</div>
-              <p class="tl-desc">Actively solving algorithmic problems. Earned ICPC Asia Dhaka 2024 Honorable Mention. Focused on graph theory, DP, and number theory.</p>
-              <div class="tl-year">2022 — Present</div>
-            </div>
-          </div>
-
-        </div>
+        <div class="exp-col-title reveal">{{site.copy.experience_title}} <span>{{site.copy.experience_subtitle}}</span></div>
+        <div class="timeline">{{{render.experience}}}</div>
       </div>
 
     </div><!-- /exp-grid -->
@@ -777,334 +235,133 @@
 </section>
 
 
-<!-- ==================== CP PROFILES ==================== -->
-<section id="competitive">
+<section id="research" aria-labelledby="research-heading">
   <div class="max-w">
-    <div class="section-label reveal">Online Presence</div>
-    <h2 class="section-heading reveal">Find Me On</h2>
-    <p class="section-sub reveal">I compete, contribute, and connect across these platforms.</p>
-
-    <div class="cp-grid">
-      <a href="https://codeforces.com/profile/rabbi1067" target="_blank" rel="noopener" class="cp-card reveal">
-        <div class="cp-logo">CF</div>
-        <div class="cp-info">
-          <div class="cp-platform">Codeforces</div>
-          <div class="cp-handle">rabbi1067</div>
-        </div>
-      </a>
-      <a href="https://www.codechef.com/users/rabbi1067" target="_blank" rel="noopener" class="cp-card reveal">
-        <div class="cp-logo">CC</div>
-        <div class="cp-info">
-          <div class="cp-platform">CodeChef</div>
-          <div class="cp-handle">rabbi1067</div>
-        </div>
-      </a>
-      <a href="https://github.com/Rabbi1067" target="_blank" rel="noopener" class="cp-card reveal">
-        <div class="cp-logo">
-          <svg width="18" height="18" fill="#00d4aa" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-        </div>
-        <div class="cp-info">
-          <div class="cp-platform">GitHub</div>
-          <div class="cp-handle">Rabbi1067</div>
-        </div>
-      </a>
-      <a href="https://www.linkedin.com/in/fazleyrabbi1067" target="_blank" rel="noopener" class="cp-card reveal">
-        <div class="cp-logo">in</div>
-        <div class="cp-info">
-          <div class="cp-platform">LinkedIn</div>
-          <div class="cp-handle">fazleyrabbi1067</div>
-        </div>
-      </a>
-    </div>
+    <div class="section-label">{{site.sections.research.label}}</div>
+    <h2 class="section-heading" id="research-heading">{{site.sections.research.heading}}</h2>
+    <p class="section-sub">{{site.sections.research.subtitle}}</p>
+    <div class="papers-list">{{{render.papers}}}</div>
   </div>
 </section>
-
 
 <!-- ==================== CERTIFICATIONS ==================== -->
 <section id="certifications">
   <div class="max-w">
-    <div class="section-label reveal">Achievements</div>
-    <h2 class="section-heading reveal">Certifications &amp; Awards</h2>
-    <p class="section-sub reveal">Credentials, recognitions, and milestones earned across AI, competitive programming, and research.</p>
+    <div class="section-label reveal">{{site.sections.certifications.label}}</div>
+    <h2 class="section-heading reveal">{{site.sections.certifications.heading}}</h2>
+    <p class="section-sub reveal">{{site.sections.certifications.subtitle}}</p>
 
-    <div class="cert-grid">
-
-      <div class="cert-card reveal" style="border-color:rgba(0,180,255,.2)">
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <div class="cert-emoji">🏆</div>
-          <span class="proj-status status-done" style="font-size:.65rem">Achievement</span>
-        </div>
-        <h4>ICPC Asia Dhaka — Honorable Mention</h4>
-        <div class="cert-org">International Collegiate Programming Contest · Southeast University</div>
-        <p class="cert-desc">Earned Honorable Mention in the 2024 ICPC Asia Dhaka Preliminary Contest (Online, Oct–Nov 2024) as part of SEU team: Fahad Faisal, Fazle Rabbi, Ashraful Islam Shanto.</p>
-        <div class="cert-year">2025 · icpc.foundation</div>
-      </div>
-
-      <div class="cert-card reveal" style="border-color:rgba(255,215,0,.15)">
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <div class="cert-emoji">🤖</div>
-          <span class="proj-status status-done" style="font-size:.65rem">Certified</span>
-        </div>
-        <h4>AI+ Prompt Engineer Level 1™</h4>
-        <div class="cert-org">AI CERTs™ · Blockchain Verified</div>
-        <p class="cert-desc">Professionally certified as an AI+ Prompt Engineer by AI CERTs™. Blockchain-based verification. Cert No: 27fe77ddc368.</p>
-        <div class="cert-year">Jul 2025 — Jul 2026</div>
-      </div>
-
-      <div class="cert-card reveal" style="border-color:rgba(167,139,250,.15)">
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <div class="cert-emoji">📊</div>
-          <span class="proj-status status-done" style="font-size:.65rem">Completed</span>
-        </div>
-        <h4>Complete Data Science, ML, DL &amp; NLP Bootcamp</h4>
-        <div class="cert-org">Udemy · Krish Naik, KRISHAI Technologies</div>
-        <p class="cert-desc">Completed a comprehensive 99-hour bootcamp covering Data Science, Machine Learning, Deep Learning, and NLP end-to-end.</p>
-        <div class="cert-year">May 2026 · UC-0bfbb418</div>
-      </div>
-
-      <div class="cert-card reveal" style="border-color:rgba(0,212,170,.15)">
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <div class="cert-emoji">🧠</div>
-          <span class="proj-status status-done" style="font-size:.65rem">Certified</span>
-        </div>
-        <h4>AI CodeLab Certification Program</h4>
-        <div class="cert-org">IEEE CS SEU SBC &amp; Dept. of CSE SEU · Learn With Sumit</div>
-        <p class="cert-desc">Certified with practical knowledge in AI fundamentals, Machine Learning, and Data Analysis through the AI CodeLab program.</p>
-        <div class="cert-year">2025</div>
-      </div>
-
-      <div class="cert-card reveal" style="border-color:rgba(0,212,170,.12)">
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <div class="cert-emoji">🐍</div>
-          <span class="proj-status status-done" style="font-size:.65rem">Completed</span>
-        </div>
-        <h4>Python for Machine Learning: The Complete Beginner's Course</h4>
-        <div class="cert-org">Udemy · Meta Brains, Skool of AI</div>
-        <p class="cert-desc">Completed structured Python for ML course covering core machine learning concepts with practical Python implementation. UC-189232aa.</p>
-        <div class="cert-year">Oct 2025</div>
-      </div>
-
-      <div class="cert-card reveal" style="border-color:rgba(0,120,212,.2)">
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <div class="cert-emoji">🪟</div>
-          <span class="proj-status status-done" style="font-size:.65rem">Microsoft</span>
-        </div>
-        <h4>Microsoft 365 Copilot — Optimize &amp; Extend + Ask &amp; Analyze</h4>
-        <div class="cert-org">Microsoft Learn · mdfazleyrabbi-0705</div>
-        <p class="cert-desc">Completed two Microsoft Learn achievements — signed by Satya Narayana Nadella.</p>
-        <div class="cert-year">Jun 2025</div>
-      </div>
-
-      <div class="cert-card reveal" style="border-color:rgba(0,212,170,.12)">
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <div class="cert-emoji">📄</div>
-          <span class="proj-status status-done" style="font-size:.65rem">IEEE</span>
-        </div>
-        <h4>LaTeX Unlocked: The Research Writing Workshop</h4>
-        <div class="cert-org">IEEE Computer Society SEU SBC · Serial: IEEE/CS/SEU/20251002151</div>
-        <p class="cert-desc">Participated in IEEE CS SEU SBC's LaTeX research writing workshop on November 17, 2025. Signed by Associate Professor Shahriar Manzoor.</p>
-        <div class="cert-year">Nov 2025</div>
-      </div>
-
-   <a href="images/thira.jpg"
-   target="_blank"
-   class="cert-link">
-
-  <div class="cert-card reveal" style="border-color:rgba(96,165,250,.15)">
-    <div style="display:flex;align-items:center;justify-content:space-between">
-      <div class="cert-emoji">🎖️</div>
-      <span class="proj-status status-research" style="font-size:.65rem">Research</span>
-    </div>
-
-    <h4>Certificate of Appreciation — THIRA Project</h4>
-
-    <div class="cert-org">
-      Kyushu University, Japan &amp; Grameen Communications, Bangladesh
-    </div>
-
-    <p class="cert-desc">
-      Worked as Assistant Coordinator and Data Collector for the Travel Health
-      Impact Research Application (THIRA) joint research project.
-    </p>
-
-    <div class="cert-year">2023</div>
-  </div>
-
-</a>
-
-    </div><!-- /cert-grid -->
+    {{{render.achievement_filters}}}
+    <div class="cert-grid" id="certificate-cards">{{{render.achievements}}}</div><!-- /cert-grid -->
   </div>
 </section>
 
+
+<!-- ==================== REVIEWS ==================== -->
+<section id="reviews" aria-labelledby="reviews-heading">
+  <div class="max-w">
+    <div class="section-label reveal">{{site.sections.reviews.label}}</div>
+    <h2 class="section-heading reveal" id="reviews-heading">{{{render.reviews_heading}}}</h2>
+    <p class="section-sub reveal">{{site.sections.reviews.subtitle}}</p>
+    {{{render.reviews}}}
+  </div>
+</section>
 
 <!-- ==================== CONTACT ==================== -->
 <section id="contact">
   <div class="max-w">
-    <div class="section-label reveal">Get In Touch</div>
-    <h2 class="section-heading reveal">Contact Me</h2>
+    <div class="section-label reveal">{{site.sections.contact.label}}</div>
+    <h2 class="section-heading reveal">{{site.sections.contact.heading}}</h2>
 
     <div class="contact-wrap">
       <div class="contact-info reveal">
-        <h3>Let's work together</h3>
-        <p>Open to research collaborations, interesting projects, internships, and learning opportunities. Don't hesitate to reach out!</p>
+        <h3>{{site.copy.contact_heading}}</h3>
+        <p>{{site.copy.contact_introduction}}</p>
 
-        <div class="contact-links">
-          <a href="mailto:fazlerabbicse65@gmail.com" class="c-link">
-            <div class="c-icon">✉️</div>
-            <div class="c-text">
-              <strong>Email</strong>
-              <span>fazlerabbicse65@gmail.com</span>
-            </div>
-          </a>
-          <a href="https://www.linkedin.com/in/fazley-rabbi1067" target="_blank" rel="noopener" class="c-link">
-            <div class="c-icon">💼</div>
-            <div class="c-text">
-              <strong>LinkedIn</strong>
-              <span>fazleyrabbi1067</span>
-            </div>
-          </a>
-          <a href="https://github.com/Rabbi1067" target="_blank" rel="noopener" class="c-link">
-            <div class="c-icon">🐙</div>
-            <div class="c-text">
-              <strong>GitHub</strong>
-              <span>Rabbi1067</span>
-            </div>
-          </a>
-          <a href="tel:+8801779326236" class="c-link">
-            <div class="c-icon">📞</div>
-            <div class="c-text">
-              <strong>Phone</strong>
-              <span>+880 1779-326236</span>
-            </div>
-          </a>
-          <div class="c-link" style="cursor:default">
-            <div class="c-icon">📍</div>
-            <div class="c-text">
-              <strong>Location</strong>
-              <span>Nikunja-2, Khilkhet, Dhaka-1229</span>
-            </div>
-          </div>
-        </div>
+        <div class="contact-links">{{{render.contacts}}}</div>
       </div>
 
       <form id="contact-form" class="contact-form-box reveal">
-          <h3>Send a Message</h3>
+          <h3>{{site.form.heading}}</h3>
         <div class="form-row">
           <div class="form-group">
-            <label for="fname">Your Name</label>
+            <label for="fname">{{site.form.fname_label}}</label>
             <input
     id="fname"
     name="name"
     type="text"
-    placeholder="John Doe"
+    placeholder="{{site.form.fname_placeholder}}"
     required
 />
 
           </div>
           <div class="form-group">
-            <label for="femail">Email Address</label>
+            <label for="femail">{{site.form.femail_label}}</label>
             <input
     id="femail"
     name="email"
     type="email"
-    placeholder="john@email.com"
+    placeholder="{{site.form.femail_placeholder}}"
     required
 />
           </div>
         </div>
         <div class="form-group">
-          <label for="fsubject">Subject</label>
+          <label for="fsubject">{{site.form.fsubject_label}}</label>
           <input
     id="fsubject"
     name="subject"
     type="text"
-    placeholder="Project Collaboration"
+    placeholder="{{site.form.fsubject_placeholder}}"
     required
 />
         </div>
         <div class="form-group">
-          <label for="fmessage">Message</label>
+          <label for="fmessage">{{site.form.fmessage_label}}</label>
           <textarea
     id="fmessage"
     name="message"
-    placeholder="Tell me about your project or opportunity..."
+    placeholder="{{site.form.fmessage_placeholder}}"
     required
 ></textarea>
         </div>
-        <button type="submit" class="form-submit">
-    Send Message →
-</button>
-      </div>
+        <button type="submit" class="form-submit">{{site.form.submit_label}}</button>
+        <p class="form-status" id="contact-status" role="status" aria-live="polite" aria-atomic="true" hidden></p>
+      </form>
     </div>
- </form>
+  </div>
 </section>
 
 
 <!-- ==================== FOOTER ==================== -->
-<footer>
-  <div class="footer-brand">Fazley<span>.</span>Rabbi</div>
-  <div class="footer-copy">© 2025 Fazley Rabbi · All rights reserved</div>
+<footer id="site-footer">
+  <div class="footer-brand">{{profile.first_name}}<span>.</span>{{profile.last_name}}</div>
+  <div class="footer-socials" aria-label="Social accounts">{{{render.footer_socials}}}</div>
+  <div class="footer-copy">{{site.copy.copyright}}</div>
   <div class="footer-links">
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
+    <a href="#home">{{site.navigation.home}}</a>
+    <a href="#about">{{site.navigation.about}}</a>
+    <a href="#contact">{{site.navigation.contact}}</a>
   </div>
 </footer>
 
+<a class="scroll-indicator" id="scrollCue" href="{{render.first_scroll_target}}" aria-label="Scroll to the next section">
+  <span class="scroll-mouse" aria-hidden="true"><span class="scroll-wheel"></span></span>
+  <span>{{profile.scroll_label}}</span>
+</a>
+
 
 <!-- JavaScript -->
-<script src="js/main.js"></script>
+<script src="js/main.js?v=20261017-gallery"></script>
+<script src="js/home.js?v=20261017-section-cues"></script>
+<script src="js/showcase.js?v=20261017-reviews"></script>
+<script src="js/reviews.js?v=rating-top"></script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>
-emailjs.init({
-    publicKey: "VnYZNtH-EJq1vfqe2"
-});
-</script>
+<script type="application/json" id="contact-settings">{{{render.contact_settings}}}</script>
+<script src="js/contact.js?v=inline-status"></script>
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
 
-    const form = document.getElementById("contact-form");
 
-    form.addEventListener("submit", function (e) {
-
-        e.preventDefault();
-
-        const button = form.querySelector(".form-submit");
-
-        button.disabled = true;
-        button.textContent = "Sending...";
-
-        emailjs.sendForm(
-            "service_idzaejq",
-            "template_8o8ucec",
-            form
-        )
-        .then(function () {
-
-            alert("✅ Message sent successfully!");
-
-            form.reset();
-
-        })
-        .catch(function (error) {
-
-            console.error("EmailJS Error:", error);
-
-            alert("❌ Failed to send message. Please try again.");
-
-        })
-        .finally(function () {
-
-            button.disabled = false;
-            button.textContent = "Send Message →";
-
-        });
-
-    });
-
-});
-</script>
 
 
 </body>

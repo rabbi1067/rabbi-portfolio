@@ -1,0 +1,15 @@
+name = "portfolio-cms-oauth"
+main = "worker.mjs"
+compatibility_date = "2026-10-01"
+
+# Non-secret examples: replace all values before deploying.
+[vars]
+GITHUB_CLIENT_ID = "REPLACE_WITH_OAUTH_APP_CLIENT_ID"
+GITHUB_REPOSITORY = "rabbi1067/rabbi-portfolio"
+ADMIN_ORIGIN = "https://rabbi1067.github.io"
+AUTH_ORIGIN = "https://portfolio-cms-oauth.YOUR_SUBDOMAIN.workers.dev"
+ALLOWED_USERS = "Rabbi1067"
+OAUTH_SCOPE = "public_repo"
+
+# Set GITHUB_CLIENT_SECRET with: npx wrangler secret put GITHUB_CLIENT_SECRET
+# Never add that secret to this file or to the static CMS configuration.

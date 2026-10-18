@@ -1,0 +1,29 @@
+{
+  "id": "bmi-calculator",
+  "title": "BMI Calculator",
+  "description": "A simple desktop BMI Calculator built with Python and Tkinter. Users can calculate Body Mass Index by entering height and weight, with instant health category classification through an intuitive GUI.",
+  "details": "",
+  "category": "Software",
+  "tags": [],
+  "stack": [
+    "Python",
+    "Tkinter",
+    "GUI",
+    "BMI"
+  ],
+  "icon": "⚖️",
+  "status": "Completed",
+  "status_style": "status-done",
+  "github_url": "https://github.com/Rabbi1067/python-project-BMI",
+  "demo_url": "",
+  "documentation_url": "",
+  "links": [],
+  "thumbnail": "",
+  "thumbnail_alt": "",
+  "gallery": [],
+  "featured": true,
+  "order": 9,
+  "published": true,
+  "start_date": "",
+  "completion_date": ""
+}

@@ -1,0 +1,29 @@
+{
+  "id": "algorithm-visualizer-sorting-pathfinding",
+  "title": "Algorithm Visualizer — Sorting & Pathfinding",
+  "description": "An interactive visualizer for classic algorithms including bubble sort, merge sort, quicksort, and Dijkstra's pathfinding. Step-by-step animation shows time complexity and execution flow.",
+  "details": "",
+  "category": "Software",
+  "tags": [],
+  "stack": [
+    "Python",
+    "Matplotlib",
+    "Algorithms",
+    "Visualization"
+  ],
+  "icon": "📊",
+  "status": "In Progress",
+  "status_style": "status-wip",
+  "github_url": "https://github.com/Rabbi1067",
+  "demo_url": "",
+  "documentation_url": "",
+  "links": [],
+  "thumbnail": "",
+  "thumbnail_alt": "",
+  "gallery": [],
+  "featured": true,
+  "order": 5,
+  "published": true,
+  "start_date": "",
+  "completion_date": ""
+}

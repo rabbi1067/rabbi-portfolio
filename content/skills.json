@@ -1,0 +1,349 @@
+{
+  "categories": [
+    {
+      "name": "Languages",
+      "icon": "⌘",
+      "image": "",
+      "image_alt": "",
+      "visualization": "tags",
+      "order": 1,
+      "published": true,
+      "items": [
+        {
+          "name": "C / C++",
+          "proficiency": "",
+          "percent": 0,
+          "image": "",
+          "image_alt": "",
+          "order": 1,
+          "published": true
+        },
+        {
+          "name": "Java",
+          "proficiency": "",
+          "percent": 0,
+          "image": "",
+          "image_alt": "",
+          "order": 2,
+          "published": true
+        },
+        {
+          "name": "Python",
+          "proficiency": "",
+          "percent": 0,
+          "image": "",
+          "image_alt": "",
+          "order": 3,
+          "published": true
+        }
+      ]
+    },
+    {
+      "name": "Web & Backend",
+      "icon": "</>",
+      "image": "",
+      "image_alt": "",
+      "visualization": "tags",
+      "order": 2,
+      "published": true,
+      "items": [
+        {
+          "name": "HTML",
+          "proficiency": "",
+          "percent": 0,
+          "image": "",
+          "image_alt": "",
+          "order": 1,
+          "published": true
+        },
+        {
+          "name": "CSS",
+          "proficiency": "",
+          "percent": 0,
+          "image": "",
+          "image_alt": "",
+          "order": 2,
+          "published": true
+        },
+        {
+          "name": "JavaScript",
+          "proficiency": "",
+          "percent": 0,
+          "image": "",
+          "image_alt": "",
+          "order": 3,
+          "published": true
+        },
+        {
+          "name": "React",
+          "proficiency": "",
+          "percent": 0,
+          "image": "",
+          "image_alt": "",
+          "order": 4,
+          "published": true
+        },
+        {
+          "name": "Next.js",
+          "proficiency": "",
+          "percent": 0,
+          "image": "",
+          "image_alt": "",
+          "order": 5,
+          "published": true
+        },
+        {
+          "name": "Spring Boot",
+          "proficiency": "",
+          "percent": 0,
+          "image": "",
+          "image_alt": "",
+          "order": 6,
+          "published": true
+        },
+        {
+          "name": "MySQL",
+          "proficiency": "",
+          "percent": 0,
+          "image": "",
+          "image_alt": "",
+          "order": 7,
+          "published": true
+        },
+        {
+          "name": "MongoDB",
+          "proficiency": "",
+          "percent": 0,
+          "image": "",
+          "image_alt": "",
+          "order": 8,
+          "published": true
+        }
+      ]
+    },
+    {
+      "name": "Development",
+      "icon": "⚙",
+      "image": "",
+      "image_alt": "",
+      "visualization": "tags",
+      "order": 3,
+      "published": true,
+      "items": [
+        {
+          "name": "JavaFX",
+          "proficiency": "",
+          "percent": 0,
+          "image": "",
+          "image_alt": "",
+          "order": 1,
+          "published": true
+        },
+        {
+          "name": "OOP",
+          "proficiency": "",
+          "percent": 0,
+          "image": "",
+          "image_alt": "",
+          "order": 2,
+          "published": true
+        },
+        {
+          "name": "Git",
+          "proficiency": "",
+          "percent": 0,
+          "image": "",
+          "image_alt": "",
+          "order": 3,
+          "published": true
+        },
+        {
+          "name": "GitHub",
+          "proficiency": "",
+          "percent": 0,
+          "image": "",
+          "image_alt": "",
+          "order": 4,
+          "published": true
+        },
+        {
+          "name": "Linux",
+          "proficiency": "",
+          "percent": 0,
+          "image": "",
+          "image_alt": "",
+          "order": 5,
+          "published": true
+        },
+        {
+          "name": "VS Code",
+          "proficiency": "",
+          "percent": 0,
+          "image": "",
+          "image_alt": "",
+          "order": 6,
+          "published": true
+        },
+        {
+          "name": "IntelliJ IDEA",
+          "proficiency": "",
+          "percent": 0,
+          "image": "",
+          "image_alt": "",
+          "order": 7,
+          "published": true
+        },
+        {
+          "name": "Google Colab",
+          "proficiency": "",
+          "percent": 0,
+          "image": "",
+          "image_alt": "",
+          "order": 8,
+          "published": true
+        },
+        {
+          "name": "Kaggle",
+          "proficiency": "",
+          "percent": 0,
+          "image": "",
+          "image_alt": "",
+          "order": 9,
+          "published": true
+        }
+      ]
+    },
+    {
+      "name": "AI & Machine Learning",
+      "icon": "✦",
+      "image": "",
+      "image_alt": "",
+      "visualization": "tags",
+      "order": 4,
+      "published": true,
+      "items": [
+        {
+          "name": "Artificial Intelligence",
+          "proficiency": "",
+          "percent": 0,
+          "image": "",
+          "image_alt": "",
+          "order": 1,
+          "published": true
+        },
+        {
+          "name": "Machine Learning",
+          "proficiency": "",
+          "percent": 0,
+          "image": "",
+          "image_alt": "",
+          "order": 2,
+          "published": true
+        },
+        {
+          "name": "Deep Learning",
+          "proficiency": "",
+          "percent": 0,
+          "image": "",
+          "image_alt": "",
+          "order": 3,
+          "published": true
+        },
+        {
+          "name": "Vibe Coding",
+          "proficiency": "",
+          "percent": 0,
+          "image": "",
+          "image_alt": "",
+          "order": 4,
+          "published": true
+        }
+      ]
+    },
+    {
+      "name": "Research & Writing",
+      "icon": "✎",
+      "image": "",
+      "image_alt": "",
+      "visualization": "tags",
+      "order": 5,
+      "published": true,
+      "items": [
+        {
+          "name": "LaTeX",
+          "proficiency": "",
+          "percent": 0,
+          "image": "",
+          "image_alt": "",
+          "order": 1,
+          "published": true
+        },
+        {
+          "name": "Microsoft Word",
+          "proficiency": "",
+          "percent": 0,
+          "image": "",
+          "image_alt": "",
+          "order": 2,
+          "published": true
+        },
+        {
+          "name": "Google Docs",
+          "proficiency": "",
+          "percent": 0,
+          "image": "",
+          "image_alt": "",
+          "order": 3,
+          "published": true
+        },
+        {
+          "name": "Microsoft Excel",
+          "proficiency": "",
+          "percent": 0,
+          "image": "",
+          "image_alt": "",
+          "order": 4,
+          "published": true
+        }
+      ]
+    },
+    {
+      "name": "Design & Content",
+      "icon": "◈",
+      "image": "",
+      "image_alt": "",
+      "visualization": "tags",
+      "order": 6,
+      "published": true,
+      "items": [
+        {
+          "name": "Canva",
+          "proficiency": "",
+          "percent": 0,
+          "image": "",
+          "image_alt": "",
+          "order": 1,
+          "published": true
+        },
+        {
+          "name": "Poster Design",
+          "proficiency": "",
+          "percent": 0,
+          "image": "",
+          "image_alt": "",
+          "order": 2,
+          "published": true
+        },
+        {
+          "name": "Social Media Design",
+          "proficiency": "",
+          "percent": 0,
+          "image": "",
+          "image_alt": "",
+          "order": 3,
+          "published": true
+        }
+      ]
+    }
+  ]
+}

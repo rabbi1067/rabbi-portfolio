@@ -23,8 +23,8 @@
 
   /* Text colors */
   --text-primary: #c8d0da;      /* main body text */
-  --text-secondary: #7a8898;    /* secondary / dimmer text */
-  --text-muted: #5a6878;        /* muted / label text */
+  --text-secondary: #a7b3c2;
+  --text-muted: #95a3b5;
 
   /* Border colors */
   --border-color: #3a4858;
@@ -48,7 +48,7 @@
   /* Text colors flip to dark shades for readability on a light background */
   --text-primary: #1a2230;
   --text-secondary: #45525f;
-  --text-muted: #6b7886;
+  --text-muted: #526170;
 
   /* Borders become subtle dark lines instead of light ones */
   --border-color: #d3dae0;

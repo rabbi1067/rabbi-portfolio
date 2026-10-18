@@ -1,0 +1,95 @@
+{
+  "name": "Fazley Rabbi",
+  "full_name": "Fazley Rabbi",
+  "first_name": "Fazley",
+  "last_name": "Rabbi",
+  "greeting": "Hello I’m",
+  "professional_title": "AI Engineer & Full Stack Developer",
+  "hero_accent": "AI Engineer & Full Stack Developer",
+  "hero_subtitle": "",
+  "introduction": "Passionate Computer Science & Engineering student at Southeast University with strong expertise in Competitive Programming, Artificial Intelligence, and Machine Learning. I love solving complex problems through efficient algorithms and building impactful real-world solutions with clean, scalable code.",
+  "available": true,
+  "availability_text": "Available for Collaboration",
+  "profile_photo": "images/My_pic.jpeg",
+  "profile_photo_alt": "Fazley Rabbi",
+  "about_photo": "images/me.jpeg",
+  "about_photo_alt": "Fazley Rabbi",
+  "cv_label": "Download CV",
+  "secondary_cta_label": "View Skills",
+  "secondary_cta_url": "#skills",
+  "hire_label": "Hire Me",
+  "hire_url": "#contact",
+  "scroll_label": "Scroll Down",
+  "photo_tags": [
+    "C++",
+    "Python",
+    "C",
+    "Java"
+  ],
+  "about_tags": [
+    "Problem Solver",
+    "ML Learner",
+    "ICPC Contestant",
+    "Research Assistant",
+    "IEEE Member",
+    "AI Enthusiast"
+  ],
+  "biography": [
+    "I'm **Fazley Rabbi**, a motivated Computer Science and Engineering student at **Southeast University, Dhaka**. I enjoy solving hard problems, writing efficient algorithms, and building software that makes a difference.",
+    "My journey into tech started with a love for **problem solving** — that quickly evolved into competitive programming. I earned an **Honorable Mention at ICPC Asia Dhaka 2024** Preliminary Contest, and I'm now deeply interested in **Machine Learning**.",
+    "Beyond coding, I've worked as a **Research Assistant**, contributed to the THIRA project, and actively participate in IEEE Computer Society events. I also create design work — posters, slides, and social media content using Canva.",
+    "I'm always looking to learn, collaborate, and build meaningful things. If you have an interesting project or opportunity, let's connect."
+  ],
+  "statistics": [
+    {
+      "value": "1000",
+      "suffix": "+",
+      "label": "Problems Solved"
+    },
+    {
+      "value": "",
+      "suffix": "",
+      "label": "Certifications",
+      "source": "certifications"
+    },
+    {
+      "value": "ICPC",
+      "suffix": "",
+      "label": "Honorable"
+    }
+  ],
+  "badges": [
+    {
+      "icon": "✦",
+      "title": "AI Engineer",
+      "subtitle": ""
+    },
+    {
+      "icon": "⌬",
+      "title": "Researcher",
+      "subtitle": ""
+    },
+    {
+      "icon": "</>",
+      "title": "Full Stack Developer",
+      "subtitle": ""
+    },
+    {
+      "icon": "ϟ",
+      "title": "Competitive Programmer",
+      "subtitle": ""
+    }
+  ],
+  "about_statistics": [
+    {
+      "value": "Southeast",
+      "label": "University"
+    },
+    {
+      "value": "",
+      "label": "Certs",
+      "source": "certifications"
+    }
+  ],
+  "hero_photo": "images/hero-cutout.png"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "parking-management-system",
+  "title": "Parking Management System",
+  "description": "A Java-based Parking Management System for managing vehicle entry, exit, parking slots, fee calculation, and customer records. Developed using Object-Oriented Programming principles.",
+  "details": "",
+  "category": "Software",
+  "tags": [],
+  "stack": [
+    "Java",
+    "OOP",
+    "File Handling",
+    "Desktop App"
+  ],
+  "icon": "🚗",
+  "status": "Completed",
+  "status_style": "status-done",
+  "github_url": "https://github.com/Rabbi1067/Parking_Management_System_Java_project",
+  "demo_url": "",
+  "documentation_url": "",
+  "links": [],
+  "thumbnail": "",
+  "thumbnail_alt": "",
+  "gallery": [],
+  "featured": true,
+  "order": 8,
+  "published": true,
+  "start_date": "",
+  "completion_date": ""
+}

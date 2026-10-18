@@ -1,0 +1,52 @@
+{
+  "items": [
+    {
+      "title": "Research Assistant",
+      "organization": "THIRA Project — Kyushu University & Grameen Communications",
+      "description": "Research coordination and data collection for the THIRA collaboration.",
+      "period": "2023 — Present",
+      "badge": "Research",
+      "order": 1,
+      "start_date": "",
+      "end_date": "",
+      "current": true,
+      "responsibilities": [
+        "Coordinated project activities and collected data for the Kyushu University–Grameen Communications research collaboration.",
+        "Contributed to data processing and technical documentation for the THIRA project.",
+        "Received a Certificate of Appreciation for project contributions."
+      ]
+    },
+    {
+      "title": "IEEE CS SBC Active Member",
+      "organization": "Southeast University Branch",
+      "description": "Community participation, technical learning, and visual communication.",
+      "period": "2023 — Present",
+      "badge": "Volunteer",
+      "order": 2,
+      "start_date": "",
+      "end_date": "",
+      "current": true,
+      "responsibilities": [
+        "Participated in programming contests, LaTeX workshops, and research writing seminars.",
+        "Created event posters and social media materials using Canva.",
+        "Supported IEEE Computer Society student branch activities at Southeast University."
+      ]
+    },
+    {
+      "title": "Competitive Programmer",
+      "organization": "Codeforces · CodeChef",
+      "description": "Algorithmic problem solving and programming contest participation.",
+      "period": "2022 — Present",
+      "badge": "CP",
+      "order": 3,
+      "start_date": "",
+      "end_date": "",
+      "current": true,
+      "responsibilities": [
+        "Practise graph algorithms, dynamic programming, and number theory on Codeforces and CodeChef.",
+        "Use C / C++ to implement and refine algorithmic solutions.",
+        "Earned Honorable Mention in the ICPC Asia Dhaka 2024 Preliminary Contest as part of the SEU team."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2289 @@
+{
+  "profile": [
+    {
+      "name": "name",
+      "label": "Name",
+      "widget": "string",
+      "required": true
+    },
+    {
+      "name": "full_name",
+      "label": "Full name",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "first_name",
+      "label": "First name",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "last_name",
+      "label": "Last name",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "greeting",
+      "label": "Greeting",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "professional_title",
+      "label": "Home identity role",
+      "widget": "string",
+      "required": false,
+      "hint": "The small role label beneath the home portrait."
+    },
+    {
+      "name": "hero_accent",
+      "label": "Home headline role",
+      "widget": "string",
+      "required": false,
+      "hint": "The main role displayed on the home page, currently AI Engineer."
+    },
+    {
+      "name": "hero_subtitle",
+      "label": "Home secondary role (optional)",
+      "widget": "string",
+      "required": false,
+      "hint": "Leave empty to display only the main role."
+    },
+    {
+      "name": "introduction",
+      "label": "Introduction",
+      "widget": "text",
+      "required": false
+    },
+    {
+      "name": "available",
+      "label": "Available",
+      "widget": "boolean",
+      "required": false,
+      "default": true
+    },
+    {
+      "name": "availability_text",
+      "label": "Availability text",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "profile_photo",
+      "label": "Profile photo",
+      "widget": "image",
+      "required": false,
+      "hint": " Local uploaded photos automatically get responsive WebP versions during the build; originals are retained."
+    },
+    {
+      "name": "profile_photo_alt",
+      "label": "Profile photo alt",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "hero_photo",
+      "label": "Hero cutout photo",
+      "widget": "image",
+      "required": false,
+      "hint": "A transparent portrait PNG or WebP works best. Leave empty to use the main profile photo. Local uploaded photos automatically get responsive WebP versions during the build; originals are retained."
+    },
+    {
+      "name": "about_photo",
+      "label": "About photo",
+      "widget": "image",
+      "required": false,
+      "hint": " Local uploaded photos automatically get responsive WebP versions during the build; originals are retained."
+    },
+    {
+      "name": "about_photo_alt",
+      "label": "About photo alt",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "cv_label",
+      "label": "Cv label",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "secondary_cta_label",
+      "label": "Secondary cta label",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "secondary_cta_url",
+      "label": "Secondary cta url",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "hire_label",
+      "label": "Hire label",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "hire_url",
+      "label": "Hire url",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "scroll_label",
+      "label": "Scroll label",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "photo_tags",
+      "label": "Programming language chips",
+      "widget": "list",
+      "required": false,
+      "field": {
+        "name": "item",
+        "label": "Item",
+        "widget": "string",
+        "required": false
+      },
+      "default": [],
+      "collapsed": true,
+      "max": 20,
+      "hint": "Up to 20 language chips, always visible below the hero statistics."
+    },
+    {
+      "name": "about_tags",
+      "label": "About tags",
+      "widget": "list",
+      "required": false,
+      "field": {
+        "name": "item",
+        "label": "Item",
+        "widget": "string",
+        "required": false
+      },
+      "default": [],
+      "collapsed": true
+    },
+    {
+      "name": "biography",
+      "label": "Biography",
+      "widget": "list",
+      "required": false,
+      "field": {
+        "name": "item",
+        "label": "Item",
+        "widget": "text",
+        "required": false
+      },
+      "default": [],
+      "collapsed": true,
+      "hint": "One paragraph per item. Use **bold text** for emphasis."
+    },
+    {
+      "name": "statistics",
+      "label": "Statistics",
+      "widget": "list",
+      "required": false,
+      "fields": [
+        {
+          "name": "value",
+          "label": "Value",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "suffix",
+          "label": "Suffix",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "label",
+          "label": "Label",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "source",
+          "label": "Value source",
+          "widget": "select",
+          "required": false,
+          "options": [
+            "manual",
+            "certifications"
+          ],
+          "default": "manual",
+          "hint": "Certifications uses the exact number of published certificate/award records and ignores the manual value/suffix."
+        }
+      ],
+      "default": [],
+      "collapsed": true,
+      "hint": "Certificate counts update automatically from published Certifications & Awards records. Add, delete, or hide a record to update the count on the next build."
+    },
+    {
+      "name": "badges",
+      "label": "Portrait role tags",
+      "widget": "list",
+      "required": false,
+      "fields": [
+        {
+          "name": "icon",
+          "label": "Icon",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "title",
+          "label": "Title",
+          "widget": "string",
+          "required": true
+        },
+        {
+          "name": "subtitle",
+          "label": "Subtitle",
+          "widget": "string",
+          "required": false
+        }
+      ],
+      "default": [],
+      "collapsed": true,
+      "max": 20,
+      "hint": "Up to 20 role tags. Shown on portrait hover/focus or a touch-device tap; hidden 2.5 seconds after leaving."
+    },
+    {
+      "name": "about_statistics",
+      "label": "About statistics",
+      "widget": "list",
+      "required": false,
+      "fields": [
+        {
+          "name": "value",
+          "label": "Value",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "label",
+          "label": "Label",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "source",
+          "label": "Value source",
+          "widget": "select",
+          "required": false,
+          "options": [
+            "manual",
+            "certifications"
+          ],
+          "default": "manual",
+          "hint": "Certifications uses the exact number of published certificate/award records and ignores the manual value/suffix."
+        }
+      ],
+      "default": [],
+      "collapsed": true,
+      "hint": "Certificate counts update automatically from published Certifications & Awards records. Add, delete, or hide a record to update the count on the next build."
+    }
+  ],
+  "contact": [
+    {
+      "name": "email",
+      "label": "Email",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "phone",
+      "label": "Phone",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "phone_display",
+      "label": "Phone display",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "location",
+      "label": "Location",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "email_label",
+      "label": "Email label",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "phone_label",
+      "label": "Phone label",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "location_label",
+      "label": "Location label",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "links",
+      "label": "Links",
+      "widget": "list",
+      "required": false,
+      "fields": [
+        {
+          "name": "id",
+          "label": "Id",
+          "widget": "string",
+          "required": true,
+          "pattern": [
+            "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+            "Use lowercase letters, numbers and hyphens. Keep existing IDs stable."
+          ]
+        },
+        {
+          "name": "name",
+          "label": "Name",
+          "widget": "string",
+          "required": true
+        },
+        {
+          "name": "url",
+          "label": "Url",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "handle",
+          "label": "Handle",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "icon",
+          "label": "Icon",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "hero",
+          "label": "Hero",
+          "widget": "boolean",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "order",
+          "label": "Order",
+          "widget": "number",
+          "required": false,
+          "value_type": "int",
+          "min": 0,
+          "default": 1
+        },
+        {
+          "name": "contact",
+          "label": "Contact",
+          "widget": "boolean",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "contact_icon",
+          "label": "Contact icon",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "contact_url",
+          "label": "Contact url",
+          "widget": "string",
+          "required": false,
+          "hint": "Optional contact-only override. Clear to use the main social URL everywhere."
+        },
+        {
+          "name": "contact_order",
+          "label": "Contact order",
+          "widget": "number",
+          "required": false,
+          "value_type": "int",
+          "min": 0,
+          "default": 2
+        },
+        {
+          "name": "hero_order",
+          "label": "Hero order",
+          "widget": "number",
+          "required": false,
+          "value_type": "int",
+          "min": 0,
+          "default": 3
+        },
+        {
+          "name": "footer",
+          "label": "Show in footer",
+          "widget": "boolean",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "published",
+          "label": "Show on website",
+          "widget": "boolean",
+          "required": false,
+          "default": true,
+          "hint": "Turn off to hide this item without deleting its saved content."
+        }
+      ],
+      "default": [],
+      "collapsed": true
+    }
+  ],
+  "skills": [
+    {
+      "name": "categories",
+      "label": "Categories",
+      "widget": "list",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "label": "Name",
+          "widget": "string",
+          "required": true
+        },
+        {
+          "name": "icon",
+          "label": "Icon",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "image",
+          "label": "Image",
+          "widget": "image",
+          "required": false
+        },
+        {
+          "name": "image_alt",
+          "label": "Image alt",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "visualization",
+          "label": "Visualization",
+          "widget": "select",
+          "required": false,
+          "options": [
+            "bars",
+            "tags"
+          ],
+          "default": "tags"
+        },
+        {
+          "name": "order",
+          "label": "Order",
+          "widget": "number",
+          "required": false,
+          "value_type": "int",
+          "min": 0,
+          "default": 1
+        },
+        {
+          "name": "items",
+          "label": "Items",
+          "widget": "list",
+          "required": false,
+          "fields": [
+            {
+              "name": "name",
+              "label": "Name",
+              "widget": "string",
+              "required": true
+            },
+            {
+              "name": "proficiency",
+              "label": "Proficiency",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "percent",
+              "label": "Percent",
+              "widget": "number",
+              "required": false,
+              "value_type": "int",
+              "min": 0,
+              "default": 0,
+              "max": 100
+            },
+            {
+              "name": "image",
+              "label": "Image",
+              "widget": "image",
+              "required": false
+            },
+            {
+              "name": "image_alt",
+              "label": "Image alt",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "order",
+              "label": "Order",
+              "widget": "number",
+              "required": false,
+              "value_type": "int",
+              "min": 0,
+              "default": 1
+            },
+            {
+              "name": "published",
+              "label": "Show on website",
+              "widget": "boolean",
+              "required": false,
+              "default": true,
+              "hint": "Turn off to hide this item without deleting its saved content."
+            }
+          ],
+          "default": [],
+          "collapsed": true
+        },
+        {
+          "name": "published",
+          "label": "Show on website",
+          "widget": "boolean",
+          "required": false,
+          "default": true,
+          "hint": "Turn off to hide this item without deleting its saved content."
+        }
+      ],
+      "default": [],
+      "collapsed": true
+    }
+  ],
+  "education": [
+    {
+      "name": "items",
+      "label": "Items",
+      "widget": "list",
+      "required": false,
+      "fields": [
+        {
+          "name": "title",
+          "label": "Title",
+          "widget": "string",
+          "required": true
+        },
+        {
+          "name": "organization",
+          "label": "Organization",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "description",
+          "label": "Description",
+          "widget": "text",
+          "required": false
+        },
+        {
+          "name": "period",
+          "label": "Period",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "badge",
+          "label": "Badge",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "order",
+          "label": "Order",
+          "widget": "number",
+          "required": false,
+          "value_type": "int",
+          "min": 0,
+          "default": 1
+        },
+        {
+          "name": "department",
+          "label": "Department",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "gpa",
+          "label": "Gpa",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "gpa_label",
+          "label": "Gpa label",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "published",
+          "label": "Show on website",
+          "widget": "boolean",
+          "required": false,
+          "default": true,
+          "hint": "Turn off to hide this item without deleting its saved content."
+        }
+      ],
+      "default": [],
+      "collapsed": true
+    }
+  ],
+  "experience": [
+    {
+      "name": "items",
+      "label": "Items",
+      "widget": "list",
+      "required": false,
+      "fields": [
+        {
+          "name": "title",
+          "label": "Title",
+          "widget": "string",
+          "required": true
+        },
+        {
+          "name": "organization",
+          "label": "Organization",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "description",
+          "label": "Description",
+          "widget": "text",
+          "required": false
+        },
+        {
+          "name": "period",
+          "label": "Period",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "badge",
+          "label": "Badge",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "order",
+          "label": "Order",
+          "widget": "number",
+          "required": false,
+          "value_type": "int",
+          "min": 0,
+          "default": 1
+        },
+        {
+          "name": "start_date",
+          "label": "Start date",
+          "widget": "string",
+          "required": false,
+          "pattern": [
+            "^$|^\\d{4}-\\d{2}-\\d{2}$",
+            "Use YYYY-MM-DD or leave empty."
+          ]
+        },
+        {
+          "name": "end_date",
+          "label": "End date",
+          "widget": "string",
+          "required": false,
+          "pattern": [
+            "^$|^\\d{4}-\\d{2}-\\d{2}$",
+            "Use YYYY-MM-DD or leave empty."
+          ]
+        },
+        {
+          "name": "current",
+          "label": "Current",
+          "widget": "boolean",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "responsibilities",
+          "label": "Responsibilities",
+          "widget": "list",
+          "required": false,
+          "field": {
+            "name": "item",
+            "label": "Item",
+            "widget": "string",
+            "required": false
+          },
+          "default": [],
+          "collapsed": true
+        },
+        {
+          "name": "published",
+          "label": "Show on website",
+          "widget": "boolean",
+          "required": false,
+          "default": true,
+          "hint": "Turn off to hide this item without deleting its saved content."
+        }
+      ],
+      "default": [],
+      "collapsed": true
+    }
+  ],
+  "achievements": [
+    {
+      "name": "items",
+      "label": "Items",
+      "widget": "list",
+      "required": false,
+      "fields": [
+        {
+          "name": "title",
+          "label": "Title",
+          "widget": "string",
+          "required": true
+        },
+        {
+          "name": "organization",
+          "label": "Organization",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "description",
+          "label": "Description",
+          "widget": "text",
+          "required": false
+        },
+        {
+          "name": "category",
+          "label": "Category",
+          "widget": "string",
+          "required": false,
+          "hint": "Used for the category filter above the cards."
+        },
+        {
+          "name": "date",
+          "label": "Date",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "icon",
+          "label": "Icon",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "badge",
+          "label": "Badge",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "status_style",
+          "label": "Status style",
+          "widget": "select",
+          "required": false,
+          "options": [
+            "status-done",
+            "status-wip",
+            "status-research"
+          ],
+          "default": "status-wip"
+        },
+        {
+          "name": "border_color",
+          "label": "Border color",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "credential_url",
+          "label": "Verification URL (optional)",
+          "widget": "string",
+          "required": false,
+          "hint": "Paste the full issuer verification URL. A Verify credential button appears only when provided; opens in a new tab."
+        },
+        {
+          "name": "certificate",
+          "label": "Certificate",
+          "widget": "file",
+          "required": false,
+          "hint": "Certificate file opened when the card is clicked. Image files also appear as the thumbnail unless a separate thumbnail is selected."
+        },
+        {
+          "name": "thumbnail",
+          "label": "Thumbnail image (optional)",
+          "widget": "image",
+          "required": false,
+          "hint": "Optional. Leave empty to omit the thumbnail unless a certificate image or site-wide default cover is provided."
+        },
+        {
+          "name": "thumbnail_alt",
+          "label": "Thumbnail description",
+          "widget": "string",
+          "required": false,
+          "hint": "Describe the image for screen readers. Defaults to the certificate title."
+        },
+        {
+          "name": "order",
+          "label": "Order",
+          "widget": "number",
+          "required": false,
+          "value_type": "int",
+          "min": 0,
+          "default": 1
+        },
+        {
+          "name": "published",
+          "label": "Show on website",
+          "widget": "boolean",
+          "required": false,
+          "default": true,
+          "hint": "Turn off to hide this item without deleting its saved content."
+        },
+        {
+          "name": "credential_id",
+          "label": "Credential ID (optional)",
+          "widget": "string",
+          "required": false,
+          "hint": "Enter the identifier printed on the certificate. A partial ID is not a verification URL."
+        },
+        {
+          "name": "show_credential_id",
+          "label": "Show credential ID",
+          "widget": "boolean",
+          "required": false,
+          "default": false,
+          "hint": "Enable only when you want the saved ID displayed below the description."
+        }
+      ],
+      "default": [],
+      "collapsed": true
+    }
+  ],
+  "resume": [
+    {
+      "name": "file",
+      "label": "File",
+      "widget": "file",
+      "required": false,
+      "media_library": {
+        "config": {
+          "allowed_extensions": [
+            "pdf"
+          ]
+        }
+      },
+      "hint": "Upload a PDF; the build copies it to the stable CV.pdf download URL. This PDF is public."
+    }
+  ],
+  "site-settings": [
+    {
+      "name": "seo",
+      "label": "Seo",
+      "widget": "object",
+      "required": false,
+      "fields": [
+        {
+          "name": "description",
+          "label": "Description",
+          "widget": "text",
+          "required": false
+        },
+        {
+          "name": "author",
+          "label": "Author",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "keywords",
+          "label": "Keywords",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "og_title",
+          "label": "Og title",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "og_description",
+          "label": "Og description",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "og_url",
+          "label": "Og url",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "og_type",
+          "label": "Og type",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "title",
+          "label": "Title",
+          "widget": "string",
+          "required": true
+        },
+        {
+          "name": "canonical",
+          "label": "Canonical",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "favicon",
+          "label": "Favicon",
+          "widget": "image",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "sections",
+      "label": "Sections",
+      "widget": "object",
+      "required": false,
+      "fields": [
+        {
+          "name": "about",
+          "label": "About",
+          "widget": "object",
+          "required": false,
+          "fields": [
+            {
+              "name": "label",
+              "label": "Label",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "heading",
+              "label": "Heading",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "visible",
+              "label": "Show this section",
+              "widget": "boolean",
+              "required": false,
+              "default": true,
+              "hint": "Hide the entire section and its navigation link without deleting content."
+            }
+          ]
+        },
+        {
+          "name": "projects",
+          "label": "Projects",
+          "widget": "object",
+          "required": false,
+          "fields": [
+            {
+              "name": "label",
+              "label": "Label",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "heading",
+              "label": "Heading",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "subtitle",
+              "label": "Subtitle",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "visible",
+              "label": "Show this section",
+              "widget": "boolean",
+              "required": false,
+              "default": true,
+              "hint": "Hide the entire section and its navigation link without deleting content."
+            }
+          ]
+        },
+        {
+          "name": "skills",
+          "label": "Skills",
+          "widget": "object",
+          "required": false,
+          "fields": [
+            {
+              "name": "label",
+              "label": "Label",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "heading",
+              "label": "Heading",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "subtitle",
+              "label": "Subtitle",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "visible",
+              "label": "Show this section",
+              "widget": "boolean",
+              "required": false,
+              "default": true,
+              "hint": "Hide the entire section and its navigation link without deleting content."
+            }
+          ]
+        },
+        {
+          "name": "experience",
+          "label": "Experience",
+          "widget": "object",
+          "required": false,
+          "fields": [
+            {
+              "name": "label",
+              "label": "Label",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "heading",
+              "label": "Heading",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "visible",
+              "label": "Show this section",
+              "widget": "boolean",
+              "required": false,
+              "default": true,
+              "hint": "Hide the entire section and its navigation link without deleting content."
+            }
+          ]
+        },
+        {
+          "name": "certifications",
+          "label": "Certifications",
+          "widget": "object",
+          "required": false,
+          "fields": [
+            {
+              "name": "label",
+              "label": "Label",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "heading",
+              "label": "Heading",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "subtitle",
+              "label": "Subtitle",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "visible",
+              "label": "Show this section",
+              "widget": "boolean",
+              "required": false,
+              "default": true,
+              "hint": "Hide the entire section and its navigation link without deleting content."
+            }
+          ]
+        },
+        {
+          "name": "reviews",
+          "label": "Reviews",
+          "widget": "object",
+          "required": false,
+          "fields": [
+            {
+              "name": "label",
+              "label": "Label",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "heading_accent",
+              "label": "Italic accent word",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "heading",
+              "label": "Heading",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "subtitle",
+              "label": "Subtitle",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "visible",
+              "label": "Show this section",
+              "widget": "boolean",
+              "required": false,
+              "default": true,
+              "hint": "Hide the entire section and its navigation link without deleting content."
+            }
+          ]
+        },
+        {
+          "name": "contact",
+          "label": "Contact",
+          "widget": "object",
+          "required": false,
+          "fields": [
+            {
+              "name": "label",
+              "label": "Label",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "heading",
+              "label": "Heading",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "visible",
+              "label": "Show this section",
+              "widget": "boolean",
+              "required": false,
+              "default": true,
+              "hint": "Hide the entire section and its navigation link without deleting content."
+            }
+          ]
+        },
+        {
+          "name": "research",
+          "label": "Research",
+          "widget": "object",
+          "required": false,
+          "fields": [
+            {
+              "name": "label",
+              "label": "Label",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "heading",
+              "label": "Heading",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "subtitle",
+              "label": "Subtitle",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "visible",
+              "label": "Show this section",
+              "widget": "boolean",
+              "required": false,
+              "default": true,
+              "hint": "Hide the entire section and its navigation link without deleting content."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "navigation",
+      "label": "Navigation",
+      "widget": "object",
+      "required": false,
+      "fields": [
+        {
+          "name": "home",
+          "label": "Home",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "about",
+          "label": "About",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "projects",
+          "label": "Projects",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "research",
+          "label": "Research",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "skills",
+          "label": "Skills",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "experience",
+          "label": "Experience",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "certifications",
+          "label": "Certifications",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "reviews",
+          "label": "Review menu label",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "contact",
+          "label": "Contact",
+          "widget": "string",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "copy",
+      "label": "Copy",
+      "widget": "object",
+      "required": false,
+      "fields": [
+        {
+          "name": "education_title",
+          "label": "Education title",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "education_subtitle",
+          "label": "Education subtitle",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "experience_title",
+          "label": "Experience title",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "experience_subtitle",
+          "label": "Experience subtitle",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "contact_heading",
+          "label": "Contact heading",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "contact_introduction",
+          "label": "Contact introduction",
+          "widget": "text",
+          "required": false
+        },
+        {
+          "name": "copyright",
+          "label": "Copyright",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "research_empty_heading",
+          "label": "Research empty heading",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "research_empty_text",
+          "label": "Research empty text",
+          "widget": "text",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "form",
+      "label": "Form",
+      "widget": "object",
+      "required": false,
+      "fields": [
+        {
+          "name": "heading",
+          "label": "Heading",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "submit_label",
+          "label": "Submit label",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "fname_label",
+          "label": "Fname label",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "femail_label",
+          "label": "Femail label",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "fsubject_label",
+          "label": "Fsubject label",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "fmessage_label",
+          "label": "Fmessage label",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "fname_placeholder",
+          "label": "Fname placeholder",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "femail_placeholder",
+          "label": "Femail placeholder",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "fsubject_placeholder",
+          "label": "Fsubject placeholder",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "fmessage_placeholder",
+          "label": "Fmessage placeholder",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "sending_label",
+          "label": "Sending label",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "success_message",
+          "label": "Success message",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "error_message",
+          "label": "Error message",
+          "widget": "string",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "emailjs",
+      "label": "Emailjs",
+      "widget": "object",
+      "required": false,
+      "fields": [
+        {
+          "name": "public_key",
+          "label": "Public key",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "service_id",
+          "label": "Service id",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "template_id",
+          "label": "Template id",
+          "widget": "string",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "media",
+      "label": "Default thumbnail images",
+      "widget": "object",
+      "required": false,
+      "fields": [
+        {
+          "name": "project_fallback",
+          "label": "Default project cover",
+          "widget": "image",
+          "required": false,
+          "hint": "Used when a project has no thumbnail. Leave blank for the built-in cover."
+        },
+        {
+          "name": "certificate_fallback",
+          "label": "Default certificate cover",
+          "widget": "image",
+          "required": false,
+          "hint": "Used when there is no certificate image or thumbnail. Leave blank for the built-in cover."
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "id",
+      "label": "Id",
+      "widget": "string",
+      "required": true,
+      "pattern": [
+        "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+        "Use lowercase letters, numbers and hyphens. Keep existing IDs stable."
+      ]
+    },
+    {
+      "name": "title",
+      "label": "Title",
+      "widget": "string",
+      "required": true
+    },
+    {
+      "name": "description",
+      "label": "Description",
+      "widget": "text",
+      "required": false
+    },
+    {
+      "name": "details",
+      "label": "Details",
+      "widget": "text",
+      "required": false
+    },
+    {
+      "name": "category",
+      "label": "Category",
+      "widget": "string",
+      "required": false,
+      "hint": "Used for the category filter above Featured Projects."
+    },
+    {
+      "name": "tags",
+      "label": "Tags",
+      "widget": "list",
+      "required": false,
+      "field": {
+        "name": "item",
+        "label": "Item",
+        "widget": "string",
+        "required": false
+      },
+      "default": [],
+      "collapsed": true,
+      "max": 20,
+      "hint": "Add up to 20 tags. They wrap automatically on all screen sizes."
+    },
+    {
+      "name": "stack",
+      "label": "Stack",
+      "widget": "list",
+      "required": false,
+      "field": {
+        "name": "item",
+        "label": "Item",
+        "widget": "string",
+        "required": false
+      },
+      "default": [],
+      "collapsed": true
+    },
+    {
+      "name": "icon",
+      "label": "Icon",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "status",
+      "label": "Status",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "status_style",
+      "label": "Status style",
+      "widget": "select",
+      "required": false,
+      "options": [
+        "status-done",
+        "status-wip",
+        "status-research"
+      ],
+      "default": "status-wip"
+    },
+    {
+      "name": "github_url",
+      "label": "GitHub repository URL (optional)",
+      "widget": "string",
+      "required": false,
+      "hint": "Leave blank to hide the GitHub button. Opens in a new tab.",
+      "pattern": [
+        "^$|^https?://[^\\s]+$",
+        "Use a complete http(s) URL or leave blank."
+      ]
+    },
+    {
+      "name": "demo_url",
+      "label": "Live demo URL (optional)",
+      "widget": "string",
+      "required": false,
+      "hint": "Leave blank to hide the Live Demo button. Opens in a new tab.",
+      "pattern": [
+        "^$|^https?://[^\\s]+$",
+        "Use a complete http(s) URL or leave blank."
+      ]
+    },
+    {
+      "name": "documentation_url",
+      "label": "Documentation url",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "links",
+      "label": "Links",
+      "widget": "list",
+      "required": false,
+      "fields": [
+        {
+          "name": "label",
+          "label": "Label",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "url",
+          "label": "Url",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "icon",
+          "label": "Icon",
+          "widget": "string",
+          "required": false
+        }
+      ],
+      "default": [],
+      "collapsed": true
+    },
+    {
+      "name": "thumbnail",
+      "label": "Thumbnail",
+      "widget": "image",
+      "required": false,
+      "hint": "Optional. Leave empty to show a clean text card. Uploading an image displays a responsive compressed thumbnail."
+    },
+    {
+      "name": "thumbnail_alt",
+      "label": "Thumbnail alt",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "gallery",
+      "label": "Gallery",
+      "widget": "list",
+      "required": false,
+      "fields": [
+        {
+          "name": "image",
+          "label": "Image",
+          "widget": "image",
+          "required": false
+        },
+        {
+          "name": "alt",
+          "label": "Alt",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "caption",
+          "label": "Caption",
+          "widget": "string",
+          "required": false
+        }
+      ],
+      "default": [],
+      "collapsed": true
+    },
+    {
+      "name": "featured",
+      "label": "Featured",
+      "widget": "boolean",
+      "required": false,
+      "default": true
+    },
+    {
+      "name": "order",
+      "label": "Order",
+      "widget": "number",
+      "required": false,
+      "value_type": "int",
+      "min": 0,
+      "default": 1
+    },
+    {
+      "name": "published",
+      "label": "Published",
+      "widget": "boolean",
+      "required": false,
+      "default": true
+    },
+    {
+      "name": "start_date",
+      "label": "Start date",
+      "widget": "string",
+      "required": false,
+      "pattern": [
+        "^$|^\\d{4}-\\d{2}-\\d{2}$",
+        "Use YYYY-MM-DD or leave empty."
+      ]
+    },
+    {
+      "name": "completion_date",
+      "label": "Completion date",
+      "widget": "string",
+      "required": false,
+      "pattern": [
+        "^$|^\\d{4}-\\d{2}-\\d{2}$",
+        "Use YYYY-MM-DD or leave empty."
+      ]
+    }
+  ],
+  "research": [
+    {
+      "name": "id",
+      "label": "Id",
+      "widget": "string",
+      "required": true,
+      "pattern": [
+        "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+        "Use lowercase letters, numbers and hyphens. Keep existing IDs stable."
+      ]
+    },
+    {
+      "name": "title",
+      "label": "Title",
+      "widget": "string",
+      "required": true
+    },
+    {
+      "name": "description",
+      "label": "Description",
+      "widget": "text",
+      "required": false
+    },
+    {
+      "name": "details",
+      "label": "Details",
+      "widget": "text",
+      "required": false
+    },
+    {
+      "name": "category",
+      "label": "Category",
+      "widget": "string",
+      "required": false,
+      "hint": "Used for the category filter above Featured Projects."
+    },
+    {
+      "name": "tags",
+      "label": "Tags",
+      "widget": "list",
+      "required": false,
+      "field": {
+        "name": "item",
+        "label": "Item",
+        "widget": "string",
+        "required": false
+      },
+      "default": [],
+      "collapsed": true,
+      "max": 20,
+      "hint": "Add up to 20 tags. They wrap automatically on all screen sizes."
+    },
+    {
+      "name": "stack",
+      "label": "Stack",
+      "widget": "list",
+      "required": false,
+      "field": {
+        "name": "item",
+        "label": "Item",
+        "widget": "string",
+        "required": false
+      },
+      "default": [],
+      "collapsed": true
+    },
+    {
+      "name": "icon",
+      "label": "Icon",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "status",
+      "label": "Status",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "status_style",
+      "label": "Status style",
+      "widget": "select",
+      "required": false,
+      "options": [
+        "status-done",
+        "status-wip",
+        "status-research"
+      ],
+      "default": "status-wip"
+    },
+    {
+      "name": "github_url",
+      "label": "GitHub repository URL (optional)",
+      "widget": "string",
+      "required": false,
+      "hint": "Leave blank to hide the GitHub button. Opens in a new tab.",
+      "pattern": [
+        "^$|^https?://[^\\s]+$",
+        "Use a complete http(s) URL or leave blank."
+      ]
+    },
+    {
+      "name": "demo_url",
+      "label": "Live demo URL (optional)",
+      "widget": "string",
+      "required": false,
+      "hint": "Leave blank to hide the Live Demo button. Opens in a new tab.",
+      "pattern": [
+        "^$|^https?://[^\\s]+$",
+        "Use a complete http(s) URL or leave blank."
+      ]
+    },
+    {
+      "name": "documentation_url",
+      "label": "Documentation url",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "links",
+      "label": "Links",
+      "widget": "list",
+      "required": false,
+      "fields": [
+        {
+          "name": "label",
+          "label": "Label",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "url",
+          "label": "Url",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "icon",
+          "label": "Icon",
+          "widget": "string",
+          "required": false
+        }
+      ],
+      "default": [],
+      "collapsed": true
+    },
+    {
+      "name": "thumbnail",
+      "label": "Thumbnail",
+      "widget": "image",
+      "required": false,
+      "hint": "Optional. Leave empty to show a clean text card. Uploading an image displays a responsive compressed thumbnail."
+    },
+    {
+      "name": "thumbnail_alt",
+      "label": "Thumbnail alt",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "gallery",
+      "label": "Gallery",
+      "widget": "list",
+      "required": false,
+      "fields": [
+        {
+          "name": "image",
+          "label": "Image",
+          "widget": "image",
+          "required": false
+        },
+        {
+          "name": "alt",
+          "label": "Alt",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "caption",
+          "label": "Caption",
+          "widget": "string",
+          "required": false
+        }
+      ],
+      "default": [],
+      "collapsed": true
+    },
+    {
+      "name": "featured",
+      "label": "Featured",
+      "widget": "boolean",
+      "required": false,
+      "default": true
+    },
+    {
+      "name": "order",
+      "label": "Order",
+      "widget": "number",
+      "required": false,
+      "value_type": "int",
+      "min": 0,
+      "default": 1
+    },
+    {
+      "name": "published",
+      "label": "Published",
+      "widget": "boolean",
+      "required": false,
+      "default": true
+    },
+    {
+      "name": "start_date",
+      "label": "Start date",
+      "widget": "string",
+      "required": false,
+      "pattern": [
+        "^$|^\\d{4}-\\d{2}-\\d{2}$",
+        "Use YYYY-MM-DD or leave empty."
+      ]
+    },
+    {
+      "name": "completion_date",
+      "label": "Completion date",
+      "widget": "string",
+      "required": false,
+      "pattern": [
+        "^$|^\\d{4}-\\d{2}-\\d{2}$",
+        "Use YYYY-MM-DD or leave empty."
+      ]
+    },
+    {
+      "name": "research_area",
+      "label": "Research area",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "dataset",
+      "label": "Dataset",
+      "widget": "text",
+      "required": false
+    },
+    {
+      "name": "methodology",
+      "label": "Methodology",
+      "widget": "text",
+      "required": false
+    },
+    {
+      "name": "authors",
+      "label": "Authors",
+      "widget": "list",
+      "required": false,
+      "field": {
+        "name": "item",
+        "label": "Item",
+        "widget": "string",
+        "required": false
+      },
+      "default": [],
+      "collapsed": true
+    },
+    {
+      "name": "publication_status",
+      "label": "Publication status",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "abstract",
+      "label": "Abstract",
+      "widget": "text",
+      "required": false
+    },
+    {
+      "name": "paper_url",
+      "label": "Paper url",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "doi_url",
+      "label": "Doi url",
+      "widget": "string",
+      "required": false
+    }
+  ],
+  "reviews": [
+    {
+      "name": "items",
+      "label": "Reviews",
+      "widget": "list",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "label": "Reviewer name",
+          "widget": "string",
+          "required": true
+        },
+        {
+          "name": "role",
+          "label": "Role / organization",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "quote",
+          "label": "Review",
+          "widget": "text",
+          "required": false,
+          "hint": "Add the real review text when available. Blank entries show Review coming soon, without a quote or rating."
+        },
+        {
+          "name": "sample",
+          "label": "Sample / unapproved review",
+          "widget": "boolean",
+          "required": false,
+          "default": true,
+          "hint": "Keep enabled for drafted text. Shows Sample review and Sample rating; suppresses approval and source claims."
+        },
+        {
+          "name": "reviewer_approved",
+          "label": "Approved by the reviewer",
+          "widget": "boolean",
+          "required": false,
+          "default": false,
+          "hint": "Enable only after this person approves the review and rating. Also turn off Sample for an approved review."
+        },
+        {
+          "name": "rating",
+          "label": "Rating (optional)",
+          "widget": "number",
+          "required": false,
+          "value_type": "int",
+          "min": 1,
+          "max": 5,
+          "hint": "Stored for reference only. Ratings and stars are not displayed on the website."
+        },
+        {
+          "name": "highlight",
+          "label": "Highlight badge (optional)",
+          "widget": "string",
+          "required": false,
+          "hint": "A short topic or an accurate result, shown under the quote."
+        },
+        {
+          "name": "photo",
+          "label": "Reviewer photo (optional)",
+          "widget": "image",
+          "required": false
+        },
+        {
+          "name": "source_url",
+          "label": "Original review URL (optional)",
+          "widget": "string",
+          "required": false,
+          "pattern": [
+            "https?://.+",
+            "Use an HTTP or HTTPS URL."
+          ]
+        },
+        {
+          "name": "profile_url",
+          "label": "Reviewer profile URL (optional)",
+          "widget": "string",
+          "required": false,
+          "pattern": [
+            "https?://.+",
+            "Use an HTTP or HTTPS URL."
+          ]
+        },
+        {
+          "name": "published",
+          "label": "Published",
+          "widget": "boolean",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "order",
+          "label": "Order",
+          "widget": "number",
+          "required": false,
+          "value_type": "int",
+          "min": 0,
+          "default": 1
+        }
+      ],
+      "default": [],
+      "collapsed": true,
+      "summary": "{{fields.name}} — {{fields.role}}",
+      "hint": "Add reviewers here. Carousel adjusts automatically to 4, 6–7 or more people. Blank review text shows a pending card."
+    },
+    {
+      "name": "empty_heading",
+      "label": "Invitation heading",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "empty_text",
+      "label": "Invitation text",
+      "widget": "text",
+      "required": false
+    },
+    {
+      "name": "cta_label",
+      "label": "Invitation button label",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "autoplay",
+      "label": "Automatic sliding",
+      "widget": "boolean",
+      "required": false,
+      "default": true
+    },
+    {
+      "name": "autoplay_seconds",
+      "label": "Seconds between slides",
+      "widget": "number",
+      "required": false,
+      "value_type": "int",
+      "min": 3,
+      "max": 15,
+      "default": 5
+    },
+    {
+      "name": "initial_review",
+      "label": "First focused review (position)",
+      "widget": "number",
+      "required": false,
+      "value_type": "int",
+      "min": 1,
+      "max": 100,
+      "default": 1
+    },
+    {
+      "name": "contact_prompt",
+      "label": "Contact prompt below reviews",
+      "widget": "string",
+      "required": false
+    }
+  ],
+  "papers": [
+    {
+      "name": "id",
+      "label": "Id",
+      "widget": "string",
+      "required": true,
+      "pattern": [
+        "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+        "Use lowercase letters, numbers and hyphens. Keep existing IDs stable."
+      ]
+    },
+    {
+      "name": "title",
+      "label": "Paper title",
+      "widget": "string",
+      "required": true
+    },
+    {
+      "name": "authors",
+      "label": "Authors",
+      "widget": "list",
+      "required": false,
+      "field": {
+        "name": "item",
+        "label": "Author name",
+        "widget": "string",
+        "required": false
+      },
+      "default": [],
+      "max": 30
+    },
+    {
+      "name": "abstract",
+      "label": "Abstract",
+      "widget": "text",
+      "required": false
+    },
+    {
+      "name": "venue",
+      "label": "Journal / conference / institution",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "year",
+      "label": "Publication year",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "status",
+      "label": "Publication status",
+      "widget": "select",
+      "required": false,
+      "options": [
+        "Published",
+        "Preprint",
+        "Under review",
+        "In progress"
+      ],
+      "default": "Published"
+    },
+    {
+      "name": "paper_url",
+      "label": "Original paper URL",
+      "widget": "string",
+      "required": false,
+      "pattern": [
+        "https?://.+",
+        "Use an HTTP or HTTPS URL."
+      ]
+    },
+    {
+      "name": "doi",
+      "label": "DOI or DOI URL",
+      "widget": "string",
+      "required": false,
+      "hint": "Enter 10.xxxx/identifier or https://doi.org/...",
+      "pattern": [
+        "(?:https?://.+|10\\.\\d{4,9}/\\S+)",
+        "Use a DOI beginning with 10. or an HTTP/HTTPS URL."
+      ]
+    },
+    {
+      "name": "file",
+      "label": "Paper PDF (optional)",
+      "widget": "file",
+      "required": false,
+      "media_library": {
+        "config": {
+          "allowed_extensions": [
+            "pdf"
+          ]
+        }
+      }
+    },
+    {
+      "name": "order",
+      "label": "Display order",
+      "widget": "number",
+      "required": false,
+      "value_type": "int",
+      "min": 0,
+      "default": 1
+    },
+    {
+      "name": "published",
+      "label": "Show on website",
+      "widget": "boolean",
+      "required": false,
+      "default": true,
+      "hint": "Turn off to hide this item without deleting its saved content."
+    }
+  ]
+}

@@ -55,6 +55,8 @@ themeToggle.addEventListener('click', toggleTheme);
 const cursor   = document.getElementById('cursor');
 const follower = document.getElementById('follower');
 let mx = 0, my = 0, fx = 0, fy = 0;
+const fineCursor = window.matchMedia('(hover: hover) and (pointer: fine)');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 document.addEventListener('mousemove', e => {
   mx = e.clientX;
@@ -63,13 +65,23 @@ document.addEventListener('mousemove', e => {
   cursor.style.top  = my + 'px';
 });
 
-(function animateCursor() {
+let cursorFrame = 0;
+function animateCursor() {
+  cursorFrame = 0;
+  if (!fineCursor.matches || reducedMotion.matches) return;
   fx += (mx - fx) * 0.12;
   fy += (my - fy) * 0.12;
   follower.style.left = fx + 'px';
   follower.style.top  = fy + 'px';
-  requestAnimationFrame(animateCursor);
-})();
+  cursorFrame = requestAnimationFrame(animateCursor);
+}
+function syncCursorMotion() {
+  cancelAnimationFrame(cursorFrame);
+  animateCursor();
+}
+syncCursorMotion();
+fineCursor.addEventListener('change', syncCursorMotion);
+reducedMotion.addEventListener('change', syncCursorMotion);
 
 document.querySelectorAll('a, button, .cp-card, .skill-card, .cert-card, .c-link, .proj-card')
   .forEach(el => {
@@ -89,17 +101,28 @@ window.addEventListener('scroll', () => {
 const sections = document.querySelectorAll('section[id]');
 const navLinks  = document.querySelectorAll('.nav-links a');
 
-const sectionObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      navLinks.forEach(a => a.classList.remove('active'));
-      const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
-      if (active) active.classList.add('active');
-    }
+let navFrame = 0;
+function updateActiveSection() {
+  navFrame = 0;
+  const activationLine = Math.min(window.innerHeight * .25, 180);
+  let current = sections[0];
+  sections.forEach(section => {
+    if (section.getBoundingClientRect().top <= activationLine) current = section;
   });
-}, { threshold: 0.4 });
-
-sections.forEach(s => sectionObserver.observe(s));
+  navLinks.forEach(anchor => {
+    const active = anchor.getAttribute('href') === `#${current?.id}`;
+    anchor.classList.toggle('active', active);
+    if (active) anchor.setAttribute('aria-current', 'location');
+    else anchor.removeAttribute('aria-current');
+  });
+}
+function scheduleNavUpdate() {
+  if (!navFrame) navFrame = requestAnimationFrame(updateActiveSection);
+}
+window.addEventListener('scroll', scheduleNavUpdate, { passive: true });
+window.addEventListener('resize', scheduleNavUpdate);
+window.addEventListener('pageshow', scheduleNavUpdate);
+updateActiveSection();
 
 
 /* ---- 4. Scroll reveal ---- */
@@ -133,6 +156,6 @@ navLinks.forEach(a => {
   a.addEventListener('click', e => {
     e.preventDefault();
     const target = document.querySelector(a.getAttribute('href'));
-    if (target) target.scrollIntoView({ behavior: 'smooth' });
+    if (target) target.scrollIntoView({ behavior: reducedMotion.matches ? 'auto' : 'smooth' });
   });
 });

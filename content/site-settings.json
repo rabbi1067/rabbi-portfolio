@@ -1,0 +1,108 @@
+{
+  "seo": {
+    "description": "Portfolio of Fazley Rabbi — CSE student at Southeast University, competitive programmer (ICPC Honorable Mention), and Machine Learning enthusiast.",
+    "author": "Fazley Rabbi",
+    "keywords": "Fazley Rabbi, CSE, ML, ICPC, competitive programming, Southeast University, portfolio",
+    "og_title": "Fazley Rabbi — CSE & ML Portfolio",
+    "og_description": "ICPC Honorable Mention · AI+ Certified · ML Explorer",
+    "og_url": "https://fazleyrabbi.dev",
+    "og_type": "website",
+    "title": "Fazley Rabbi — CSE Student & ML Explorer",
+    "canonical": "https://fazleyrabbi.dev",
+    "favicon": "images/fr.png"
+  },
+  "sections": {
+    "about": {
+      "label": "Get to Know Me",
+      "heading": "Who I Am",
+      "visible": true
+    },
+    "projects": {
+      "label": "My Work",
+      "heading": "Featured Projects",
+      "subtitle": "A selection of things I've built, researched, and explored.",
+      "visible": true
+    },
+    "skills": {
+      "label": "Expertise",
+      "heading": "Skills & Tools",
+      "subtitle": "Languages, frameworks, and tools I use to build, research, and create.",
+      "visible": true
+    },
+    "experience": {
+      "label": "Background",
+      "heading": "Education & Experience",
+      "visible": true
+    },
+    "certifications": {
+      "label": "Achievements",
+      "heading": "Certifications & Awards",
+      "subtitle": "Credentials, recognitions, and milestones earned across AI, competitive programming, and research.",
+      "visible": true
+    },
+    "contact": {
+      "label": "Get In Touch",
+      "heading": "Contact Me",
+      "visible": true
+    },
+    "reviews": {
+      "label": "Collaboration & Feedback",
+      "heading": "my collaborators say",
+      "subtitle": "Thoughts and experiences from the people I work with.",
+      "heading_accent": "What",
+      "visible": true
+    },
+    "research": {
+      "label": "Research & Publications",
+      "heading": "Research Papers",
+      "subtitle": "Papers, preprints, and research publications — with direct access to the original work.",
+      "visible": true
+    }
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "skills": "Skills",
+    "experience": "Experience",
+    "certifications": "Certifications",
+    "contact": "Contact",
+    "reviews": "Reviews",
+    "research": "Research"
+  },
+  "copy": {
+    "education_title": "Education",
+    "education_subtitle": "Academic",
+    "experience_title": "Experience",
+    "experience_subtitle": "Work",
+    "contact_heading": "Let's work together",
+    "contact_introduction": "Open to research collaborations, interesting projects, internships, and learning opportunities. Don't hesitate to reach out!",
+    "copyright": "© 2025 Fazley Rabbi · All rights reserved",
+    "research_empty_heading": "Research in progress",
+    "research_empty_text": "Research papers and publication links will appear here as they are added."
+  },
+  "form": {
+    "heading": "Send a Message",
+    "submit_label": "Send Message →",
+    "fname_label": "Your Name",
+    "femail_label": "Email Address",
+    "fsubject_label": "Subject",
+    "fmessage_label": "Message",
+    "fname_placeholder": "John Doe",
+    "femail_placeholder": "john@email.com",
+    "fsubject_placeholder": "Project Collaboration",
+    "fmessage_placeholder": "Tell me about your project or opportunity...",
+    "sending_label": "Sending...",
+    "success_message": "Thank you! Your message has been sent. I’ll get back to you soon.",
+    "error_message": "Your message could not be sent. Please try again, or contact me using the email link."
+  },
+  "emailjs": {
+    "public_key": "VnYZNtH-EJq1vfqe2",
+    "service_id": "service_idzaejq",
+    "template_id": "template_8o8ucec"
+  },
+  "media": {
+    "project_fallback": "",
+    "certificate_fallback": ""
+  }
+}

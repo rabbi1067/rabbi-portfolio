@@ -1,0 +1,80 @@
+name: Build and deploy portfolio
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: read
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+      - name: Locate portfolio sources
+        id: source
+        shell: bash
+        run: |
+          if [ -f scripts/build.py ]; then
+            echo 'directory=.' >> "$GITHUB_OUTPUT"
+            echo 'prefix=' >> "$GITHUB_OUTPUT"
+          elif [ -f rabbi-portfolio-main/scripts/build.py ]; then
+            echo 'directory=rabbi-portfolio-main' >> "$GITHUB_OUTPUT"
+            echo 'prefix=rabbi-portfolio-main' >> "$GITHUB_OUTPUT"
+          else
+            echo 'Cannot find portfolio build script.' >&2
+            exit 1
+          fi
+      - name: Install image build dependency
+        working-directory: ${{ steps.source.outputs.directory }}
+        run: python -m pip install -r requirements.txt
+      - name: Test content and OAuth bridge
+        working-directory: ${{ steps.source.outputs.directory }}
+        run: |
+          python -m unittest discover -s tests -v
+          node --test auth/worker.test.mjs
+      - name: Read Pages URL
+        id: pages
+        if: github.event_name != 'pull_request' && github.ref_name == github.event.repository.default_branch
+        uses: actions/configure-pages@v5
+      - name: Build static portfolio
+        working-directory: ${{ steps.source.outputs.directory }}
+        env:
+          PAGES_SITE_URL: ${{ steps.pages.outputs.base_url }}
+          SOURCE_PREFIX: ${{ steps.source.outputs.prefix }}
+        run: python scripts/build.py --source-prefix "$SOURCE_PREFIX"
+      - name: Upload Pages artifact
+        if: github.event_name != 'pull_request' && github.ref_name == github.event.repository.default_branch
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ${{ steps.source.outputs.directory }}/dist
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref_name == github.event.repository.default_branch
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

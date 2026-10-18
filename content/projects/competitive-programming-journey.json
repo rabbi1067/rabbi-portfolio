@@ -1,0 +1,40 @@
+{
+  "id": "competitive-programming-journey",
+  "title": "Competitive Programming Journey",
+  "description": "Actively solving algorithmic challenges on Codeforces and CodeChef. Earned ICPC Asia Dhaka 2024 Honorable Mention. Focused on graph theory, dynamic programming, number theory, and data structures.",
+  "details": "",
+  "category": "Competitive Programming",
+  "tags": [],
+  "stack": [
+    "C++",
+    "Algorithms",
+    "Graph Theory",
+    "DP"
+  ],
+  "icon": "🏆",
+  "status": "Active",
+  "status_style": "status-wip",
+  "github_url": "",
+  "demo_url": "",
+  "documentation_url": "",
+  "links": [
+    {
+      "label": "Codeforces",
+      "url": "https://codeforces.com/profile/rabbi1067",
+      "icon": "CF"
+    },
+    {
+      "label": "CodeChef",
+      "url": "https://www.codechef.com/users/rabbi1067",
+      "icon": "CC"
+    }
+  ],
+  "thumbnail": "",
+  "thumbnail_alt": "",
+  "gallery": [],
+  "featured": true,
+  "order": 2,
+  "published": true,
+  "start_date": "",
+  "completion_date": ""
+}

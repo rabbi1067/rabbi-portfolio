@@ -1,0 +1,71 @@
+{
+  "email": "fazlerabbicse65@gmail.com",
+  "phone": "+8801779326236",
+  "phone_display": "+880 1779-326236",
+  "location": "Nikunja-2, Khilkhet, Dhaka-1229",
+  "email_label": "Email",
+  "phone_label": "Phone",
+  "location_label": "Location",
+  "links": [
+    {
+      "id": "codeforces",
+      "name": "Codeforces",
+      "url": "https://codeforces.com/profile/rabbi1067",
+      "handle": "rabbi1067",
+      "icon": "CF",
+      "hero": true,
+      "order": 1,
+      "contact": false,
+      "contact_icon": "🐙",
+      "contact_url": "",
+      "contact_order": 2,
+      "hero_order": 3,
+      "footer": true
+    },
+    {
+      "id": "codechef",
+      "name": "CodeChef",
+      "url": "https://www.codechef.com/users/rabbi1067",
+      "handle": "rabbi1067",
+      "icon": "CC",
+      "hero": true,
+      "order": 2,
+      "contact": false,
+      "contact_icon": "🐙",
+      "contact_url": "",
+      "contact_order": 2,
+      "hero_order": 4,
+      "footer": true
+    },
+    {
+      "id": "github",
+      "name": "GitHub",
+      "url": "https://github.com/Rabbi1067",
+      "handle": "Rabbi1067",
+      "icon": "github",
+      "hero": true,
+      "order": 3,
+      "contact": true,
+      "contact_icon": "🐙",
+      "contact_url": "",
+      "contact_order": 2,
+      "hero_order": 2,
+      "footer": true
+    },
+    {
+      "id": "linkedin",
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/in/fazleyrabbi1067",
+      "handle": "fazleyrabbi1067",
+      "icon": "in",
+      "hero": true,
+      "order": 4,
+      "contact": true,
+      "contact_icon": "💼",
+      "contact_url": "",
+      "contact_order": 1,
+      "hero_order": 1,
+      "footer": true
+    }
+  ]
+}
