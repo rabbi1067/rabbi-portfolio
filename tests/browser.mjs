@@ -79,6 +79,7 @@ try {
   assert.equal(await page.locator('#contact, #projects, #reviews, #research').count(),0);
   await page.locator('#themeToggle').click();
   report.checks.push('Hidden sections are omitted and remaining scripts/theme still work');
+  await page.route('**/admin/status.json',route=>route.fulfill({json:{configured:false}}));
   await page.goto(origin+'/portfolio/admin/');
   await page.waitForFunction(()=>document.querySelector('#setup-status').textContent.includes('disabled'));
   report.checks.push('Unconfigured admin fails closed');

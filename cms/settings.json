@@ -1,7 +1,7 @@
 {
   "repository": "rabbi1067/rabbi-portfolio",
   "branch": "main",
-  "oauth_base_url": "",
+  "oauth_base_url": "https://portfolio-cms-oauth.fazlerabbicse65.workers.dev",
   "site_url": "https://rabbi1067.github.io/rabbi-portfolio/",
-  "enabled": false
+  "enabled": true
 }

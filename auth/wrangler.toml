@@ -4,10 +4,10 @@ compatibility_date = "2026-10-01"
 
 # Non-secret examples: replace all values before deploying.
 [vars]
-GITHUB_CLIENT_ID = "REPLACE_WITH_OAUTH_APP_CLIENT_ID"
+GITHUB_CLIENT_ID = "Ov23liovPLpamEezBbDZ"
 GITHUB_REPOSITORY = "rabbi1067/rabbi-portfolio"
 ADMIN_ORIGIN = "https://rabbi1067.github.io"
-AUTH_ORIGIN = "https://portfolio-cms-oauth.YOUR_SUBDOMAIN.workers.dev"
+AUTH_ORIGIN = "https://portfolio-cms-oauth.fazlerabbicse65.workers.dev"
 ALLOWED_USERS = "Rabbi1067"
 OAUTH_SCOPE = "public_repo"
 

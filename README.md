@@ -2,7 +2,7 @@
 
 The existing static HTML/CSS/JavaScript portfolio now builds from editable JSON content. Its original styles, theme toggle, cursor, animations, sections and responsive layout are retained. It does **not** use React and needs no React migration, database or application server.
 
-**Status:** source and CMS fields are prepared for [rabbi1067/rabbi-portfolio](https://github.com/rabbi1067/rabbi-portfolio), branch `main`. The GitHub Actions workflow builds and deploys Pages after content changes. CMS login remains disabled until the separate OAuth Worker is configured.
+**Status:** source and CMS fields are prepared for [rabbi1067/rabbi-portfolio](https://github.com/rabbi1067/rabbi-portfolio), branch `main`. The GitHub Actions workflow builds and deploys Pages after content changes. The OAuth Worker is configured at `https://portfolio-cms-oauth.fazlerabbicse65.workers.dev`; its client secret is stored only in Cloudflare encrypted secrets. Admin: https://rabbi1067.github.io/rabbi-portfolio/admin/. See [বাংলা editing guide](docs/ADMIN_GUIDE_BN.md).
 
 ## Preview and test locally
 

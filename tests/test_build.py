@@ -403,6 +403,9 @@ class PortfolioBuildTests(unittest.TestCase):
             self.assertIn('href="'+site_url+'/"',self.output)
 
     def test_authentication_disabled_until_explicit_configuration(self):
+        settings=self.json('cms/settings.json')
+        settings.update(enabled=False,oauth_base_url='')
+        self.write('cms/settings.json',settings)
         self.compile(repository='owner/repo',site_url='https://owner.github.io/repo')
         self.assertFalse(self.json('dist/admin/status.json')['configured'])
         settings=self.json('cms/settings.json')
