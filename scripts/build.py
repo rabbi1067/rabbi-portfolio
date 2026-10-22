@@ -165,7 +165,7 @@ def project_card(item, fallback='images/project-default.svg', extra=False):
     badge = f'<span class="proj-status {escape(item.get("status_style") or "status-wip")}">{escape(status)}</span>' if status else ''
     chips = ''
     if item.get('category'): chips += f'<span class="proj-cat">{escape(item["category"])}</span>'
-    if item.get('added_date'): chips += f'<span class="proj-added">Added {pretty_date(item["added_date"])}</span>'
+    if item.get('added_date'): chips += f'<span class="proj-added"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M16 3v4M8 3v4M3 11h18" /></svg>Added {pretty_date(item["added_date"])}</span>'
     meta = badge + chips
     tags = ''.join(f'<span class="proj-tag">{escape(tag)}</span>' for tag in (item.get('stack') or []) + (item.get('tags') or []))
     images = [image for image in (item.get('gallery') or []) if image.get('image')]
@@ -185,10 +185,8 @@ def project_card(item, fallback='images/project-default.svg', extra=False):
         chip = f'<span class="proj-open-chip" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 5h18v14H3zM8.5 11a2 2 0 1 0 0-.01M21 16l-5-5-8 7" /></svg>{total}</span>'
         prev = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m15 6-6 6 6 6" /></svg>'
         next = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m9 6 6 6-6 6" /></svg>'
-        badge = f'<div class="proj-live" aria-hidden="true"><span class="proj-live-logo">{escape(item.get("icon") or "🧩")}</span><span class="proj-live-name">{escape(item["title"])}</span></div>'
         cover = f'''<div class="showcase-media proj-media proj-carousel" data-index="0" tabindex="-1">
         <div class="proj-slides">{''.join(slides)}</div>
-        {badge}
         <button type="button" class="proj-carrow proj-carrow-prev" aria-label="Previous screenshot">{prev}</button>
         <button type="button" class="proj-carrow proj-carrow-next" aria-label="Next screenshot">{next}</button>
         {chip}</div>'''

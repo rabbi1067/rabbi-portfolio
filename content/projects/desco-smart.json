@@ -26,7 +26,52 @@
     {
       "image": "uploads/desco-home.png",
       "alt": "DESCO Smart home page with simulated prepaid meter telemetry demo",
-      "caption": "DESCO Smart home"
+      "caption": "Home & Live Telemetry Demo"
+    },
+    {
+      "image": "uploads/desco-dashboard.png",
+      "alt": "DESCO Smart real-time dashboard with balance trajectory, burn rate and critical alerts",
+      "caption": "Consumer Dashboard & Burn Rate"
+    },
+    {
+      "image": "uploads/desco-meters.png",
+      "alt": "DESCO Smart multi-meter fleet management and live balance checks",
+      "caption": "Multi-Meter Monitoring Fleet"
+    },
+    {
+      "image": "uploads/desco-analytics.png",
+      "alt": "DESCO Smart system analytics with daily consumption trends and balance runway",
+      "caption": "System Analytics & Consumption Trends"
+    },
+    {
+      "image": "uploads/desco-fleet-overview.png",
+      "alt": "DESCO Smart super admin fleet overview and grid health index",
+      "caption": "Super Admin Fleet Overview"
+    },
+    {
+      "image": "uploads/desco-admin-meters.png",
+      "alt": "DESCO Smart system-wide meter management table with live sync status",
+      "caption": "System-Wide Meter Management"
+    },
+    {
+      "image": "uploads/desco-reports.png",
+      "alt": "DESCO Smart reports and invoices activity ledger with recharge records",
+      "caption": "Reports & Statement Ledger"
+    },
+    {
+      "image": "uploads/desco-notifications.png",
+      "alt": "DESCO Smart automated threshold notifications and balance alerts",
+      "caption": "Balance Alerts & Notifications"
+    },
+    {
+      "image": "uploads/desco-register.png",
+      "alt": "DESCO Smart account registration portal with integrated AI assistant",
+      "caption": "Account Registration & AI Assistant"
+    },
+    {
+      "image": "uploads/desco-profile.png",
+      "alt": "DESCO Smart administrator profile console and account security settings",
+      "caption": "Administrator Profile & Console"
     }
   ],
   "featured": true,
