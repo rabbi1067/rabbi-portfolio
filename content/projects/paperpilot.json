@@ -1,0 +1,27 @@
+{
+  "id": "paperpilot",
+  "title": "PaperPilot",
+  "description": "A smart tool for managing, organizing, and automating research papers — collect papers in one library, search and filter by title, author or keyword, organize with custom tags, save notes and highlights, and export citations.",
+  "details": "",
+  "category": "Research",
+  "tags": [],
+  "stack": [
+    "Python",
+    "JavaScript"
+  ],
+  "icon": "📚",
+  "status": "In Progress",
+  "status_style": "status-wip",
+  "github_url": "https://github.com/rabbi1067/PaperPilot",
+  "demo_url": "",
+  "documentation_url": "",
+  "links": [],
+  "thumbnail": "",
+  "thumbnail_alt": "",
+  "gallery": [],
+  "featured": true,
+  "order": 3,
+  "published": true,
+  "start_date": "",
+  "completion_date": ""
+}
