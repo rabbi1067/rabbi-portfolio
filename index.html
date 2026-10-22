@@ -192,7 +192,10 @@
     <h2 class="section-heading reveal">{{site.sections.projects.heading}}</h2>
     <p class="section-sub reveal">{{site.sections.projects.subtitle}}</p>
 
-    {{{render.project_filters}}}
+    <div class="projects-head">
+      {{{render.project_filters}}}
+      {{{render.projects_view_all}}}
+    </div><!-- /projects-head -->
     <div class="projects-grid" id="project-cards">{{{render.projects}}}</div><!-- /projects-grid -->
   </div>
 </section>
@@ -354,7 +357,8 @@
 <!-- JavaScript -->
 <script src="js/main.js?v=20261017-gallery"></script>
 <script src="js/home.js?v=20261022-always-visible"></script>
-<script src="js/showcase.js?v=20261017-reviews"></script>
+<script src="js/showcase.js?v=20261022-view-all"></script>
+<script src="js/gallery.js?v=20261022-lightbox"></script>
 <script src="js/reviews.js?v=rating-top"></script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script type="application/json" id="contact-settings">{{{render.contact_settings}}}</script>

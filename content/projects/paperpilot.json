@@ -10,8 +10,8 @@
     "JavaScript"
   ],
   "icon": "📚",
-  "status": "In Progress",
-  "status_style": "status-wip",
+  "status": "Completed",
+  "status_style": "status-done",
   "github_url": "https://github.com/rabbi1067/PaperPilot",
   "demo_url": "",
   "documentation_url": "",
@@ -23,5 +23,6 @@
   "order": 3,
   "published": true,
   "start_date": "",
-  "completion_date": ""
+  "completion_date": "",
+  "added_date": "2026-10-22"
 }

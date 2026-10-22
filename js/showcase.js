@@ -1,4 +1,4 @@
-/* Category filters and resilient covers; no third-party dependencies. */
+/* Category filters, view-all projects and resilient covers; no third-party dependencies. */
 (() => {
   document.querySelectorAll('.showcase-filters').forEach(group => {
     const grid = document.getElementById(group.dataset.filterGrid);
@@ -9,7 +9,8 @@
       if (!button || !group.contains(button)) return;
       let count = 0;
       Array.from(grid.children).forEach(card => {
-        card.hidden = Boolean(button.dataset.filter && card.dataset.category !== button.dataset.filter);
+        const pending = grid.dataset.expanded !== 'true' && card.classList.contains('proj-extra');
+        card.hidden = pending || Boolean(button.dataset.filter && card.dataset.category !== button.dataset.filter);
         if (!card.hidden) { count++; card.classList.add('visible'); }
       });
       group.querySelectorAll('button').forEach(item => {
@@ -19,6 +20,17 @@
       });
       if (status) status.textContent = `${count} ${count === 1 ? 'item' : 'items'} shown: ${button.textContent}.`;
     });
+  });
+  const viewAll = document.getElementById('view-all-projects');
+  const grid = document.getElementById('project-cards');
+  if (viewAll && grid) viewAll.addEventListener('click', () => {
+    grid.dataset.expanded = 'true';
+    grid.classList.add('is-expanded');
+    grid.querySelectorAll('.proj-extra').forEach(card => {
+      card.hidden = false;
+      card.classList.add('visible');
+    });
+    viewAll.hidden = true;
   });
   document.querySelectorAll('img[data-fallback]').forEach(image => {
     const fallback = () => {

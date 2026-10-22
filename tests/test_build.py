@@ -174,6 +174,52 @@ class PortfolioBuildTests(unittest.TestCase):
             self.assertIn(text,self.output)
         self.assertEqual(self.document.root.find_all(cls='proj-card')[-1].attrs['id'],'project-media-project')
 
+    def test_project_covers_dates_gallery_view_all_and_lightbox(self):
+        (self.root/'uploads').mkdir(exist_ok=True)
+        shutil.copyfile(self.root/'images/fr.png',self.root/'uploads/new-project.png')
+        self.compile(site_url='https://owner.github.io/portfolio')
+        cards=self.document.root.find_all(cls='proj-card')
+        self.assertEqual(len(cards),4)
+        self.assertEqual(cards[0].attrs['id'],'project-paperpilot')
+        for card in cards:
+            self.assertNotIn('hidden',card.attrs)
+            self.assertEqual(len(card.find_all(cls='proj-cover-art')),1)
+            self.assertEqual(card.find_all(cls='proj-cover-open'),[])
+        self.assertIn('Added Oct 22, 2026',self.output)
+        self.assertIn('Added Oct 18, 2026',self.output)
+        self.assertIn('<span class="proj-cat">Research</span>',self.output)
+        self.assertEqual(self.document.root.find_all(id='view-all-projects'),[])
+        media=self.json('content/projects/bmi-calculator.json')
+        media.update(id='doctor-cards',title='Doctor cards',category='Backend',order=10,featured=False,added_date='2026-11-05',
+                     gallery=[dict(image='/portfolio/uploads/new-project.png',alt='Gallery alt',caption='Gallery caption') for _ in range(2)])
+        for n,day in enumerate(['2026-11-06','2026-11-07','2026-11-08','2026-11-09','2026-11-10']):
+            extra={**media,'id':f'batch-{n}','title':f'Batch {n}','gallery':[dict(image='images/fr.png',alt=f'Batch alt {n}',caption=f'Batch shot {n}')],'added_date':day,'order':11+n}
+            self.write(f'content/projects/batch-{n}.json',extra)
+        self.write('content/projects/doctor-cards.json',media)
+        self.compile(site_url='https://owner.github.io/portfolio')
+        cards=self.document.root.find_all(cls='proj-card')
+        self.assertEqual(len(cards),10)
+        self.assertEqual(cards[0].attrs['id'],'project-batch-4')
+        extras=[card for card in cards if 'proj-extra' in card.attrs.get('class','')]
+        self.assertEqual(len(extras),4)
+        self.assertTrue(all('hidden' in card.attrs for card in extras))
+        self.assertEqual(self.document.root.find(id='project-parking-management-system').find_all(cls='proj-cover-open'),[])
+        self.assertEqual(len(self.document.root.find(id='project-batch-0').find_all(cls='proj-cover-open')),1)
+        strip=self.document.root.find(id='project-doctor-cards').find(cls='proj-gallery')
+        self.assertEqual(len(strip.find_all(cls='proj-thumb')),2)
+        self.assertEqual(strip.find(cls='proj-thumb').attrs['data-full'],'/portfolio/uploads/new-project.png')
+        self.assertEqual(strip.find(cls='proj-thumb').attrs['data-caption'],'Gallery caption')
+        opener=self.document.root.find(id='project-doctor-cards').find_all(cls='proj-cover-open')
+        self.assertEqual(len(opener),1)
+        view=self.document.root.find_all(id='view-all-projects')
+        self.assertEqual(len(view),1)
+        self.assertIn('View all projects',self.document.outside(view[0]))
+        self.assertIn('view-all-count',self.document.outside(view[0]))
+        self.assertEqual(self.document.outside(view[0]).count('10'),1)
+        config=self.json('dist/admin/config.yml')
+        fields=config['collections'][1]['fields']
+        self.assertEqual(next(field for field in fields if field['name']=='added_date')['pattern'][0],'^$|^\\d{4}-\\d{2}-\\d{2}$')
+
     def test_broken_cv_and_asset_fail_build(self):
         self.write('content/resume.json',dict(file='uploads/missing.pdf'))
         with self.assertRaisesRegex(ValueError,'existing PDF'): self.compile()

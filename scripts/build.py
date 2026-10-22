@@ -62,7 +62,7 @@ def validate_fields(value, definitions, location):
             raise ValueError(f'{where}: choose one of {field["options"]}')
         if isinstance(item, str) and (widget in ['image','file'] or name.endswith('_url') or name in ['url','file','certificate','image','thumbnail','profile_photo','hero_photo','about_photo','favicon']):
             safe_url(item)
-        if isinstance(item, str) and name in ['start_date','end_date','completion_date']:
+        if isinstance(item, str) and name in ['start_date','end_date','completion_date','added_date']:
             try: date.fromisoformat(item)
             except ValueError as error: raise ValueError(f'{where}: invalid calendar date') from error
         if name == 'border_color' and not re.fullmatch(r'rgba?\([\d\s.,]+\)|#[a-fA-F0-9]{3,8}', str(item)):
@@ -114,6 +114,37 @@ def cover_image(source, fallback, alt, kind):
     return f'<div class="showcase-media {kind}-media"><img class="{kind}-thumbnail{cls}" src="{escape(source)}" data-fallback="{escape(fallback)}" alt="{escape(alt)}" width="960" height="540" loading="lazy" decoding="async" /></div>'
 
 
+COVER_PALETTES = [('#00d4aa', '#5fa4ff'), ('#8b5cf6', '#ec4899'), ('#f59e0b', '#f97316'), ('#38bdf8', '#818cf8'), ('#34d399', '#22d3ee'), ('#fb7185', '#f59e0b')]
+
+
+def cover_pattern(uid, variant, accent):
+    grid = f'<pattern id="cp-{uid}" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0v48" stroke="{accent}" stroke-opacity=".08"/></pattern>'
+    dots = f'<pattern id="cp-{uid}" width="44" height="44" patternUnits="userSpaceOnUse"><circle cx="2.5" cy="2.5" r="2.5" fill="{accent}" fill-opacity=".14"/></pattern>'
+    stripes = f'<pattern id="cp-{uid}" width="30" height="30" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0v30" stroke="{accent}" stroke-opacity=".07" stroke-width="7"/></pattern>'
+    plus = f'<pattern id="cp-{uid}" width="52" height="52" patternUnits="userSpaceOnUse"><path d="M26 15v22m-11-11h22" stroke="{accent}" stroke-opacity=".12" stroke-width="2.5"/></pattern>'
+    return [grid, dots, stripes, plus][variant]
+
+
+def cover_art(item):
+    seed = hashlib.sha1(f"{item['id']}|{item.get('title', '')}".encode('utf-8')).digest()
+    accent, accent_b = COVER_PALETTES[seed[0] % len(COVER_PALETTES)]
+    uid, variant = seed.hex()[:6], seed[1] % 4
+    glyph = escape(item.get('icon') or '🛠️')
+    label = escape(item.get('category') or 'Project')
+    rings = f'<circle cx="758" cy="128" r="176" stroke="{accent}" stroke-opacity=".12" stroke-dasharray="5 9"/><circle cx="128" cy="430" r="150" stroke="{accent_b}" stroke-opacity=".12"/>' if variant == 3 else ''
+    diamonds = f'<path d="m142 120 16 18-16 18-16-18z" fill="{accent_b}" fill-opacity=".4"/><path d="m820 400 12 14-12 14-12-14z" fill="{accent}" fill-opacity=".45"/>' if variant == 1 else ''
+    bits = f'<rect x="330" y="428" width="118" height="5" rx="2.5" fill="{accent}" fill-opacity=".55"/><rect x="462" y="428" width="132" height="5" rx="2.5" fill="{accent_b}" fill-opacity=".3"/>' if variant in (0, 2) else f'<rect x="640" y="392" width="64" height="44" rx="10" fill="url(#ca-{uid})" fill-opacity=".16" stroke="{accent}" stroke-opacity=".3"/>'
+    return f'''<svg class="proj-cover-art" viewBox="0 0 960 540" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="cbg-{uid}" x1="0" y1="0" x2="960" y2="540" gradientUnits="userSpaceOnUse"><stop stop-color="#0a1524"/><stop offset="1" stop-color="#0d1e30"/></linearGradient><linearGradient id="ca-{uid}" x1="300" y1="140" x2="700" y2="440" gradientUnits="userSpaceOnUse"><stop stop-color="{accent}"/><stop offset="1" stop-color="{accent_b}"/></linearGradient>{cover_pattern(uid, variant, accent)}</defs>
+  <rect width="960" height="540" fill="url(#cbg-{uid})"/>
+  <rect width="960" height="540" fill="url(#cp-{uid})"/>
+  <circle cx="810" cy="96" r="230" fill="url(#ca-{uid})" fill-opacity=".07"/>
+  <circle cx="480" cy="272" r="216" stroke="url(#ca-{uid})" stroke-opacity=".28"/>{rings}{diamonds}
+  <text x="480" y="278" font-size="168" text-anchor="middle" dominant-baseline="central">{glyph}</text>
+  <text x="480" y="375" text-anchor="middle" fill="{accent}" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="700" letter-spacing="7">{label}</text>{bits}
+</svg>'''
+
+
 def category_filters(items, grid, label):
     categories = sorted(set(item.get('category') or 'Other' for item in items))
     buttons = '<button type="button" class="showcase-filter is-active" data-filter="" aria-pressed="true">All</button>'
@@ -121,35 +152,59 @@ def category_filters(items, grid, label):
     return f'<div class="showcase-filters" role="group" aria-label="Filter {escape(label)}" data-filter-grid="{grid}">{buttons}</div><p class="sr-only showcase-status" role="status" aria-live="polite"></p>' if items else ''
 
 
-def project_card(item, fallback='images/project-default.svg'):
+def pretty_date(value):
+    stamp = date.fromisoformat(str(value))
+    return f'{stamp.strftime("%b")} {stamp.day}, {stamp.year}'
+
+
+def project_card(item, fallback='images/project-default.svg', extra=False):
     links = link(item.get('documentation_url'), 'Documentation', 'proj-link', 'Docs')
     for entry in item.get('links') or []:
         links += link(entry.get('url'), entry.get('label', 'Link'), 'proj-link', escape(entry.get('icon') or entry.get('label')))
     status = item.get('status') or ''
     badge = f'<span class="proj-status {escape(item.get("status_style") or "status-wip")}">{escape(status)}</span>' if status else ''
+    chips = ''
+    if item.get('category'): chips += f'<span class="proj-cat">{escape(item["category"])}</span>'
+    if item.get('added_date'): chips += f'<span class="proj-added">Added {pretty_date(item["added_date"])}</span>'
+    meta = badge + chips
     tags = ''.join(f'<span class="proj-tag">{escape(tag)}</span>' for tag in (item.get('stack') or []) + (item.get('tags') or []))
-    thumbnail = cover_image(item.get('thumbnail'), fallback or 'images/project-default.svg', item.get('thumbnail_alt') or f'Project cover: {item["title"]}', 'proj') if item.get('thumbnail') or fallback else ''
-    extra = ''
+    images = [image for image in (item.get('gallery') or []) if image.get('image')]
+    has_screen = bool(item.get('thumbnail') or fallback)
+    cover_source = item.get('thumbnail') or (fallback or '')
+    cover = cover_image(item.get('thumbnail'), fallback or 'images/project-default.svg', item.get('thumbnail_alt') or f'Project cover: {item["title"]}', 'proj') if has_screen else ''
+    if not has_screen:
+        safe_url(fallback or '')
+        cover = f'<div class="showcase-media proj-media">{cover_art(item)}</div>'
+    if cover:
+        caption = escape(item.get('thumbnail_alt') or f'Project cover: {item["title"]}')
+        opener = 'proj-cover-open' if images else 'proj-cover-static'
+        chip = f'<span class="proj-open-chip" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 5h18v14H3zM8.5 11a2 2 0 1 0 0-.01M21 16l-5-5-8 7" /></svg>{len(images) + 1}</span>' if images else ''
+        cover = f'<button type="button" class="{opener}" data-full="{escape(cover_source)}" data-caption="{caption}" aria-label="Open project screenshots">{chip}{cover}</button>'
+    strip = ''
+    for index, image in enumerate(images):
+        safe_url(image['image'])
+        alt = escape(image.get('alt') or item['title'])
+        strip += f'<button type="button" class="proj-thumb" data-full="{escape(image["image"])}" data-caption="{escape(image.get("caption") or image.get("alt") or item["title"])}" aria-label="Open screenshot {index + 1} of {len(images) + 1}"><img src="{escape(image["image"])}" alt="{alt}" loading="lazy" decoding="async" /></button>'
+    if strip: strip = f'<div class="proj-gallery">{strip}</div>'
+    notes = ''
     for field, label in [('details',''),('abstract','Abstract'),('research_area','Research area'),('dataset','Dataset'),('methodology','Methodology'),('publication_status','Publication status'),('start_date','Started'),('completion_date','Completed')]:
-        if item.get(field): extra += f'<p>{("<strong>" + label + ":</strong> ") if label else ""}{rich(item[field])}</p>'
-    if item.get('authors'): extra += f'<p><strong>Authors:</strong> {escape(", ".join(item["authors"]))}</p>'
-    extra += link(item.get('paper_url'), 'Paper', 'proj-tag') + link(item.get('doi_url'), 'DOI', 'proj-tag')
-    for image in item.get('gallery') or []:
-        if image.get('image'):
-            extra += f'<figure><img class="cms-thumbnail" src="{escape(image["image"])}" alt="{escape(image.get("alt") or item["title"])}" loading="lazy" /><figcaption>{escape(image.get("caption"))}</figcaption></figure>'
-    # Category is represented by the gallery filters rather than a disclosure.
-    if extra: extra = f'<details class="cms-details"><summary>Details</summary>{extra}</details>'
+        if item.get(field): notes += f'<p>{("<strong>" + label + ":</strong> ") if label else ""}{rich(item[field])}</p>'
+    if item.get('authors'): notes += f'<p><strong>Authors:</strong> {escape(", ".join(item["authors"]))}</p>'
+    notes += link(item.get('paper_url'), 'Paper', 'proj-tag') + link(item.get('doi_url'), 'DOI', 'proj-tag')
+    if notes: notes = f'<details class="cms-details"><summary>Details</summary>{notes}</details>'
     external = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10" /></svg>'
     play = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="3" /><path d="M8 21h8M12 18v3m-2-14 5 4-5 3z" /></svg>'
     actions = link(item.get('github_url'), 'GitHub', 'proj-action proj-action-github', icon('github', 15) + '<span>GitHub</span>' + external)
     actions += link(item.get('demo_url'), 'Live Demo', 'proj-action proj-action-demo', play + '<span>Live Demo</span>' + external)
     if actions: actions = f'<div class="proj-actions">{actions}</div>'
-    return f'''<div class="proj-card reveal" id="project-{escape(item['id'])}" data-category="{escape(item.get('category') or 'Other')}">
-      {thumbnail}<div class="showcase-body">
+    hidden = ' hidden' if extra else ''
+    mods = ' proj-extra' if extra else ''
+    return f'''<div class="proj-card reveal{mods}" id="project-{escape(item['id'])}" data-category="{escape(item.get('category') or 'Other')}"{hidden}>
+      {cover}{strip}<div class="showcase-body">
       <div class="proj-top"><div class="proj-icon">{escape(item.get('icon') or '💻')}</div><div class="proj-links">{links}</div></div>
-      <div><div class="proj-title">{escape(item['title'])}</div>{badge}</div>
+      <div><div class="proj-title">{escape(item['title'])}</div><div class="proj-meta">{meta}</div></div>
       <p class="proj-desc">{escape(item.get('description'))}</p>
-      <div class="proj-stack">{tags}</div>{extra}{actions}</div></div>'''
+      <div class="proj-stack">{tags}</div>{notes}{actions}</div></div>'''
 
 
 def render_sections(data, source_root):
@@ -181,9 +236,12 @@ def render_sections(data, source_root):
         sections['contacts'] += contact_card('tel:' + contact['phone'], '📞', contact.get('phone_label'), contact.get('phone_display') or contact['phone'])
     if contact.get('location'): sections['contacts'] += contact_card('', '📍', contact.get('location_label'), contact['location'])
     projects = ordered([item for item in data['projects']+data['research'] if item.get('published', True)])
-    projects.sort(key=lambda item: not item.get('featured', True))
+    projects.sort(key=lambda item: (item.get('order') or 0, not item.get('featured', True), item['id']))
+    projects.sort(key=lambda item: item.get('added_date') or '0000-00-00', reverse=True)
     media_settings = data['site-settings'].get('media') or {}
-    sections['projects'] = ''.join(project_card(item, media_settings.get('project_fallback') or '') for item in projects)
+    fallback = media_settings.get('project_fallback') or ''
+    sections['projects'] = ''.join(project_card(item, fallback, index >= 6) for index, item in enumerate(projects))
+    sections['projects_view_all'] = f'<button type="button" id="view-all-projects" class="view-all-btn" aria-controls="project-cards">View all projects<span class="view-all-count">{len(projects)}</span></button>' if len(projects) > 6 else ''
     sections['project_filters'] = category_filters(projects, 'project-cards', 'projects')
     sections['papers'] = ''
     for i,item in enumerate(ordered(data['papers'])):

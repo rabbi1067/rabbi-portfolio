@@ -1724,6 +1724,17 @@
         "^$|^\\d{4}-\\d{2}-\\d{2}$",
         "Use YYYY-MM-DD or leave empty."
       ]
+    },
+    {
+          "name": "added_date",
+          "label": "Added date",
+          "widget": "string",
+          "required": false,
+          "hint": "Shown on the card as the date the project was added. Used for the latest-projects order on the home page.",
+          "pattern": [
+            "^$|^\\d{4}-\\d{2}-\\d{2}$",
+            "Use YYYY-MM-DD or leave empty."
+          ]
     }
   ],
   "research": [
@@ -1955,6 +1966,17 @@
         "^$|^\\d{4}-\\d{2}-\\d{2}$",
         "Use YYYY-MM-DD or leave empty."
       ]
+    },
+    {
+          "name": "added_date",
+          "label": "Added date",
+          "widget": "string",
+          "required": false,
+          "hint": "Shown on the card as the date the project was added. Used for the latest-projects order on the home page.",
+          "pattern": [
+            "^$|^\\d{4}-\\d{2}-\\d{2}$",
+            "Use YYYY-MM-DD or leave empty."
+          ]
     },
     {
       "name": "research_area",
