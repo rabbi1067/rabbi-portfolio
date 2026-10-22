@@ -214,7 +214,7 @@ def project_card(item, fallback='images/project-default.svg', extra=False):
       {cover}<div class="showcase-body">
       <div class="proj-top"><div class="proj-icon">{escape(item.get('icon') or '💻')}</div><div class="proj-links">{links}</div></div>
       <div><div class="proj-title">{escape(item['title'])}</div><div class="proj-meta">{meta}</div></div>
-      <p class="proj-desc">{escape(item.get('description'))}</p>
+      <div class="proj-desc-box"><p class="proj-desc">{escape(item.get('description'))}</p></div>
       <div class="proj-stack">{tags}</div>{notes}{actions}</div></div>'''
 
 

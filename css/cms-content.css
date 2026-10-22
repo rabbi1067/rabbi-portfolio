@@ -73,7 +73,8 @@
 .cert-top .proj-status { font-size: .62rem; }
 .cert-emoji { display: grid; place-items: center; width: 40px; height: 40px; font-size: 1.4rem; border-radius: 11px; background: rgba(0,212,170,.08); border: 1px solid rgba(0,212,170,.14); }
 .proj-desc, .cert-card .cert-desc { color: var(--text-secondary); font-size: .8rem; line-height: 1.75; flex: 1; margin: 0; }
-.proj-card .proj-desc { display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.proj-desc-box { flex: 1; min-height: 0; }
+.proj-card .proj-desc { flex: 0 1 auto; display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .proj-stack { margin: 0 0 6px; }
 .proj-tag { padding: 4px 8px; font-size: .65rem; }
 .proj-actions { margin-top: auto; }
