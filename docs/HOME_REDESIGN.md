@@ -60,11 +60,11 @@ updates its destination to the following section and hides while scrolling.
 Home shows it only within 20px of the top; other sections restore it after 1.1s
 of idle time, and it stays hidden at the page bottom. The page scrollbar is hidden
 while native wheel, touch and keyboard scrolling remain enabled. Portrait role
-badges start hidden, appear on portrait hover/focus, and disappear 2.5 seconds
-after leaving (re-entering cancels dismissal). Touch users can tap to reveal them.
-The C++, Python, C and Java language chips remain visible immediately below the
-statistics, independently of the portrait hover state. The mobile role badge
-space collapses while hidden. `tests/home-interactions.mjs` verifies these cases.
+badges are always visible: two columns flank the portrait on desktop, and a
+wrapping rows follow the portrait on mobile. No hover, tap or JavaScript is
+needed to read them. The C++, Python, C and Java language chips also remain
+visible immediately below the statistics. `tests/home-interactions.mjs` checks
+persistent visibility, scrolling and mobile layout.
 
 The owner then requested centered statistics, four role labels (AI Engineer,
 Researcher, Full Stack Developer, Competitive Programmer), and support for 20

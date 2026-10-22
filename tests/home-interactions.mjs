@@ -1,4 +1,4 @@
-/* Optional browser checks for hover timing, keyboard/touch access and scroll hints. */
+/* Optional browser checks for persistent role tags and scroll hints. */
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 import { mkdir } from 'node:fs/promises';
@@ -17,15 +17,16 @@ async function prepare(options) {
   await page.route('**/*',route=>route.request().url().startsWith(origin) ? route.continue() : route.abort());
   await page.goto(origin, { waitUntil:'networkidle' });
   await page.emulateMedia({ reducedMotion:'reduce' });
-  await page.waitForFunction(()=>getComputedStyle(document.getElementById('hero-badges')).visibility==='hidden');
+  await page.waitForFunction(()=>getComputedStyle(document.getElementById('hero-badges')).visibility==='visible');
   return { context, page };
 }
 try {
   const { context, page } = await prepare({ viewport:{ width:1440, height:1000 } });
   const trigger = page.locator('#heroPortraitTrigger');
   const hint = page.locator('#scrollCue');
-  assert.equal(await trigger.getAttribute('aria-expanded'),'false');
-  assert.equal(await page.locator('#hero-badges').evaluate(el=>getComputedStyle(el).visibility),'hidden');
+  const badges = page.locator('#hero-badges');
+  assert.equal(await badges.getAttribute('aria-hidden'),null);
+  assert.equal(await badges.locator('.float-card').count(),4);
   assert.equal(await hint.evaluate(el=>getComputedStyle(el).flexDirection),'column');
   assert.equal(await page.locator('.scroll-mouse').evaluate(el=>getComputedStyle(el).width),'22px');
   const languages=page.locator('#hero-skill-tags');
@@ -37,26 +38,11 @@ try {
   assert.equal(await page.locator('html').evaluate(el=>getComputedStyle(el).scrollbarWidth),'none');
   assert.ok((await languages.boundingBox()).y>=(await page.locator('.hero-stats').boundingBox()).y,'Language chips follow the stats');
   await trigger.hover();
-  assert.equal(await trigger.getAttribute('aria-expanded'),'true');
-  assert.equal(await languages.evaluate(el=>getComputedStyle(el).visibility),'visible');
-  await page.screenshot({path:resolve(qa,'tags-visible.png')});
   await page.mouse.move(8,120);
-  await page.waitForTimeout(1700);
-  assert.equal(await trigger.getAttribute('aria-expanded'),'true','Tags remain visible before 2.5 seconds');
-  await trigger.hover();
-  await page.waitForTimeout(1100);
-  assert.equal(await trigger.getAttribute('aria-expanded'),'true','Re-entry cancels the previous hide timer');
-  await page.mouse.move(8,120);
-  await page.waitForTimeout(2750);
-  assert.equal(await trigger.getAttribute('aria-expanded'),'false','Tags hide after leaving for 2.5 seconds');
-  assert.equal(await page.locator('#hero-badges').getAttribute('aria-hidden'),'true');
-  assert.equal(await languages.evaluate(el=>getComputedStyle(el).visibility),'visible','Language chips remain visible after role badges dismiss');
-  await page.screenshot({path:resolve(qa,'tags-hidden.png')});
-  await trigger.focus();
-  assert.equal(await trigger.getAttribute('aria-expanded'),'true','Keyboard users can reveal the tags');
-  await page.keyboard.press('Tab');
-  await page.waitForTimeout(2750);
-  assert.equal(await trigger.getAttribute('aria-expanded'),'false');
+  await page.waitForTimeout(2800);
+  assert.equal(await badges.evaluate(el=>getComputedStyle(el).visibility),'visible','Roles stay visible after leaving the portrait');
+  assert.equal(await badges.evaluate(el=>getComputedStyle(el).opacity),'1');
+  await page.screenshot({path:resolve(qa,'tags-always-visible.png')});
   await page.mouse.wheel(0,140);
   await page.waitForFunction(()=>scrollY>20);
   await page.waitForFunction(()=>document.querySelector('.scroll-indicator').getAttribute('aria-hidden')==='true');
@@ -68,15 +54,16 @@ try {
   await context.close();
 
   const mobile = await prepare({ viewport:{ width:390, height:844 }, isMobile:true, hasTouch:true });
-  const photo = mobile.page.locator('#heroPortraitTrigger');
   assert.ok(await mobile.page.locator('#scrollCue').isHidden(),'Phone scroll cue is hidden');
-  await photo.tap();
-  assert.equal(await photo.getAttribute('aria-expanded'),'true','Touch users tap the portrait to reveal tags');
-  await mobile.page.waitForTimeout(2750);
-  assert.equal(await photo.getAttribute('aria-expanded'),'false','Touch tags dismiss automatically');
+  assert.ok(await mobile.page.locator('#hero-badges').isVisible(),'Mobile roles need no tap');
+  await mobile.page.waitForTimeout(2800);
+  assert.equal(await mobile.page.locator('#hero-badges').evaluate(el=>getComputedStyle(el).visibility),'visible');
   assert.equal(await mobile.page.evaluate(()=>document.documentElement.scrollWidth),390);
   assert.equal(await mobile.page.locator('#hero-skill-tags').evaluate(el=>getComputedStyle(el).visibility),'visible');
   await mobile.context.close();
+  const staticPage = await prepare({ viewport:{width:390,height:844}, javaScriptEnabled:false });
+  assert.ok(await staticPage.page.locator('#hero-badges').isVisible(),'Roles remain visible without JavaScript');
+  await staticPage.context.close();
   assert.deepEqual(errors,[]);
-  console.log('Passed: original scroll appearance; scroll hide/restore; hover show; 2.5-second dismissal; re-entry cancellation; keyboard access; touch reveal/dismiss; mobile overflow.');
+  console.log('Passed: original scroll appearance; scroll hide/restore; always-visible roles after mouse leave; touch and no-JavaScript visibility; mobile overflow.');
 } finally { await browser.close(); }

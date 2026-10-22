@@ -22,7 +22,7 @@ Admin: https://rabbi1067.github.io/rabbi-portfolio/admin/
 | Home portrait | Profile → Hero cutout photo; transparent PNG/WebP ভালো |
 | Logo/profile photo ও About photo | Profile → Profile photo / About photo |
 | পরিচিতি ও About লেখা | Profile → Introduction / Biography |
-| Hover tags | Profile → Portrait role tags; সর্বোচ্চ ২০টি |
+| Portrait role tags (সবসময় দেখা যাবে) | Profile → Portrait role tags; সর্বোচ্চ ২০টি |
 | C++, Python ইত্যাদি chips | Profile → Programming language chips |
 | Social, email, phone | Portfolio settings → Contact |
 | Footer social | Contact → Links → Footer toggle |

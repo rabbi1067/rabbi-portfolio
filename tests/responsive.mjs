@@ -49,6 +49,7 @@ try {
     assert.ok(dimensions.buttons.width<=width,`${name}: buttons fit`);
     assert.ok(dimensions.stats.right<=width,`${name}: stats fit`);
     assert.equal(await page.locator('.hero-badges .float-card').count(),4);
+    assert.ok(await page.locator('.hero-badges strong').evaluateAll(labels=>labels.every(label=>{const range=document.createRange();range.selectNodeContents(label);return range.getClientRects().length===1&&label.scrollWidth<=label.clientWidth+1;})),`${name}: role labels must fit on one line`);
     assert.ok(dimensions.stats.y>=dimensions.buttons.bottom,`${name}: statistics belong below the CV/Skills buttons`);
     assert.ok(Math.abs(dimensions.stats.x+dimensions.stats.width/2-width/2)<2,`${name}: statistics are centered`);
     const clippedText=await page.locator('#home').evaluate(el=>Array.from(el.querySelectorAll('strong, .float-card-text span, .stat-label')).filter(node=>node.scrollWidth>node.clientWidth+1).map(node=>node.textContent));

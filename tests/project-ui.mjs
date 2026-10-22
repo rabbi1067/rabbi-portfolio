@@ -23,9 +23,7 @@ try {
     await page.goto(origin,{waitUntil:'networkidle'});
     await page.locator('#hero-badges').evaluate((el,html)=>{el.innerHTML=html;},await readFile(resolve(fixture,'badges.html'),'utf8'));
     await page.locator('#home').evaluate(el=>el.style.setProperty('--badge-rows','10'));
-    const portrait=page.locator('#heroPortraitTrigger');
-    if(width<=740) await portrait.tap(); else await portrait.hover();
-    assert.equal(await portrait.getAttribute('aria-expanded'),'true');
+    assert.equal(await page.locator('#hero-badges').evaluate(el=>getComputedStyle(el).visibility),'visible');
     assert.equal(await page.locator('.hero-badges .float-card').count(),20);
     const geometry=await page.locator('#heroScene').evaluate(el=> {
       const box=el.getBoundingClientRect(),photo=el.querySelector('.hero-portrait').getBoundingClientRect();

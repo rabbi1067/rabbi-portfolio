@@ -253,7 +253,7 @@
       "default": [],
       "collapsed": true,
       "max": 20,
-      "hint": "Up to 20 role tags. Shown on portrait hover/focus or a touch-device tap; hidden 2.5 seconds after leaving."
+      "hint": "Up to 20 role tags, always visible around the portrait on desktop and below it on mobile."
     },
     {
       "name": "about_statistics",

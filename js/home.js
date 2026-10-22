@@ -27,43 +27,6 @@
   motion.addEventListener('change', reset);
   pointer.addEventListener('change', reset);
 
-  const home = document.getElementById('home');
-  const portrait = document.getElementById('heroPortraitTrigger');
-  const tagGroups = [document.getElementById('hero-badges')];
-  const hover = window.matchMedia('(hover: hover) and (pointer: fine)');
-  let tagTimer = 0;
-  let overPortrait = false;
-  function setTags(visible) {
-    home?.classList.toggle('tags-visible', visible);
-    portrait?.setAttribute('aria-expanded', String(visible));
-    tagGroups.forEach(group => group?.setAttribute('aria-hidden', String(!visible)));
-  }
-  function showTags() {
-    clearTimeout(tagTimer);
-    setTags(true);
-  }
-  function hideTagsLater() {
-    clearTimeout(tagTimer);
-    tagTimer = setTimeout(() => {
-      if (!overPortrait && !portrait?.matches(':focus-visible')) setTags(false);
-    }, 2500);
-  }
-  portrait?.addEventListener('pointerenter', event => {
-    if (event.pointerType === 'touch') return;
-    overPortrait = true;
-    showTags();
-  });
-  portrait?.addEventListener('pointerleave', () => {
-    overPortrait = false;
-    hideTagsLater();
-  });
-  portrait?.addEventListener('focus', showTags);
-  portrait?.addEventListener('blur', hideTagsLater);
-  portrait?.addEventListener('click', () => {
-    showTags();
-    if (!hover.matches) hideTagsLater();
-  });
-
   const scrollHint = document.getElementById('scrollCue');
   const pageSections = Array.from(document.querySelectorAll('section[id]'));
   let cueTimer = 0;

@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="380" viewBox="0 0 1200 380" role="img" aria-labelledby="title desc">
+  <title id="title">Fazley Rabbi — AI Engineer and Full Stack Developer</title>
+  <desc id="desc">A dark teal studio with a floating isometric cube, orbital paths and slowly moving particles.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#0a1d26"/><stop offset="1" stop-color="#071012"/></linearGradient>
+    <linearGradient id="top" x2="1" y2="1"><stop stop-color="#adffe8"/><stop offset="1" stop-color="#36d5b1"/></linearGradient>
+    <linearGradient id="left" x2="1" y2="1"><stop stop-color="#20b69b"/><stop offset="1" stop-color="#12665d"/></linearGradient>
+    <linearGradient id="right" x2="1" y2="1"><stop stop-color="#56eccb"/><stop offset="1" stop-color="#168e82"/></linearGradient>
+    <radialGradient id="glow"><stop stop-color="#2de4b6" stop-opacity=".18"/><stop offset="1" stop-color="#2de4b6" stop-opacity="0"/></radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#89dbc9" stroke-opacity=".045"/></pattern>
+    <style>
+      .cube{animation:float 6s ease-in-out infinite;transform-origin:920px 180px}
+      .orbit{animation:orbit 25s linear infinite;transform-origin:920px 180px}
+      .spark{animation:pulse 4s ease-in-out infinite alternate}
+      @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+      @keyframes orbit{to{transform:rotate(360deg)}}
+      @keyframes pulse{from{opacity:.3}to{opacity:1}}
+      @media(prefers-reduced-motion:reduce){.cube,.orbit,.spark{animation:none}}
+    </style>
+  </defs>
+  <rect x="1" y="1" width="1198" height="378" rx="24" fill="url(#bg)" stroke="#1c413f"/>
+  <rect x="2" y="2" width="1196" height="376" rx="23" fill="url(#grid)"/>
+  <circle cx="920" cy="180" r="260" fill="url(#glow)"/>
+  <path d="M64 69h30" stroke="#53e6bc" stroke-width="3" stroke-linecap="round"/>
+  <text x="108" y="74" fill="#83c9b8" font-family="Segoe UI,Arial,sans-serif" font-size="13" letter-spacing="3">CODE · CURIOSITY · CRAFT</text>
+  <text x="64" y="159" fill="#ecfff9" font-family="Segoe UI,Arial,sans-serif" font-size="58" font-weight="700" letter-spacing="-2">Fazley Rabbi<tspan fill="#55e8c0">.</tspan></text>
+  <text x="66" y="204" fill="#65edc9" font-family="Georgia,serif" font-size="28" font-style="italic">AI Engineer &amp; Full Stack Developer</text>
+  <text x="66" y="248" fill="#91afa9" font-family="Segoe UI,Arial,sans-serif" font-size="16">Exploring ideas. Solving problems. Building useful things.</text>
+  <rect x="65" y="287" width="252" height="34" rx="17" fill="#0d2c29" stroke="#24574c"/>
+  <circle cx="84" cy="304" r="4" fill="#57e9bf" class="spark"/>
+  <text x="99" y="309" fill="#a8d4c8" font-family="Segoe UI,Arial,sans-serif" font-size="12" letter-spacing="1">PORTFOLIO / SELECTED WORK</text>
+  <g fill="none" stroke="#4dbaa3" stroke-opacity=".22">
+    <ellipse cx="920" cy="180" rx="196" ry="106" transform="rotate(-25 920 180)"/>
+    <ellipse cx="920" cy="180" rx="175" ry="132" transform="rotate(32 920 180)"/>
+    <circle cx="920" cy="180" r="147" stroke-dasharray="2 9"/>
+  </g>
+  <g class="orbit"><circle cx="1067" cy="180" r="5" fill="#6df9cc"/><circle cx="773" cy="180" r="3" fill="#78b8e3"/></g>
+  <ellipse cx="920" cy="292" rx="85" ry="16" fill="#051110"/>
+  <g class="cube" stroke-linejoin="round" stroke="#aaffdf" stroke-opacity=".35">
+    <path d="M920 83 1003 131 920 179 837 131Z" fill="url(#top)"/>
+    <path d="M837 131 920 179 920 276 837 228Z" fill="url(#left)"/>
+    <path d="M920 179 1003 131 1003 228 920 276Z" fill="url(#right)"/>
+    <path d="M878 108 961 156 961 252M961 107 878 155 878 252M837 179 920 227 1003 179" fill="none" stroke="#d1fff1" stroke-opacity=".18"/>
+    <path d="m868 175-13 5 13 20m20-14 13 20-13 5" fill="none" stroke="#baffea" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  <g fill="#71ddbe" class="spark"><circle cx="762" cy="91" r="2"/><circle cx="1102" cy="267" r="3"/><circle cx="1057" cy="73" r="2"/></g>
+  <text x="1088" y="345" fill="#568b80" font-family="Segoe UI,Arial,sans-serif" font-size="11" letter-spacing="2">FR / 01</text>
+</svg>
