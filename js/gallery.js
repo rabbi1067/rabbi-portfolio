@@ -1,7 +1,29 @@
-/* Project screenshot lightbox: card galleries, arrows, keyboard; no third-party dependencies. */
+/* Project cover carousels and screenshot lightbox; no third-party dependencies. */
 (() => {
-  const openers = document.querySelectorAll('.proj-card .proj-cover-open, .proj-card .proj-thumb');
-  if (!openers.length) return;
+  const carousels = document.querySelectorAll('.proj-carousel');
+
+  const show = (carousel, at) => {
+    const slides = carousel.querySelectorAll('.proj-slide');
+    if (!slides.length) return;
+    const index = (at + slides.length) % slides.length;
+    carousel.dataset.index = String(index);
+    slides.forEach((slide, position) => slide.classList.toggle('is-active', position === index));
+  };
+
+  document.addEventListener('click', event => {
+    const arrow = event.target.closest('.proj-carrow');
+    if (arrow) {
+      const carousel = arrow.closest('.proj-carousel');
+      show(carousel, Number(carousel.dataset.index || 0) + (arrow.classList.contains('proj-carrow-next') ? 1 : -1));
+      return;
+    }
+    const carousel = event.target.closest('.proj-carousel');
+    if (carousel && event.target.classList.contains('proj-slide')) open(carousel, Number(carousel.dataset.index || 0));
+  });
+
+  let slides = [];
+  let index = 0;
+  let opener = null;
 
   const lightbox = document.createElement('div');
   lightbox.className = 'lightbox';
@@ -23,9 +45,6 @@
   const image = lightbox.querySelector('.lightbox-image');
   const caption = lightbox.querySelector('.lightbox-caption');
   const counter = lightbox.querySelector('.lightbox-counter');
-  let slides = [];
-  let index = 0;
-  let opener = null;
 
   const render = () => {
     const slide = slides[index];
@@ -39,42 +58,40 @@
     lightbox.querySelector('.lightbox-next').hidden = !many;
   };
 
-  const show = at => {
+  const step = at => {
     if (slides.length) {
       index = (at + slides.length) % slides.length;
       render();
     }
   };
 
+  function open(target, at) {
+    slides = Array.from(target.querySelectorAll('.proj-slide'));
+    opener = target;
+    lightbox.hidden = false;
+    document.body.classList.add('lb-open');
+    step(at);
+    lightbox.querySelector('.lightbox-close').focus();
+  }
+
   const close = () => {
     lightbox.hidden = true;
     document.body.classList.remove('lb-open');
     image.src = '';
-    if (opener) { opener.focus(); opener = null; }
+    if (opener) { show(opener, index); opener.focus(); opener = null; }
   };
 
   document.addEventListener('click', event => {
-    const trigger = event.target.closest('.proj-cover-open, .proj-thumb');
-    if (trigger) {
-      const card = trigger.closest('.proj-card');
-      slides = Array.from(card.querySelectorAll('.proj-cover-open, .proj-thumb'));
-      opener = trigger;
-      lightbox.hidden = false;
-      document.body.classList.add('lb-open');
-      show(slides.indexOf(trigger));
-      lightbox.querySelector('.lightbox-close').focus();
-      return;
-    }
     if (event.target === lightbox) close();
     if (event.target.closest('.lightbox-close')) close();
-    if (event.target.closest('.lightbox-prev')) show(index - 1);
-    if (event.target.closest('.lightbox-next')) show(index + 1);
+    if (event.target.closest('.lightbox-prev')) step(index - 1);
+    if (event.target.closest('.lightbox-next')) step(index + 1);
   });
 
   document.addEventListener('keydown', event => {
     if (lightbox.hidden) return;
     if (event.key === 'Escape') close();
-    if (event.key === 'ArrowLeft') show(index - 1);
-    if (event.key === 'ArrowRight') show(index + 1);
+    if (event.key === 'ArrowLeft') step(index - 1);
+    if (event.key === 'ArrowRight') step(index + 1);
   });
 })();

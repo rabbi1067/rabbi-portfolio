@@ -171,21 +171,29 @@ def project_card(item, fallback='images/project-default.svg', extra=False):
     images = [image for image in (item.get('gallery') or []) if image.get('image')]
     has_screen = bool(item.get('thumbnail') or fallback)
     cover_source = item.get('thumbnail') or (fallback or '')
-    cover = cover_image(item.get('thumbnail'), fallback or 'images/project-default.svg', item.get('thumbnail_alt') or f'Project cover: {item["title"]}', 'proj') if has_screen else ''
-    if not has_screen:
-        safe_url(fallback or '')
-        cover = f'<div class="showcase-media proj-media">{cover_art(item)}</div>'
-    if cover:
-        caption = escape(item.get('thumbnail_alt') or f'Project cover: {item["title"]}')
-        opener = 'proj-cover-open' if images else 'proj-cover-static'
-        chip = f'<span class="proj-open-chip" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 5h18v14H3zM8.5 11a2 2 0 1 0 0-.01M21 16l-5-5-8 7" /></svg>{len(images) + 1}</span>' if images else ''
-        cover = f'<button type="button" class="{opener}" data-full="{escape(cover_source)}" data-caption="{caption}" aria-label="Open project screenshots">{chip}{cover}</button>'
     strip = ''
-    for index, image in enumerate(images):
-        safe_url(image['image'])
-        alt = escape(image.get('alt') or item['title'])
-        strip += f'<button type="button" class="proj-thumb" data-full="{escape(image["image"])}" data-caption="{escape(image.get("caption") or image.get("alt") or item["title"])}" aria-label="Open screenshot {index + 1} of {len(images) + 1}"><img src="{escape(image["image"])}" alt="{alt}" loading="lazy" decoding="async" /></button>'
-    if strip: strip = f'<div class="proj-gallery">{strip}</div>'
+    if images:
+        safe_url(cover_source) if cover_source else safe_url(fallback or '')
+        slides = []
+        if has_screen:
+            slides.append(f'<img class="proj-slide is-active" src="{escape(cover_source)}" data-full="{escape(cover_source)}" data-caption="{escape(item.get("thumbnail_alt") or f"Project cover: {item['title']}")}" alt="{escape(item.get("thumbnail_alt") or item["title"])}" loading="lazy" decoding="async" />')
+        for index, image in enumerate(images):
+            safe_url(image['image'])
+            alt = escape(image.get('alt') or item['title'])
+            slides.append(f'<img class="proj-slide{"" if has_screen or index else " is-active"}" src="{escape(image["image"])}" data-full="{escape(image["image"])}" data-caption="{escape(image.get("caption") or image.get("alt") or item["title"])}" alt="{alt}" loading="lazy" decoding="async" />')
+        total = len(slides)
+        chip = f'<span class="proj-open-chip" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 5h18v14H3zM8.5 11a2 2 0 1 0 0-.01M21 16l-5-5-8 7" /></svg>{total}</span>'
+        arrow = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m{0} 6-6 6 6 6" /></svg>'
+        cover = f'''<div class="showcase-media proj-media proj-carousel" data-index="0">
+        <div class="proj-slides">{''.join(slides)}</div>
+        <button type="button" class="proj-carrow proj-carrow-prev" aria-label="Previous screenshot">{arrow.format('15')}</button>
+        <button type="button" class="proj-carrow proj-carrow-next" aria-label="Next screenshot">{arrow.format('9')}</button>
+        {chip}</div>'''
+    else:
+        cover = cover_image(item.get('thumbnail'), fallback or 'images/project-default.svg', item.get('thumbnail_alt') or f'Project cover: {item["title"]}', 'proj') if has_screen else ''
+        if not has_screen:
+            safe_url(fallback or '')
+            cover = f'<div class="showcase-media proj-media">{cover_art(item)}</div>'
     notes = ''
     for field, label in [('details',''),('abstract','Abstract'),('research_area','Research area'),('dataset','Dataset'),('methodology','Methodology'),('publication_status','Publication status'),('start_date','Started'),('completion_date','Completed')]:
         if item.get(field): notes += f'<p>{("<strong>" + label + ":</strong> ") if label else ""}{rich(item[field])}</p>'
@@ -200,7 +208,7 @@ def project_card(item, fallback='images/project-default.svg', extra=False):
     hidden = ' hidden' if extra else ''
     mods = ' proj-extra' if extra else ''
     return f'''<div class="proj-card reveal{mods}" id="project-{escape(item['id'])}" data-category="{escape(item.get('category') or 'Other')}"{hidden}>
-      {cover}{strip}<div class="showcase-body">
+      {cover}<div class="showcase-body">
       <div class="proj-top"><div class="proj-icon">{escape(item.get('icon') or '💻')}</div><div class="proj-links">{links}</div></div>
       <div><div class="proj-title">{escape(item['title'])}</div><div class="proj-meta">{meta}</div></div>
       <p class="proj-desc">{escape(item.get('description'))}</p>
