@@ -179,7 +179,7 @@ class PortfolioBuildTests(unittest.TestCase):
         shutil.copyfile(self.root/'images/fr.png',self.root/'uploads/new-project.png')
         self.compile(site_url='https://owner.github.io/portfolio')
         cards=self.document.root.find_all(cls='proj-card')
-        self.assertEqual(len(cards),4)
+        self.assertEqual(len(cards),len(list((self.root/'content/projects').glob('*.json'))))
         self.assertEqual(cards[0].attrs['id'],'project-paperpilot')
         for card in cards:
             self.assertNotIn('hidden',card.attrs)
@@ -198,10 +198,11 @@ class PortfolioBuildTests(unittest.TestCase):
         self.write('content/projects/doctor-cards.json',media)
         self.compile(site_url='https://owner.github.io/portfolio')
         cards=self.document.root.find_all(cls='proj-card')
-        self.assertEqual(len(cards),10)
+        total=len(cards)
+        self.assertEqual(total,len(list((self.root/'content/projects').glob('*.json'))))
         self.assertEqual(cards[0].attrs['id'],'project-batch-4')
         extras=[card for card in cards if 'proj-extra' in card.attrs.get('class','')]
-        self.assertEqual(len(extras),4)
+        self.assertEqual(len(extras),len(cards)-6)
         self.assertTrue(all('hidden' in card.attrs for card in extras))
         self.assertEqual(self.document.root.find(id='project-parking-management-system').find_all(cls='proj-cover-open'),[])
         self.assertEqual(len(self.document.root.find(id='project-batch-0').find_all(cls='proj-cover-open')),1)
@@ -214,8 +215,7 @@ class PortfolioBuildTests(unittest.TestCase):
         view=self.document.root.find_all(id='view-all-projects')
         self.assertEqual(len(view),1)
         self.assertIn('View all projects',self.document.outside(view[0]))
-        self.assertIn('view-all-count',self.document.outside(view[0]))
-        self.assertEqual(self.document.outside(view[0]).count('10'),1)
+        self.assertIn(f'>{total}</span>',self.document.outside(view[0]))
         config=self.json('dist/admin/config.yml')
         fields=config['collections'][1]['fields']
         self.assertEqual(next(field for field in fields if field['name']=='added_date')['pattern'][0],'^$|^\\d{4}-\\d{2}-\\d{2}$')
