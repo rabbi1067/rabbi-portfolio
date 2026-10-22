@@ -167,7 +167,8 @@ class PortfolioBuildTests(unittest.TestCase):
         value.update(id='media-project',title='Media project',thumbnail='/portfolio/uploads/new-project.png',
                      thumbnail_alt='Uploaded thumbnail',gallery=[dict(image='/portfolio/uploads/new-project.png',alt='Gallery alt',caption='Gallery caption')],
                      details='Longer **description**',start_date='2026-01-01',completion_date='2026-10-17',
-                     demo_url='https://demo.example.com',documentation_url='https://docs.example.com',featured=False)
+                     demo_url='https://demo.example.com',documentation_url='https://docs.example.com',featured=False,
+                     added_date='',order=99)
         self.write('content/projects/media-project.json',value)
         self.compile(site_url='https://owner.github.io/portfolio')
         for text in ['alt="Uploaded thumbnail"','alt="Gallery alt"','Gallery caption','Longer <strong>description</strong>','2026-01-01','2026-10-17','https://demo.example.com','https://docs.example.com']:
