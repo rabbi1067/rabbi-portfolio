@@ -1,0 +1,32 @@
+{
+  "id": "project-showcase",
+  "title": "Project Showcase",
+  "description": "A clean and modern web app to showcase your projects in one place — perfect for developers who want a personal portfolio-style gallery of their work. Displays title, description, tech stack and links, ready to run instantly with Docker.",
+  "details": "",
+  "category": "Software",
+  "tags": [],
+  "stack": [
+    "Spring Boot",
+    "Java",
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Docker"
+  ],
+  "icon": "🧩",
+  "status": "Completed",
+  "status_style": "status-done",
+  "github_url": "https://github.com/rabbi1067/project-showcase",
+  "demo_url": "https://rabbi1067.github.io/project-showcase/",
+  "documentation_url": "",
+  "links": [],
+  "thumbnail": "",
+  "thumbnail_alt": "",
+  "gallery": [],
+  "featured": true,
+  "order": 4,
+  "published": true,
+  "added_date": "2026-10-22",
+  "start_date": "",
+  "completion_date": ""
+}
