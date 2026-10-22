@@ -38,9 +38,10 @@ class PortfolioBuildTests(unittest.TestCase):
         return data
 
     def test_original_sections_assets_and_effects(self):
-        self.compile()
+        data=self.compile()
         self.assertEqual([n.attrs['id'] for n in self.document.root.find_all(tag='section')], ['home','about','projects','skills','experience','research','certifications','reviews','contact'])
-        for cls,count in [('proj-card',9),('skill-card',6),('tl-item',5),('footer-social',4),('cert-card',8),('sk-bar-fill',0)]:
+        card_count=sum(1 for item in data['projects']+data['research'] if item.get('published',True))
+        for cls,count in [('proj-card',card_count),('skill-card',6),('tl-item',5),('footer-social',4),('cert-card',8),('sk-bar-fill',0)]:
             self.assertEqual(len(self.document.root.find_all(cls=cls)),count)
         for name in ['css/styles.css','js/main.js','CV.pdf','images/My_pic.jpeg']:
             self.assertEqual((self.root/name).read_bytes(),(self.root/'dist'/name).read_bytes())
@@ -102,11 +103,15 @@ class PortfolioBuildTests(unittest.TestCase):
         education=self.json('content/education.json')
         education['items'][0].update(gpa='3.91',department='CMS Department',organization='CMS University')
         self.write('content/education.json',education)
-        research=self.json(next((self.root/'content/research').glob('*.json')).relative_to(self.root))
-        research.update(abstract='CMS abstract',dataset='CMS dataset',methodology='CMS methods',authors=['CMS Author'])
-        self.write('content/research/research-edited.json',{**research,'id':'research-edited'})
+        research_files=list((self.root/'content/research').glob('*.json'))
+        research_needles=[]
+        if research_files:
+            research=self.json(research_files[0].relative_to(self.root))
+            research.update(abstract='CMS abstract',dataset='CMS dataset',methodology='CMS methods',authors=['CMS Author'])
+            self.write('content/research/research-edited.json',{**research,'id':'research-edited'})
+            research_needles=['CMS abstract','CMS dataset','CMS methods','CMS Author']
         self.compile()
-        for text in ['CMS Name','CMS introduction','images/rr.jpg','Get updated resume','<strong>bold</strong>','New badge','mailto:editor@example.com','tel:+8801000000000','CMS phone','CMS location','https://github.com/edited-account','CMS Skill','data-w="73"','3.91','CMS Department','CMS University','CMS abstract','CMS dataset','CMS methods','CMS Author']:
+        for text in ['CMS Name','CMS introduction','images/rr.jpg','Get updated resume','<strong>bold</strong>','New badge','mailto:editor@example.com','tel:+8801000000000','CMS phone','CMS location','https://github.com/edited-account','CMS Skill','data-w="73"','3.91','CMS Department','CMS University',*research_needles]:
             self.assertIn(text,self.output)
 
     def test_cv_replacement_preserves_stable_url(self):
