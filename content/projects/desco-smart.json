@@ -1,0 +1,38 @@
+{
+  "id": "desco-smart",
+  "title": "DESCO Smart",
+  "description": "Enterprise-grade prepaid electricity monitoring platform with multi-meter dashboards, real-time burn-rate analytics, runway forecasting and automated SMTP alerts. Built with Next.js 15, React 19, Supabase (PostgreSQL with RLS) and a Python 3.12 background monitor worker.",
+  "details": "",
+  "category": "Web Development",
+  "tags": [],
+  "stack": [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Supabase",
+    "Tailwind CSS",
+    "Python"
+  ],
+  "icon": "⚡",
+  "status": "Completed",
+  "status_style": "status-done",
+  "github_url": "https://github.com/rabbi1067/desco_smart",
+  "demo_url": "https://desco-smart.vercel.app/",
+  "documentation_url": "",
+  "links": [],
+  "thumbnail": "",
+  "thumbnail_alt": "",
+  "gallery": [
+    {
+      "image": "uploads/desco-home.png",
+      "alt": "DESCO Smart home page with simulated prepaid meter telemetry demo",
+      "caption": "DESCO Smart home"
+    }
+  ],
+  "featured": true,
+  "order": 0,
+  "published": true,
+  "start_date": "",
+  "completion_date": "",
+  "added_date": "2026-10-22"
+}

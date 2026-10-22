@@ -181,15 +181,27 @@ class PortfolioBuildTests(unittest.TestCase):
         cards=self.document.root.find_all(cls='proj-card')
         self.assertEqual(len(cards),len(list((self.root/'content/projects').glob('*.json'))))
         for card in cards:
-            self.assertNotIn('hidden',card.attrs)
+            if 'proj-extra' not in card.attrs.get('class',''):
+                self.assertNotIn('hidden',card.attrs)
             self.assertEqual(len(card.find_all(cls='proj-cover-art')),len(card.find_all(cls='proj-slide')) == 0)
             self.assertEqual(len(card.find_all(cls='proj-carousel')),bool(card.find_all(cls='proj-slide')))
             for strip in card.find_all(cls='proj-carousel'):
                 self.assertEqual(len(strip.find_all(cls='proj-carrow')),2)
-        self.assertIn('Added Oct 22, 2026',self.output)
-        self.assertIn('Added Oct 18, 2026',self.output)
+        import re
+        from datetime import date as date_type
+        expected_dates=[]
+        for path in (self.root/'content/projects').glob('*.json'):
+            added=build.read_json(path).get('added_date')
+            if added:
+                expected_dates.append(date_type.fromisoformat(added).strftime('%b %d, %Y'))
+        stamps=re.findall(r'Added [A-Z][a-z]{2} \d{2}, \d{4}',self.output)
+        self.assertEqual(sorted(stamps),sorted('Added '+expected for expected in expected_dates))
         self.assertIn('<span class="proj-cat">Research</span>',self.output)
-        self.assertEqual(self.document.root.find_all(id='view-all-projects'),[])
+        view_all=self.document.root.find(id='view-all-projects')
+        if len(cards)>6:
+            self.assertIsNotNone(view_all)
+        else:
+            self.assertIsNone(view_all)
         media=self.json('content/projects/bmi-calculator.json')
         media.update(id='doctor-cards',title='Doctor cards',category='Backend',order=10,featured=False,added_date='2026-11-05',
                      gallery=[dict(image='/portfolio/uploads/new-project.png',alt='Gallery alt',caption='Gallery caption') for _ in range(2)])
