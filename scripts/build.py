@@ -183,11 +183,14 @@ def project_card(item, fallback='images/project-default.svg', extra=False):
             slides.append(f'<img class="proj-slide{"" if has_screen or index else " is-active"}" src="{escape(image["image"])}" data-full="{escape(image["image"])}" data-caption="{escape(image.get("caption") or image.get("alt") or item["title"])}" alt="{alt}" loading="lazy" decoding="async" />')
         total = len(slides)
         chip = f'<span class="proj-open-chip" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 5h18v14H3zM8.5 11a2 2 0 1 0 0-.01M21 16l-5-5-8 7" /></svg>{total}</span>'
-        arrow = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m{0} 6-6 6 6 6" /></svg>'
-        cover = f'''<div class="showcase-media proj-media proj-carousel" data-index="0">
+        prev = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m15 6-6 6 6 6" /></svg>'
+        next = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m9 6 6 6-6 6" /></svg>'
+        badge = f'<div class="proj-live" aria-hidden="true"><span class="proj-live-logo">{escape(item.get("icon") or "🧩")}</span><span class="proj-live-name">{escape(item["title"])}</span></div>'
+        cover = f'''<div class="showcase-media proj-media proj-carousel" data-index="0" tabindex="-1">
         <div class="proj-slides">{''.join(slides)}</div>
-        <button type="button" class="proj-carrow proj-carrow-prev" aria-label="Previous screenshot">{arrow.format('15')}</button>
-        <button type="button" class="proj-carrow proj-carrow-next" aria-label="Next screenshot">{arrow.format('9')}</button>
+        {badge}
+        <button type="button" class="proj-carrow proj-carrow-prev" aria-label="Previous screenshot">{prev}</button>
+        <button type="button" class="proj-carrow proj-carrow-next" aria-label="Next screenshot">{next}</button>
         {chip}</div>'''
     else:
         cover = cover_image(item.get('thumbnail'), fallback or 'images/project-default.svg', item.get('thumbnail_alt') or f'Project cover: {item["title"]}', 'proj') if has_screen else ''
