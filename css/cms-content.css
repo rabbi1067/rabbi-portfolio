@@ -67,6 +67,9 @@
 .proj-card:hover .showcase-media img { transform: scale(1.025); }
 .showcase-body { display: flex; flex: 1; flex-direction: column; gap: 10px; min-width: 0; padding: 19px; }
 .proj-top, .cert-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.proj-title-row { display: flex; flex: 1; align-items: center; gap: 11px; min-width: 0; }
+.proj-card .proj-top .proj-icon { width: 38px; height: 38px; font-size: 1.02rem; border-radius: 11px; flex-shrink: 0; }
+.proj-card .proj-top .proj-title { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .proj-icon { width: 42px; height: 42px; font-size: 1.2rem; border-radius: 12px; }
 .proj-card .proj-title, .cert-card h4 { font-family: 'Outfit', sans-serif; font-size: 1.02rem; line-height: 1.4; margin: 0; }
 .proj-card .proj-status { margin-top: 7px; }
@@ -172,6 +175,7 @@
 [data-theme="light"] .proj-cat { color: #325d9d; }
 .projects-head { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 14px 18px; margin-top: 3rem; }
 .projects-head .showcase-filters { margin-top: 0; }
+.projects-foot { display: flex; justify-content: center; margin-top: 26px; }
 .view-all-btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 42px; padding: 9px 20px; border: 1px solid rgba(0, 212, 170, .38); border-radius: 30px; background: rgba(0, 212, 170, .08); color: var(--teal, #00d4aa); font: 600 .78rem 'Inter', sans-serif; cursor: pointer; transition: background .2s, color .2s, border-color .2s; }
 .view-all-btn:hover { background: #00d4aa; border-color: #00d4aa; color: #052b26; }
 .view-all-btn:focus-visible { outline: 2px solid #00d4aa; outline-offset: 4px; }
