@@ -184,7 +184,7 @@ class PortfolioBuildTests(unittest.TestCase):
         for card in cards:
             self.assertNotIn('hidden',card.attrs)
             self.assertEqual(len(card.find_all(cls='proj-cover-art')),1)
-            self.assertEqual(card.find_all(cls='proj-cover-open'),[])
+            self.assertEqual(len(card.find_all(cls='proj-cover-open')),bool(card.find_all(cls='proj-gallery')))
         self.assertIn('Added Oct 22, 2026',self.output)
         self.assertIn('Added Oct 18, 2026',self.output)
         self.assertIn('<span class="proj-cat">Research</span>',self.output)

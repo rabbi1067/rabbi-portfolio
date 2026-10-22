@@ -22,7 +22,28 @@
   "links": [],
   "thumbnail": "",
   "thumbnail_alt": "",
-  "gallery": [],
+  "gallery": [
+    {
+      "image": "uploads/showcase-hero.png",
+      "alt": "FR Foundry home page",
+      "caption": "FR Foundry home"
+    },
+    {
+      "image": "uploads/showcase-projects.png",
+      "alt": "All projects view with generated covers",
+      "caption": "All projects gallery"
+    },
+    {
+      "image": "uploads/showcase-project-card.png",
+      "alt": "Project card with stats",
+      "caption": "Project card"
+    },
+    {
+      "image": "uploads/showcase-contact.png",
+      "alt": "Get in Touch modal with contact channels",
+      "caption": "Get in Touch modal"
+    }
+  ],
   "featured": true,
   "order": 4,
   "published": true,
