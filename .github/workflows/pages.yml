@@ -46,7 +46,7 @@ jobs:
       - name: Test content and OAuth bridge
         working-directory: ${{ steps.source.outputs.directory }}
         run: |
-          python -m unittest discover -s tests -v
+          python tools/ci.py
           node --test auth/worker.test.mjs
       - name: Read Pages URL
         id: pages

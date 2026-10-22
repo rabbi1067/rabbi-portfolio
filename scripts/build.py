@@ -212,8 +212,8 @@ def project_card(item, fallback='images/project-default.svg', extra=False):
     mods = ' proj-extra' if extra else ''
     return f'''<div class="proj-card reveal{mods}" id="project-{escape(item['id'])}" data-category="{escape(item.get('category') or 'Other')}"{hidden}>
       {cover}<div class="showcase-body">
-      <div class="proj-top"><div class="proj-icon">{escape(item.get('icon') or '💻')}</div><div class="proj-links">{links}</div></div>
-      <div><div class="proj-title">{escape(item['title'])}</div><div class="proj-meta">{meta}</div></div>
+      <div class="proj-top"><div class="proj-title-row"><div class="proj-icon">{escape(item.get('icon') or '💻')}</div><div class="proj-title">{escape(item['title'])}</div></div><div class="proj-links">{links}</div></div>
+      <div class="proj-meta">{meta}</div>
       <div class="proj-desc-box"><p class="proj-desc">{escape(item.get('description'))}</p></div>
       <div class="proj-stack">{tags}</div>{notes}{actions}</div></div>'''
 
@@ -252,7 +252,7 @@ def render_sections(data, source_root):
     media_settings = data['site-settings'].get('media') or {}
     fallback = media_settings.get('project_fallback') or ''
     sections['projects'] = ''.join(project_card(item, fallback, index >= 6) for index, item in enumerate(projects))
-    sections['projects_view_all'] = f'<button type="button" id="view-all-projects" class="view-all-btn" aria-controls="project-cards">View all projects<span class="view-all-count">{len(projects)}</span></button>' if len(projects) > 6 else ''
+    sections['projects_view_all'] = f'<div class="projects-foot"><button type="button" id="view-all-projects" class="view-all-btn" aria-controls="project-cards">View all projects<span class="view-all-count">{len(projects)}</span></button></div>' if len(projects) > 6 else ''
     sections['project_filters'] = category_filters(projects, 'project-cards', 'projects')
     sections['papers'] = ''
     for i,item in enumerate(ordered(data['papers'])):
