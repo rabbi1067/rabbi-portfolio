@@ -1,0 +1,59 @@
+{
+  "id": "argolink",
+  "title": "AgroLink",
+  "description": "B2B agro-supply chain platform connecting verified farmers with professional buyers. Farmers list produce on a live public crop explorer, buyers negotiate offers and pay into escrow-backed purchase orders with live delivery tracking, while admins govern everything from a control center with platform analytics, user management and district-wise weather forecasts for harvest planning.",
+  "details": "",
+  "category": "Web Development",
+  "tags": [],
+  "stack": [
+    "Java",
+    "Spring Boot",
+    "Thymeleaf",
+    "Tailwind CSS",
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "icon": "🌾",
+  "status": "Completed",
+  "status_style": "status-done",
+  "github_url": "https://github.com/rabbi1067/ArgoLink",
+  "demo_url": "https://argolink.onrender.com/",
+  "documentation_url": "",
+  "links": [],
+  "thumbnail": "uploads/argolink-hero.png",
+  "thumbnail_alt": "AgroLink landing hero with farm-to-market tagline and live platform stats",
+  "gallery": [
+    {
+      "image": "uploads/argolink-supply.png",
+      "alt": "AgroLink produce supply dashboard with listing cards, stock levels and live marketplace value",
+      "caption": "Produce Supply"
+    },
+    {
+      "image": "uploads/argolink-orders.png",
+      "alt": "AgroLink purchase orders table with escrow payments and live delivery tracking",
+      "caption": "Escrow Purchase Orders"
+    },
+    {
+      "image": "uploads/argolink-analytics.png",
+      "alt": "AgroLink analytics view with escrow insights, trade value and account metrics",
+      "caption": "Platform Analytics"
+    },
+    {
+      "image": "uploads/argolink-weather.png",
+      "alt": "AgroLink district weather forecast with 7-day outlook and harvest suitability",
+      "caption": "District Weather Forecast"
+    },
+    {
+      "image": "uploads/argolink-control.png",
+      "alt": "AgroLink admin control center with revenue, escrow balance and system health",
+      "caption": "Control Center"
+    }
+  ],
+  "featured": true,
+  "order": 0,
+  "published": true,
+  "start_date": "",
+  "completion_date": "",
+  "added_date": "2026-10-23"
+}
