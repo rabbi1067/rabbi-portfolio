@@ -1,0 +1,37 @@
+{
+  "id": "smart-attendance",
+  "title": "Smart Attendance",
+  "description": "Daily attendance system with a live date/clock header students use to mark present with a 13-digit student ID. Records save through a Google Apps Script backend backed by Google Sheets, while the on-page \"Today's Attendance\" table updates live with masked IDs and timestamps. Ships with English/Bangla language toggle and dark/light themes.",
+  "details": "",
+  "category": "Web Development",
+  "tags": [],
+  "stack": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Google Apps Script",
+    "Google Sheets"
+  ],
+  "icon": "🗓️",
+  "status": "Completed",
+  "status_style": "status-done",
+  "github_url": "https://github.com/rabbi1067/smart--attendance",
+  "demo_url": "https://rabbi1067.github.io/smart--attendance/",
+  "documentation_url": "",
+  "links": [],
+  "thumbnail": "uploads/smart-attendance-home.png",
+  "thumbnail_alt": "Smart Attendance dark dashboard with live clock, mark-attendance form and today's attendance table",
+  "gallery": [
+    {
+      "image": "uploads/smart-attendance-success.png",
+      "alt": "Smart Attendance success state with present-recorded toast and today's attendance entry",
+      "caption": "Present Recorded"
+    }
+  ],
+  "featured": true,
+  "order": 0,
+  "published": true,
+  "start_date": "",
+  "completion_date": "",
+  "added_date": "2026-10-19"
+}
