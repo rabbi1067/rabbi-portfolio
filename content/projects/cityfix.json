@@ -19,12 +19,48 @@
   "status": "Completed",
   "status_style": "status-done",
   "github_url": "https://github.com/rabbi1067/cityFix",
-  "demo_url": "https://cityfix-hmv8.onrender.com/",
+  "demo_url": "https://cityfix-p2y0.onrender.com/",
   "documentation_url": "",
   "links": [],
-  "thumbnail": "",
-  "thumbnail_alt": "",
-  "gallery": [],
+  "thumbnail": "uploads/cityfix-citizen-dashboard.png",
+  "thumbnail_alt": "CityFix citizen dashboard with complaint status totals and activity trends",
+  "gallery": [
+    {
+      "image": "uploads/cityfix-my-complaints.png",
+      "alt": "CityFix citizen complaint list with search, filters and status tracking",
+      "caption": "My Complaints"
+    },
+    {
+      "image": "uploads/cityfix-resolution-evidence.png",
+      "alt": "CityFix complaint evidence dialog showing before and after resolution photos",
+      "caption": "Before & After Resolution"
+    },
+    {
+      "image": "uploads/cityfix-create-complaint.png",
+      "alt": "CityFix create complaint form with issue category, urgency, location and evidence upload",
+      "caption": "Create a Complaint"
+    },
+    {
+      "image": "uploads/cityfix-citizen-profile.png",
+      "alt": "CityFix citizen profile and personal information settings",
+      "caption": "Citizen Profile"
+    },
+    {
+      "image": "uploads/cityfix-admin-dashboard.png",
+      "alt": "CityFix admin dashboard with city operations metrics and resolution trends",
+      "caption": "Admin Dashboard"
+    },
+    {
+      "image": "uploads/cityfix-complaint-details.png",
+      "alt": "CityFix administrator complaint details with visual evidence and resolution cost estimate",
+      "caption": "Complaint Details & Cost Estimate"
+    },
+    {
+      "image": "uploads/cityfix-resolution-reports.png",
+      "alt": "CityFix cost and resolution reports with category breakdown and spending analytics",
+      "caption": "Cost & Resolution Reports"
+    }
+  ],
   "featured": true,
   "order": 0,
   "published": true,
