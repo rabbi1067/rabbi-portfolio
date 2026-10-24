@@ -1,0 +1,65 @@
+{
+  "id": "hotel-booking",
+  "title": "Grand Meridian Resort",
+  "description": "Luxury hotel booking and management platform. Guests register, search rooms with live filters, and reserve through a four-step booking wizard with promo codes and tax-aware pricing, then pay via SSLCommerz or at the front desk. The guest portal tracks a live check-in countdown and stay progress, handles cancellations, receipts and in-room food ordering, and unlocks room-specific WiFi credentials during an active stay.",
+  "details": "",
+  "category": "Web Development",
+  "tags": [],
+  "stack": [
+    "Java",
+    "Spring Boot",
+    "Spring Security",
+    "MySQL",
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Bootstrap"
+  ],
+  "icon": "🏨",
+  "status": "Completed",
+  "status_style": "status-done",
+  "github_url": "https://github.com/rabbi1067/hotel_booking",
+  "demo_url": "https://hotel-booking-owd2.onrender.com/",
+  "documentation_url": "",
+  "links": [],
+  "thumbnail": "uploads/hotel-home.png",
+  "thumbnail_alt": "Grand Meridian Resort booking homepage with resort hero, search bar and dark navigation",
+  "gallery": [
+    {
+      "image": "uploads/hotel-rooms.png",
+      "alt": "Grand Meridian Resort rooms listing with filters, price slider, room types and discounted rates",
+      "caption": "Rooms & Suites"
+    },
+    {
+      "image": "uploads/hotel-booking-wizard.png",
+      "alt": "Grand Meridian Resort four-step booking wizard with stay details and live booking summary",
+      "caption": "Booking Wizard"
+    },
+    {
+      "image": "uploads/hotel-confirm-pay.png",
+      "alt": "Grand Meridian Resort confirm and pay step with SSLCommerz and pay-at-desk options",
+      "caption": "Confirm & Pay"
+    },
+    {
+      "image": "uploads/hotel-confirmed.png",
+      "alt": "Grand Meridian Resort booking confirmation page with reference number and price summary",
+      "caption": "Booking Confirmed"
+    },
+    {
+      "image": "uploads/hotel-guest-dashboard.png",
+      "alt": "Grand Meridian Resort guest dashboard with live check-in countdown and stay progress tracker",
+      "caption": "Live Stay Tracker"
+    },
+    {
+      "image": "uploads/hotel-food-services.png",
+      "alt": "Grand Meridian Resort food and in-room services menu with categories and add-to-order",
+      "caption": "In-Room Dining"
+    }
+  ],
+  "featured": true,
+  "order": 0,
+  "published": true,
+  "start_date": "",
+  "completion_date": "",
+  "added_date": "2026-10-24"
+}
