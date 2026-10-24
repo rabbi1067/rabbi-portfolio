@@ -1,0 +1,107 @@
+{
+  "id": "orbitcart",
+  "title": "OrbitCart",
+  "description": "AI-assisted e-commerce platform with product discovery and comparison, shopping carts, checkout, order tracking and customer support. Includes role-based admin dashboards for catalog and inventory management, payment monitoring, sales analytics and an operations assistant. Built with React, TypeScript, Spring Boot and MongoDB.",
+  "details": "",
+  "category": "Web Development",
+  "tags": [
+    "AI Integration"
+  ],
+  "stack": [
+    "React",
+    "TypeScript",
+    "Vite",
+    "Java",
+    "Spring Boot",
+    "MongoDB",
+    "WebSocket",
+    "Recharts"
+  ],
+  "icon": "🛒",
+  "status": "Live",
+  "status_style": "status-done",
+  "github_url": "https://github.com/rabbi1067/OrbitCart",
+  "demo_url": "https://orbit-cart-three.vercel.app/",
+  "documentation_url": "",
+  "links": [],
+  "thumbnail": "uploads/orbitcart-storefront.png",
+  "thumbnail_alt": "OrbitCart storefront with featured products, category navigation and AI search",
+  "gallery": [
+    {
+      "image": "uploads/orbitcart-product-catalog.png",
+      "alt": "OrbitCart product catalog with category, brand and price filters",
+      "caption": "Product Catalog & Filters"
+    },
+    {
+      "image": "uploads/orbitcart-product-comparison.png",
+      "alt": "OrbitCart product comparison with budget guidance, availability and specifications",
+      "caption": "Product Comparison"
+    },
+    {
+      "image": "uploads/orbitcart-admin-dashboard.png",
+      "alt": "OrbitCart admin dashboard with store revenue, orders and inventory metrics",
+      "caption": "Admin Dashboard"
+    },
+    {
+      "image": "uploads/orbitcart-sales-analytics.png",
+      "alt": "OrbitCart sales and payment analytics with revenue performance charts",
+      "caption": "Sales & Payment Analytics"
+    },
+    {
+      "image": "uploads/orbitcart-catalog-management.png",
+      "alt": "OrbitCart admin product catalog management with prices, discounts and stock quantities",
+      "caption": "Catalog & Inventory Management"
+    },
+    {
+      "image": "uploads/orbitcart-payment-monitoring.png",
+      "alt": "OrbitCart admin payment monitoring with payment attempts and transaction details",
+      "caption": "Payment Monitoring"
+    },
+    {
+      "image": "uploads/orbitcart-admin-assistant.png",
+      "alt": "OrbitCart operations assistant for store insights and administrative tasks",
+      "caption": "AI Operations Assistant"
+    },
+    {
+      "image": "uploads/orbitcart-support-inbox.png",
+      "alt": "OrbitCart admin support inbox for customer conversations and replies",
+      "caption": "Customer Support Inbox"
+    },
+    {
+      "image": "uploads/orbitcart-system-settings.png",
+      "alt": "OrbitCart system and security settings with appearance, language and notification options",
+      "caption": "System & Security Settings"
+    },
+    {
+      "image": "uploads/orbitcart-customer-orders.png",
+      "alt": "OrbitCart customer account with order history, shipping status and tracking references",
+      "caption": "Customer Orders & Tracking"
+    },
+    {
+      "image": "uploads/orbitcart-shopping-cart.png",
+      "alt": "OrbitCart shopping bag with item quantity controls, subtotal and checkout action",
+      "caption": "Shopping Cart"
+    },
+    {
+      "image": "uploads/orbitcart-product-details.png",
+      "alt": "OrbitCart product details with variants, pricing, stock and purchasing options",
+      "caption": "Product Details & Variants"
+    },
+    {
+      "image": "uploads/orbitcart-product-specifications.png",
+      "alt": "OrbitCart technical specifications, product description and related products",
+      "caption": "Specifications & Related Products"
+    },
+    {
+      "image": "uploads/orbitcart-recommendations.png",
+      "alt": "OrbitCart recommended products with stock, discount and shopping controls",
+      "caption": "Product Recommendations"
+    }
+  ],
+  "featured": true,
+  "order": 0,
+  "published": true,
+  "start_date": "",
+  "completion_date": "",
+  "added_date": "2026-10-24"
+}
