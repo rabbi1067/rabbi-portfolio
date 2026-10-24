@@ -1,6 +1,6 @@
 /* Project cover carousels and screenshot lightbox; no third-party dependencies. */
 (() => {
-  const AUTO_MS = 2000;
+  const AUTO_MS = 4500;
   const IDLE_MS = 6000;
   const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const carousels = document.querySelectorAll('.proj-carousel');
@@ -24,7 +24,9 @@
   const loop = carousel => {
     if (REDUCED) return;
     setTimeout(() => {
-      if (!autoplayPause(carousel)) show(carousel, Number(carousel.dataset.index || 0) + 1);
+      const slides = carousel.querySelectorAll('.proj-slide');
+      const next = slides[(Number(carousel.dataset.index || 0) + 1) % slides.length];
+      if (!autoplayPause(carousel) && next && next.complete && next.naturalWidth > 0) show(carousel, Number(carousel.dataset.index || 0) + 1);
       loop(carousel);
     }, AUTO_MS);
   };
