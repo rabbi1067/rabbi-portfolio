@@ -1,6 +1,10 @@
 /* Project cover carousels and screenshot lightbox; no third-party dependencies. */
 (() => {
+  const AUTO_MS = 2000;
+  const IDLE_MS = 6000;
+  const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const carousels = document.querySelectorAll('.proj-carousel');
+  const idle = new WeakMap();
 
   const show = (carousel, at) => {
     const slides = carousel.querySelectorAll('.proj-slide');
@@ -10,10 +14,31 @@
     slides.forEach((slide, position) => slide.classList.toggle('is-active', position === index));
   };
 
+  const autoplayPause = carousel =>
+    document.hidden ||
+    document.body.classList.contains('lb-open') ||
+    carousel.matches(':hover') ||
+    Date.now() < (idle.get(carousel) || 0) ||
+    carousel.classList.contains('is-offscreen');
+
+  const loop = carousel => {
+    if (REDUCED) return;
+    setTimeout(() => {
+      if (!autoplayPause(carousel)) show(carousel, Number(carousel.dataset.index || 0) + 1);
+      loop(carousel);
+    }, AUTO_MS);
+  };
+
+  carousels.forEach((carousel, position) => {
+    new IntersectionObserver(entries => entries.forEach(entry => carousel.classList.toggle('is-offscreen', !entry.isIntersecting)), { rootMargin: '40px 0px' }).observe(carousel);
+    setTimeout(loop, (position * 83) % AUTO_MS, carousel);
+  });
+
   document.addEventListener('click', event => {
     const arrow = event.target.closest('.proj-carrow');
     if (arrow) {
       const carousel = arrow.closest('.proj-carousel');
+      idle.set(carousel, Date.now() + IDLE_MS);
       show(carousel, Number(carousel.dataset.index || 0) + (arrow.classList.contains('proj-carrow-next') ? 1 : -1));
       return;
     }
