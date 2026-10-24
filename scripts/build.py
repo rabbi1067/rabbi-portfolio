@@ -298,7 +298,10 @@ def render_sections(data, source_root):
     sections['achievements'] = ''
     achievements = ordered(data['achievements'].get('items'))
     sections['achievement_filters'] = category_filters(achievements, 'certificate-cards', 'certifications and awards')
-    for item in achievements:
+    sections['achievements_view_all'] = f'<div class="certifications-foot"><button type="button" id="view-all-certifications" class="view-all-btn" aria-controls="certificate-cards">See all<span class="view-all-count">{len(achievements) - 6}</span></button></div>' if len(achievements) > 6 else ''
+    if not achievements:
+        sections['achievements'] = '<p class="cert-empty">Certificates and awards will appear here as they are added.</p>'
+    for index, item in enumerate(achievements):
         thumbnail = item.get('thumbnail') or ''
         certificate = item.get('certificate') or ''
         if not thumbnail and Path(urlsplit(certificate).path).suffix.lower() in ['.jpg','.jpeg','.png','.webp','.avif','.gif','.svg']:
@@ -307,9 +310,15 @@ def render_sections(data, source_root):
         media = cover_image(thumbnail, fallback or 'images/certificate-default.svg', item.get('thumbnail_alt') or item['title'], 'cert') if thumbnail or fallback else ''
         action = link(item.get('credential_url'), 'Verify credential', 'cert-action', '<span>Verify credential</span><span aria-hidden="true">↗</span>')
         action += link(certificate, 'View certificate', 'cert-action', '<span>View certificate</span><span aria-hidden="true">↗</span>')
+        for document in item.get('supporting_files') or []:
+            label = document.get('label') or 'Supporting document'
+            action += link(document.get('file'), label, 'cert-action', f'<span>{escape(label)}</span><span aria-hidden="true">↗</span>')
         credential_id = f'<p class="credential-id">Credential ID: {escape(item["credential_id"])}</p>' if item.get('show_credential_id') and item.get('credential_id') else ''
-        card = f'<div class="cert-card reveal" data-category="{escape(item.get("category") or "Other")}" style="border-color:{escape(item.get("border_color") or "rgba(0,212,170,.12)")}">{media}<div class="showcase-body"><div class="cert-top"><div class="cert-emoji">{escape(item.get("icon"))}</div><span class="proj-status {escape(item.get("status_style") or "status-done")}">{escape(item.get("badge"))}</span></div><h4>{escape(item["title"])}</h4><div class="cert-org">{escape(item.get("organization"))}</div><p class="cert-desc">{escape(item.get("description"))}</p><div class="cert-footer"><div class="cert-year">{escape(item.get("date"))}</div>{action}</div></div></div>'
-        sections['achievements'] += card.replace('<div class="cert-footer">',credential_id+'<div class="cert-footer">')
+        badge = f'<span class="proj-status {escape(item.get("status_style") or "status-done")}">{escape(item["badge"])}</span>' if item.get('badge') else ''
+        footer = f'<div class="cert-footer"><div class="cert-actions">{action}</div><div class="cert-year">{escape(item.get("date"))}</div></div>' if action or item.get('date') else ''
+        hidden = ' hidden' if index >= 6 else ''
+        extra = ' cert-extra' if index >= 6 else ''
+        sections['achievements'] += f'<article class="cert-card reveal{extra}" data-category="{escape(item.get("category") or "Other")}" style="--cert-accent:{escape(item.get("border_color") or "rgba(0,212,170,.28)")}"{hidden}>{media}<div class="showcase-body"><div class="cert-top"><div class="cert-emoji" aria-hidden="true">{escape(item.get("icon") or "✦")}</div>{badge}</div><h4>{escape(item["title"])}</h4><div class="cert-org">{escape(item.get("organization"))}</div><p class="cert-desc">{escape(item.get("description"))}</p>{credential_id}{footer}</div></article>'
     reviews = data['reviews']
     review_heading = data['site-settings']['sections'].get('reviews') or {}
     sections['reviews_heading'] = (f'<span class="review-heading-accent">{escape(review_heading["heading_accent"])}</span> ' if review_heading.get('heading_accent') else '') + escape(review_heading.get('heading'))

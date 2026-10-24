@@ -33,6 +33,7 @@
   <link rel="stylesheet" href="css/home.css?v=20261022-always-visible" />
   <link rel="stylesheet" href="css/reviews.css?v=quote-only" />
   <link rel="stylesheet" href="css/research.css" />
+  <link rel="stylesheet" href="css/certifications.css?v=20261024-cards" />
 </head>
 <body>
 
@@ -256,6 +257,8 @@
 
     {{{render.achievement_filters}}}
     <div class="cert-grid" id="certificate-cards">{{{render.achievements}}}</div><!-- /cert-grid -->
+    {{{render.achievements_view_all}}}
+    <noscript><style>#certificate-cards .cert-extra[hidden] { display: flex !important; } .certifications-foot { display: none; }</style></noscript>
   </div>
 </section>
 
@@ -357,7 +360,8 @@
 <!-- JavaScript -->
 <script src="js/main.js?v=20261017-gallery"></script>
 <script src="js/home.js?v=20261022-always-visible"></script>
-<script src="js/showcase.js?v=20261022-view-all"></script>
+<script src="js/showcase.js?v=20261024-certificates"></script>
+<script src="js/certifications.js?v=20261024-six"></script>
 <script src="js/gallery.js?v=20261022-carousel"></script>
 <script src="js/reviews.js?v=rating-top"></script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>

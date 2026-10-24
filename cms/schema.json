@@ -830,7 +830,29 @@
           "label": "Certificate",
           "widget": "file",
           "required": false,
-          "hint": "Certificate file opened when the card is clicked. Image files also appear as the thumbnail unless a separate thumbnail is selected."
+          "hint": "Original document opened by View certificate in a new tab. Image files also provide the thumbnail unless a separate preview is selected."
+        },
+        {
+          "name": "supporting_files",
+          "label": "Additional certificate documents (optional)",
+          "widget": "list",
+          "required": false,
+          "collapsed": true,
+          "hint": "Attach related documents, such as the team version of an individual award. These do not add to the credential count.",
+          "fields": [
+            {
+              "name": "label",
+              "label": "Link label",
+              "widget": "string",
+              "required": true
+            },
+            {
+              "name": "file",
+              "label": "Document",
+              "widget": "file",
+              "required": true
+            }
+          ]
         },
         {
           "name": "thumbnail",

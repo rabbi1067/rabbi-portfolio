@@ -37,11 +37,17 @@ class PortfolioBuildTests(unittest.TestCase):
         self.document = build.Document(self.output)
         return data
 
+    def certificate_fixtures(self, count=8):
+        return dict(items=[dict(title=f'Fixture credential {n+1}',organization='Fixture issuer',
+                               description='Fixture credential description.',date='2026',icon='✦',badge='Completed',
+                               status_style='status-done',order=n+1,category='AI & ML' if n<6 else 'Research',
+                               credential_url='',certificate='images/thira.jpg' if n==7 else '') for n in range(count)])
+
     def test_original_sections_assets_and_effects(self):
         data=self.compile()
         self.assertEqual([n.attrs['id'] for n in self.document.root.find_all(tag='section')], ['home','about','projects','skills','experience','research','certifications','reviews','contact'])
         card_count=sum(1 for item in data['projects']+data['research'] if item.get('published',True))
-        for cls,count in [('proj-card',card_count),('skill-card',6),('tl-item',5),('footer-social',4),('cert-card',8),('sk-bar-fill',0)]:
+        for cls,count in [('proj-card',card_count),('skill-card',6),('tl-item',5),('footer-social',4),('cert-card',len(build.ordered(data['achievements'].get('items')))),('sk-bar-fill',0)]:
             self.assertEqual(len(self.document.root.find_all(cls=cls)),count)
         for name in ['css/styles.css','js/main.js','CV.pdf','images/My_pic.jpeg']:
             self.assertEqual((self.root/name).read_bytes(),(self.root/'dist'/name).read_bytes())
@@ -242,7 +248,38 @@ class PortfolioBuildTests(unittest.TestCase):
         self.write('content/profile.json',profile)
         with self.assertRaisesRegex(ValueError,'Missing asset'): self.compile()
 
+    def test_certificate_preview_limit_remaining_count_and_empty_state(self):
+        for count in [0, 1, 6, 7, 9]:
+            self.write('content/achievements.json',self.certificate_fixtures(count))
+            self.compile()
+            cards=self.document.root.find_all(cls='cert-card')
+            self.assertEqual(len(cards),count)
+            self.assertEqual(sum('hidden' not in card.attrs for card in cards),min(6,count))
+            buttons=self.document.root.find_all(id='view-all-certifications')
+            button=buttons[0] if buttons else None
+            if count>6:
+                self.assertIsNotNone(button)
+                self.assertIn(f'>{count-6}</span>',self.document.outside(button))
+                self.assertEqual(button.attrs['aria-controls'],'certificate-cards')
+            else:
+                self.assertIsNone(button)
+            if not count:
+                self.assertIsNotNone(self.document.root.find(cls='cert-empty'))
+                self.assertIn('<div class="num">0</div><div class="lbl">Certs</div>',self.output)
+        data=self.certificate_fixtures(9)
+        data['items'][-1]['published']=False
+        self.write('content/achievements.json',data)
+        self.compile()
+        self.assertEqual(len(self.document.root.find_all(cls='cert-card')),8)
+        self.assertIn('>2</span>',self.document.outside(self.document.root.find(id='view-all-certifications')))
+        card=self.document.root.find_all(cls='cert-card')[0]
+        self.assertEqual(card.tag,'article')
+        markup=self.document.outside(card)
+        self.assertLess(markup.index('cert-top'),markup.index('<h4>'))
+        self.assertLess(markup.index('cert-actions'),markup.index('cert-year'))
+
     def test_certificate_thumbnails_preserve_text_and_destinations(self):
+        self.write('content/achievements.json',self.certificate_fixtures())
         achievements=self.json('content/achievements.json')
         original=achievements['items']
         original[0].update(thumbnail='images/thira.jpg',thumbnail_alt='Certificate "preview" <image>',credential_url='https://example.test/credential')
@@ -271,6 +308,7 @@ class PortfolioBuildTests(unittest.TestCase):
         self.assertEqual(next(field for field in fields if field['name']=='thumbnail')['widget'],'image')
 
     def test_gallery_default_covers_categories_and_custom_defaults(self):
+        self.write('content/achievements.json',self.certificate_fixtures())
         self.compile()
         self.assertEqual(len(self.document.root.find_all(cls='proj-thumbnail')),0)
         self.assertEqual(len(self.document.root.find_all(cls='cert-thumbnail')),1)
@@ -364,6 +402,7 @@ class PortfolioBuildTests(unittest.TestCase):
         self.compile();self.assertEqual(len(self.document.root.find_all(cls='paper-card')),0)
 
     def test_section_and_record_hide_controls(self):
+        self.write('content/achievements.json',self.certificate_fixtures())
         site=self.json('content/site-settings.json')
         for name in ['about','projects','research','skills','reviews','contact']: site['sections'][name]['visible']=False
         self.write('content/site-settings.json',site)
@@ -390,6 +429,7 @@ class PortfolioBuildTests(unittest.TestCase):
         self.assertNotIn('Find Me On',self.output)
 
     def test_certificate_counters_follow_add_hide_delete_and_manual_override(self):
+        self.write('content/achievements.json',self.certificate_fixtures())
         def assert_count(count):
             self.compile()
             self.assertIn(f'<div class="stat-num">{count}</div><div class="stat-label">Certifications</div>',self.output)
@@ -521,6 +561,7 @@ class PortfolioBuildTests(unittest.TestCase):
         self.assertNotIn('Available for Collaboration',self.output)
 
     def test_optional_verification_and_credential_id(self):
+        self.write('content/achievements.json',self.certificate_fixtures())
         self.compile()
         self.assertEqual(len(self.document.root.find_all(cls='credential-id')),0)
         self.assertNotIn('27fe77ddc368',self.output)

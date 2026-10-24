@@ -3,7 +3,7 @@
   document.querySelectorAll('.showcase-filters').forEach(group => {
     const grid = document.getElementById(group.dataset.filterGrid);
     const status = group.nextElementSibling;
-    if (!grid) return;
+    if (!grid || grid.id === 'certificate-cards') return;
     group.addEventListener('click', event => {
       const button = event.target.closest('button[data-filter]');
       if (!button || !group.contains(button)) return;

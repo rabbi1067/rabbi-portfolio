@@ -66,3 +66,12 @@ Admin: https://rabbi1067.github.io/rabbi-portfolio/admin/
 - Hide করেও দেখা যাচ্ছে: Publish হয়েছে কি এবং build সফল কি যাচাই করে refresh করো।
 - Cloudflare-এর `portfolio-cms-oauth` Worker শুধু login-এর জন্য। সেখানে portfolio content edit করতে হবে না।
 - GitHub OAuth client secret, Cloudflare credentials বা access token কখনো content field, repository বা chat-এ দেবে না।
+
+## Certifications & Awards-এর নতুন card
+
+- প্রথমে ৬টি published entry দেখা যাবে। **See all**-এর count শুধু বাকি entry বোঝায়; category বদলালেও count মিলবে।
+- Admin-এর **Certifications & Awards → Items** থেকে title, organization, description, date, badge, thumbnail এবং order edit করা যাবে।
+- **Certificate**-এ মূল PDF/ছবি দাও। PDF হলে **Thumbnail image**-এ আলাদা preview image নির্বাচন করো। **View certificate** মূল document নতুন tab-এ খুলবে।
+- প্রয়োজন হলে **Credential ID** লিখে **Show credential ID** চালু করো। Issuer-এর আসল link থাকলে **Verification URL** দাও।
+- একই award-এর individual/team কপি **Additional certificate documents**-এ যোগ করা যায়। একটি entry-র supporting document certificate counter বাড়াবে না।
+- Add/delete/show-hide করার পর publish হলে Home ও About-এর count স্বয়ংক্রিয়ভাবে বদলাবে।
