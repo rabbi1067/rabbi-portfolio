@@ -309,9 +309,8 @@ def render_sections(data, source_root):
                 image = item.get('image') or ''
                 zoom = max(1, min(3, float(item.get('image_zoom') or 100) / 100))
                 fit = 'contain' if item.get('image_fit') == 'contain' else 'cover'
-                caption = f'<div class="education-photo-caption"><strong>{escape(item.get("organization"))}</strong></div>'
                 backdrop = f'<span class="education-photo-backdrop" aria-hidden="true"><img src="{escape(image)}" alt="{escape(item.get("organization"))} backdrop" loading="lazy" decoding="async" /></span>' if image and fit == 'contain' else ''
-                photo = f'<div class="education-photo education-fit-{fit}" style="--image-zoom:{zoom}">{backdrop}<img src="{escape(image)}" alt="{escape(item.get("image_alt") or item.get("organization"))}" loading="lazy" decoding="async" />{caption}</div>' if image else '<div class="education-photo education-photo-empty" aria-hidden="true">⌂</div>'
+                photo = f'<div class="education-photo education-fit-{fit}" style="--image-zoom:{zoom}">{backdrop}<img src="{escape(image)}" alt="{escape(item.get("image_alt") or item.get("organization"))}" loading="lazy" decoding="async" /></div>' if image else '<div class="education-photo education-photo-empty" aria-hidden="true">⌂</div>'
                 kind = f'<span class="education-type">{escape(item.get("institution_type") or "Education")}</span>'
                 current = f'<span class="education-status">{escape(item["badge"])}</span>' if item.get('badge') else ''
                 organization = link(item.get('institution_url'), item.get('organization') or '', 'education-institution', escape(item.get('organization'))) if item.get('institution_url') else escape(item.get('organization'))
