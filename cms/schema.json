@@ -302,7 +302,8 @@
       "name": "phone",
       "label": "Phone",
       "widget": "string",
-      "required": false
+      "required": false,
+      "hint": "WhatsApp number with country code (for example +8801779326236). The contact card opens a WhatsApp chat; spaces and punctuation are removed from the link."
     },
     {
       "name": "phone_display",

@@ -242,7 +242,8 @@ def render_sections(data, source_root):
     sections['contacts'] = contact_card('mailto:' + contact['email'], '✉️', contact.get('email_label'), contact['email']) if contact.get('email') else ''
     sections['contacts'] += ''.join(contact_card(item.get('contact_url') or item.get('url'), item.get('contact_icon'), item['name'], item.get('handle')) for item in sorted(socials,key=lambda item:item.get('contact_order',0)) if item.get('contact'))
     if contact.get('phone'):
-        sections['contacts'] += contact_card('tel:' + contact['phone'], '📞', contact.get('phone_label'), contact.get('phone_display') or contact['phone'])
+        phone_digits = re.sub(r'\D', '', contact['phone'])
+        sections['contacts'] += contact_card('https://wa.me/' + phone_digits, '💬', contact.get('phone_label') or 'WhatsApp', contact.get('phone_display') or contact['phone'])
     if contact.get('location'): sections['contacts'] += contact_card('', '📍', contact.get('location_label'), contact['location'])
     projects = ordered([item for item in data['projects']+data['research'] if item.get('published', True)])
     projects.sort(key=lambda item: (item.get('order') or 0, not item.get('featured', True), item['id']))

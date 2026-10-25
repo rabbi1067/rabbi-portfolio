@@ -99,7 +99,7 @@ class PortfolioBuildTests(unittest.TestCase):
         profile['badges'].append(dict(icon='✨',title='New badge',subtitle='New subtitle'))
         self.write('content/profile.json',profile)
         contact=self.json('content/contact.json')
-        contact.update(email='editor@example.com',phone='+8801000000000',phone_display='CMS phone',location='CMS location')
+        contact.update(email='editor@example.com',phone='+880 100-000-0000',phone_display='CMS phone',location='CMS location')
         contact['links'][2]['url']='https://github.com/edited-account'
         self.write('content/contact.json',contact)
         skills=self.json('content/skills.json')
@@ -117,7 +117,7 @@ class PortfolioBuildTests(unittest.TestCase):
             self.write('content/research/research-edited.json',{**research,'id':'research-edited'})
             research_needles=['CMS abstract','CMS dataset','CMS methods','CMS Author']
         self.compile()
-        for text in ['CMS Name','CMS introduction','images/rr.jpg','Get updated resume','<strong>bold</strong>','New badge','mailto:editor@example.com','tel:+8801000000000','CMS phone','CMS location','https://github.com/edited-account','CMS Skill','data-w="73"','3.91','CMS Department','CMS University',*research_needles]:
+        for text in ['CMS Name','CMS introduction','images/rr.jpg','Get updated resume','<strong>bold</strong>','New badge','mailto:editor@example.com','https://wa.me/8801000000000','CMS phone','CMS location','https://github.com/edited-account','CMS Skill','data-w="73"','3.91','CMS Department','CMS University',*research_needles]:
             self.assertIn(text,self.output)
 
     def test_cv_replacement_preserves_stable_url(self):
