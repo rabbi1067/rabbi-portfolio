@@ -235,6 +235,8 @@ def render_sections(data, source_root):
     sections['badges'] = ''.join(f'<div class="float-card fc-{i+1}"><div class="float-card-icon" aria-hidden="true">{escape(item.get("icon"))}</div><div class="float-card-text"><strong>{escape(item.get("title"))}</strong>{("<span>" + escape(item["subtitle"]) + "</span>") if item.get("subtitle") else ""}</div></div>' for i,item in enumerate(badges))
     socials = ordered(contact.get('links'))
     sections['hero_socials'] = ''.join(link(item.get('url'), item['name'], 'social-btn', icon(item.get('icon'))) for item in sorted(socials, key=lambda item:item.get('hero_order',0)) if item.get('hero'))
+    sections['footer_availability'] = f'<span class="footer-availability"><i aria-hidden="true"></i>{escape(profile.get("availability_text"))}</span>' if profile.get('available') else ''
+    sections['footer_email'] = link('mailto:' + contact['email'], contact['email'], 'footer-email', escape(contact['email']) + ' <span aria-hidden="true">↗</span>') if contact.get('email') else ''
     sections['footer_socials'] = ''.join(link(item.get('url'), item['name'], 'footer-social', f'<span aria-hidden="true">{icon(item.get("icon"),16)}</span><span>{escape(item["name"])}</span><span aria-hidden="true">↗</span>') for item in socials if item.get('footer', True))
     def contact_card(url, glyph, label, text):
         contents = f'<div class="c-icon">{escape(glyph)}</div><div class="c-text"><strong>{escape(label)}</strong><span>{escape(text)}</span></div>'
@@ -262,8 +264,13 @@ def render_sections(data, source_root):
         if item.get('file') and (item.get('paper_url') or doi_url): actions += link(item['file'], 'Paper PDF', 'paper-action paper-action-secondary', 'PDF <span aria-hidden="true">↗</span>')
         authors = ', '.join(item.get('authors') or [])
         venue = ' · '.join(filter(None,[item.get('venue'),item.get('year')]))
-        status = f'<span class="paper-status">{escape(item["status"])}</span>' if item.get('status') else ''
-        sections['papers'] += f'<article class="paper-card" id="paper-{escape(item["id"])}"><div class="paper-number" aria-hidden="true">{i+1:02}</div><div class="paper-body">{status}<h3>{escape(item["title"])}</h3><p class="paper-authors">{escape(authors)}</p><p class="paper-venue">{escape(venue)}</p><p class="paper-abstract">{rich(item.get("abstract"))}</p><div class="paper-actions">{actions if actions else "<span class=paper-pending>Paper link coming soon</span>"}</div></div></article>'
+        badges = ''.join(f'<span class="paper-badge">{escape(value)}</span>' for value in [item.get('venue'), item.get('publication_type'), 'Peer-reviewed' if item.get('peer_reviewed') else '', item.get('status')] if value)
+        topics = '<div class="paper-topics"><span>Research topics</span><div>' + ''.join(f'<span>{escape(topic)}</span>' for topic in item.get('topics') or []) + '</div></div>' if item.get('topics') else ''
+        published = f'<p class="paper-date">▦ &nbsp; Published · {escape(item["publication_date"])}</p>' if item.get('publication_date') else ''
+        doi_line = '<div class="paper-doi"><span>↗ &nbsp; DOI available</span>' + link(doi_url, 'Open DOI', '', escape(doi)) + '</div>' if doi_url else ''
+        if actions and item.get('button_label'): actions = actions.replace('Read paper <span', escape(item['button_label']) + ' <span', 1)
+        thumbnail = cover_image(item.get('thumbnail'), '', item['title'], 'paper') if item.get('thumbnail') else ''
+        sections['papers'] += f'<article class="paper-card" id="paper-{escape(item["id"])}"><div class="paper-body">{thumbnail}<div class="paper-meta"><div>{badges}</div><span>{escape(item.get("year"))}</span></div><h3>{escape(item["title"])}</h3><p class="paper-authors">{escape(authors)}</p><p class="paper-venue">{escape(venue)}</p><p class="paper-abstract">{rich(item.get("abstract"))}</p>{topics}<div class="paper-publication">{published}{doi_line}</div><div class="paper-actions">{actions if actions else "<span class=paper-pending>Paper link coming soon</span>"}</div></div></article>'
     if not sections['papers']:
         sections['papers'] = f'<div class="research-empty"><span aria-hidden="true">⌘</span><h3>{escape(data["site-settings"].get("copy",{}).get("research_empty_heading") or "Research in progress")}</h3><p>{escape(data["site-settings"].get("copy",{}).get("research_empty_text") or "Research papers and publication links will appear here as they are added.")}</p></div>'
     visibility = data['site-settings'].get('sections') or {}
@@ -453,12 +460,12 @@ def build(source_root=ROOT, output=None, repository=None, branch=None, site_url=
     source_root = Path(source_root).resolve()
     output = Path(output or source_root/'dist').resolve()
     # Output cleanup is limited to a verified dedicated dist directory inside the source root.
-    if output.name != 'dist' or output.parent != source_root:
+    if output.name not in ['dist','dist-next'] or output.parent != source_root:
         raise ValueError('Output must be the dedicated source-root/dist directory')
     settings = read_json(source_root/'cms/settings.json')
     repository = repository or settings['repository']
     branch = branch or settings['branch']
-    site_url = (site_url or settings['site_url'] or '').rstrip('/')
+    site_url = (site_url or os.environ.get('FRONTEND_URL') or ('https://' + os.environ['VERCEL_URL'] if os.environ.get('VERCEL_URL') else '') or os.environ.get('RENDER_EXTERNAL_URL') or settings['site_url'] or '').rstrip('/')
     if site_url:
         if urlsplit(site_url).scheme not in ['http','https']: raise ValueError('Site URL must be absolute')
         safe_url(site_url)
@@ -514,6 +521,13 @@ def build(source_root=ROOT, output=None, repository=None, branch=None, site_url=
     config = dict(backend=dict(name='github',repo=repository or 'OWNER/REPOSITORY',branch=branch,base_url=settings.get('oauth_base_url') or 'https://configure-oauth.invalid',auth_endpoint='auth'),publish_mode='simple',media_folder=prefix+'uploads',public_folder=base_path+'/uploads',site_url=site_url,display_url=site_url,show_preview_links=False,collections=collections)
     (output/'admin/config.yml').write_text(json.dumps(config,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     (output/'admin/status.json').write_text(json.dumps(dict(configured=ready)),encoding='utf-8')
+    shutil.copyfile(output/'admin/config.yml', output/'admin/github/config.yml')
+    shutil.copyfile(output/'admin/status.json', output/'admin/github/status.json')
+    api_base = os.environ.get('API_BASE_URL', '').rstrip('/')
+    if api_base and api_base != 'same-origin':
+        safe_url(api_base)
+        if urlsplit(api_base).scheme not in ['http','https']: raise ValueError('API_BASE_URL must be an HTTP or HTTPS URL')
+    (output/'frontend-config.js').write_text('window.PORTFOLIO_CONFIG = ' + json.dumps(dict(apiBase=api_base)).replace('<','\\u003c') + ';\n', encoding='utf-8')
     validate_output(output,base_path)
     print(f'Built {output}: {len(data["projects"])+len(data["research"])} project records; OAuth {"configured (live verification still required)" if ready else "disabled until setup"}.')
     return data
@@ -524,8 +538,9 @@ if __name__ == '__main__':
     parser.add_argument('--repository',default=os.environ.get('GITHUB_REPOSITORY'))
     parser.add_argument('--branch',default=os.environ.get('GITHUB_REF_NAME'))
     parser.add_argument('--site-url',default=os.environ.get('PAGES_SITE_URL'))
-    parser.add_argument('--source-prefix',default='')
+    parser.add_argument('--source-prefix',default='frontend' if ROOT.name == 'frontend' else '')
+    parser.add_argument('--output-dir',choices=['dist','dist-next'],default='dist')
     args = parser.parse_args()
-    try: build(repository=args.repository,branch=args.branch,site_url=args.site_url,prefix=args.source_prefix)
+    try: build(output=ROOT/args.output_dir,repository=args.repository,branch=args.branch,site_url=args.site_url,prefix=args.source_prefix)
     except (ValueError,KeyError,TypeError,OSError) as error:
         raise SystemExit(f'Build failed: {error}') from error

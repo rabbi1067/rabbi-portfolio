@@ -42,41 +42,45 @@ My portfolio brings together software projects, AI and machine learning explorat
 - **Content you can maintain.** Edit text, images, links, ordering and visibility through the CMS. Certificate counters follow published records automatically.
 - **Automatic publishing.** Content changes become Git commits; GitHub Actions validates, builds and deploys the site.
 
-### Under the hood
+### Frontend + Spring Boot backend
 
-| Layer | Technology |
-| :--- | :--- |
-| Website | Semantic HTML · CSS · JavaScript |
-| Content | JSON records · Decap CMS |
-| Build & images | Python · Pillow |
-| Hosting & deployment | GitHub Pages · GitHub Actions |
-| Editor authentication | GitHub OAuth · Cloudflare Worker |
+The repository now has two deployable parts:
 
-The public website is static. The Worker handles editor authentication; it stores the OAuth secret outside the repository.
+| Folder | Purpose | Hosting |
+| :--- | :--- | :--- |
+| `frontend/` | Portfolio, modern footer, Administrator Studio, static fallback and media | Vercel, Render Static Site, or GitHub Pages |
+| `backend/` | Java 21 / Spring Boot 4.1, email/password login, content CRUD, uploads and publishing | Render Docker with a persistent disk |
 
-### Run locally
+The backend can also serve the frontend itself. Every portfolio section is editable through Studio, including images, galleries, lists, ordering, visibility and publication links. Research cards support topics, journal/type badges, publication dates, DOI and paper/PDF links.
 
-Use Python 3.10 or newer. From the repository root:
+**[বাংলায় deployment ও editing guide](docs/DEPLOYMENT_BN.md)** · [Backend environment example](backend/.env.example) · [Frontend environment example](frontend/.env.example)
+
+Administrator credentials belong **only on the backend**. The frontend receives the public `API_BASE_URL`. Backend edits live on its persistent disk; they do not automatically become Git commits. A backup export is available in Studio.
+
+### Run the static site locally
 
 ```sh
-python -m pip install -r requirements.txt
-python scripts/build.py
-python -m http.server 8000 --bind 127.0.0.1 --directory dist
+python -m pip install -r frontend/requirements.txt
+python frontend/scripts/build.py --source-prefix frontend
+python -m http.server 8000 --bind 127.0.0.1 --directory frontend/dist
 ```
 
-Open [localhost:8000](http://localhost:8000/). Rebuild after changing content or templates. `dist/` is generated output; edit source files instead.
+Open [localhost:8000](http://localhost:8000/). To connect the Spring Boot backend, follow the deployment guide. Without a backend URL, the public static portfolio still works, and the existing GitHub CMS remains available at `/admin/github/`.
+
+### Validate
 
 ```sh
+cd frontend
 python -m unittest discover -s tests -v
+cd ..
 node --test auth/worker.test.mjs
+mvn -f backend/pom.xml test
 ```
-
-Node.js 22+ is needed for the OAuth tests. Optional browser checks and deployment configuration are covered in the [setup guide](docs/SETUP.md).
 
 <details>
 <summary><strong>For the owner — edit content & publish</strong></summary>
 
-1. Open the [admin panel](https://rabbi1067.github.io/rabbi-portfolio/admin/) and choose **Login with GitHub**.
+1. Open the [admin panel](https://rabbi1067.github.io/rabbi-portfolio/admin/) and choose **Use existing GitHub content manager**, then **Login with GitHub**.
 2. Sign in with an authorized GitHub account that has repository write access.
 3. Select **Portfolio settings**, **Projects**, **Research**, **Certifications** or **Reviews**; edit the record and choose **Publish**.
 4. To hide an item, turn off **Published**. Use **Delete** to remove the record.
@@ -93,14 +97,15 @@ The admin URL is public; editing requires authorization. Public repository conte
 <summary><strong>Source map & further documentation</strong></summary>
 
 ```text
-content/           Profile, skills and collection records
-cms/               Editable field schema and non-secret settings
-index.html         Page layout template
-css/ · js/         Styles, interactions and accessible navigation
-scripts/           Static build and responsive image generation
-admin/             CMS application entry point
+frontend/content/  Profile, skills and collection records
+frontend/cms/      Editable field schema and non-secret settings
+frontend/index.html Page layout template
+frontend/css/ · js/ Styles, interactions and accessible navigation
+frontend/scripts/  Static build and responsive image generation
+frontend/admin/    Administrator Studio and optional GitHub CMS
 auth/              OAuth Worker and its tests
-tests/             Content, build and browser regression checks
+frontend/tests/    Content, build and browser regression checks
+backend/           Spring Boot API, Dockerfile and backend tests
 docs/              Editing guide, setup notes and design documentation
 ```
 

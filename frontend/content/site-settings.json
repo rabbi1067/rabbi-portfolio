@@ -104,5 +104,11 @@
   "media": {
     "project_fallback": "",
     "certificate_fallback": ""
+  },
+  "footer": {
+    "tagline": "Thoughtful code. Practical research. Meaningful work.",
+    "explore_label": "Explore",
+    "connect_label": "Let’s connect",
+    "top_label": "Back to top"
   }
 }

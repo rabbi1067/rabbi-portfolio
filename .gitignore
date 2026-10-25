@@ -7,3 +7,7 @@ __pycache__/
 .dev.vars*
 .wrangler/
 node_modules/
+
+**/target/
+backend/data/
+!**/.env.example

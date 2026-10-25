@@ -32,7 +32,8 @@
   <link rel="stylesheet" href="css/cms-content.css?v=20261022-foot" />
   <link rel="stylesheet" href="css/home.css?v=20261022-always-visible" />
   <link rel="stylesheet" href="css/reviews.css?v=20261025-portraits" />
-  <link rel="stylesheet" href="css/research.css" />
+  <link rel="stylesheet" href="css/research.css?v=20261025-papers" />
+  <link rel="stylesheet" href="css/footer.css?v=20261025-studio" />
   <link rel="stylesheet" href="css/certifications.css?v=20261025-ict-crop" />
 </head>
 <body>
@@ -341,14 +342,12 @@
 
 <!-- ==================== FOOTER ==================== -->
 <footer id="site-footer">
-  <div class="footer-brand">{{profile.first_name}}<span>.</span>{{profile.last_name}}</div>
-  <div class="footer-socials" aria-label="Social accounts">{{{render.footer_socials}}}</div>
-  <div class="footer-copy">{{site.copy.copyright}}</div>
-  <div class="footer-links">
-    <a href="#home">{{site.navigation.home}}</a>
-    <a href="#about">{{site.navigation.about}}</a>
-    <a href="#contact">{{site.navigation.contact}}</a>
+  <div class="footer-main">
+    <div class="footer-identity"><a class="footer-brand" href="#home">{{profile.first_name}}<span>.</span>{{profile.last_name}}</a><p>{{site.footer.tagline}}</p>{{{render.footer_availability}}}</div>
+    <div class="footer-explore"><span class="footer-kicker">{{site.footer.explore_label}}</span><nav aria-label="Footer navigation"><a href="#about">{{site.navigation.about}}</a><a href="#projects">{{site.navigation.projects}}</a><a href="#research">{{site.navigation.research}}</a><a href="#contact">{{site.navigation.contact}}</a></nav></div>
+    <div class="footer-connect"><span class="footer-kicker">{{site.footer.connect_label}}</span><div class="footer-socials" aria-label="Social accounts">{{{render.footer_socials}}}</div>{{{render.footer_email}}}</div>
   </div>
+  <div class="footer-bottom"><span class="footer-copy">{{site.copy.copyright}}</span><div class="footer-utility"><a class="administrator-link" href="admin/" aria-label="Administrator login"><span aria-hidden="true">⌘</span> ADMINISTRATOR <span aria-hidden="true">↗</span></a><a class="footer-top" href="#home">{{site.footer.top_label}} <span aria-hidden="true">↑</span></a></div></div>
 </footer>
 
 <a class="scroll-indicator" id="scrollCue" href="{{render.first_scroll_target}}" aria-label="Scroll to the next section">
@@ -357,20 +356,9 @@
 </a>
 
 
-<!-- JavaScript -->
-<script src="js/main.js?v=20261017-gallery"></script>
-<script src="js/home.js?v=20261022-always-visible"></script>
-<script src="js/showcase.js?v=20261024-certificates"></script>
-<script src="js/certifications.js?v=20261024-six"></script>
-<script src="js/gallery.js?v=20261022-carousel"></script>
-<script src="js/reviews.js?v=rating-top"></script>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<!-- Application bootstrap: static fallback or connected Spring Boot content. -->
 <script type="application/json" id="contact-settings">{{{render.contact_settings}}}</script>
-<script src="js/contact.js?v=inline-status"></script>
-
-
-
-
-
+<script src="frontend-config.js"></script>
+<script src="js/cms-runtime.js?v=20261025-studio"></script>
 </body>
 </html>

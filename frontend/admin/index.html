@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer"><title>Portfolio Studio · Administrator</title><link rel="stylesheet" href="studio.css"><script src="../frontend-config.js"></script><script src="studio.js" defer></script></head>
+<body>
+<div class="studio-shell">
+  <aside><a class="wordmark" href="../">Fazley<span>®</span><small>PORTFOLIO STUDIO</small></a><nav id="collections" aria-label="Content sections"></nav><div class="aside-bottom"><a href="../" target="_blank" rel="noopener">View portfolio ↗</a><button id="export" hidden>Download backup</button><button id="logout" hidden>Sign out</button></div></aside>
+  <main>
+    <header><div><span class="eyebrow">YOUR SPACE, YOUR STORY</span><h1 id="page-title">Administrator</h1></div><span id="connection" class="connection">Secure content manager</span></header>
+    <p id="status" role="status" aria-live="polite" hidden></p>
+    <section id="login-panel" class="login-panel"><span class="login-icon" aria-hidden="true">↗</span><h2>Welcome back.</h2><p>Sign in to shape what comes next.</p>
+      <form id="login-form"><label>Email<input name="email" type="email" autocomplete="username" required></label><label>Password<input name="password" type="password" autocomplete="current-password" required></label><button class="primary" type="submit">Sign in to Studio →</button></form>
+      <p class="muted" id="setup-help" hidden>Connect a Spring Boot backend using API_BASE_URL in your frontend build environment. Administrator credentials belong only in the backend environment.</p>
+      <a class="legacy" href="github/">Use existing GitHub content manager ↗</a>
+    </section>
+    <section id="workspace" hidden><div class="editor-toolbar"><p id="section-help">Edit content, upload media, and publish when ready.</p><div><button id="add-record" hidden>+ New record</button><button id="save" class="primary">Save & publish</button></div></div><div id="record-list"></div><form id="editor" novalidate></form></section>
+  </main>
+</div><dialog id="confirm-delete"><form method="dialog"><h2>Delete this record?</h2><p>This removes the record from your website. Download a backup first if you may need it later.</p><div><button value="cancel">Keep record</button><button value="delete" class="danger">Delete record</button></div></form></dialog>
+</body></html>

@@ -1,0 +1,11 @@
+.git
+.qa
+**/.qa
+**/dist
+**/target
+**/node_modules
+**/__pycache__
+**/.env
+**/.env.*
+**/tests
+docs

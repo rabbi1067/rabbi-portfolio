@@ -1516,6 +1516,42 @@
           "hint": "Used when there is no certificate image or thumbnail. Leave blank for the built-in cover."
         }
       ]
+    },
+    {
+      "name": "footer",
+      "label": "Footer",
+      "widget": "object",
+      "required": false,
+      "fields": [
+        {
+          "name": "tagline",
+          "label": "Tagline",
+          "widget": "string",
+          "required": false,
+          "default": "Thoughtful code. Practical research. Meaningful work."
+        },
+        {
+          "name": "explore_label",
+          "label": "Explore Label",
+          "widget": "string",
+          "required": false,
+          "default": "Explore"
+        },
+        {
+          "name": "connect_label",
+          "label": "Connect Label",
+          "widget": "string",
+          "required": false,
+          "default": "Let’s connect"
+        },
+        {
+          "name": "top_label",
+          "label": "Top Label",
+          "widget": "string",
+          "required": false,
+          "default": "Back to top"
+        }
+      ]
     }
   ],
   "projects": [
@@ -1749,15 +1785,15 @@
       ]
     },
     {
-          "name": "added_date",
-          "label": "Added date",
-          "widget": "string",
-          "required": false,
-          "hint": "Shown on the card as the date the project was added. Used for the latest-projects order on the home page.",
-          "pattern": [
-            "^$|^\\d{4}-\\d{2}-\\d{2}$",
-            "Use YYYY-MM-DD or leave empty."
-          ]
+      "name": "added_date",
+      "label": "Added date",
+      "widget": "string",
+      "required": false,
+      "hint": "Shown on the card as the date the project was added. Used for the latest-projects order on the home page.",
+      "pattern": [
+        "^$|^\\d{4}-\\d{2}-\\d{2}$",
+        "Use YYYY-MM-DD or leave empty."
+      ]
     }
   ],
   "research": [
@@ -1991,15 +2027,15 @@
       ]
     },
     {
-          "name": "added_date",
-          "label": "Added date",
-          "widget": "string",
-          "required": false,
-          "hint": "Shown on the card as the date the project was added. Used for the latest-projects order on the home page.",
-          "pattern": [
-            "^$|^\\d{4}-\\d{2}-\\d{2}$",
-            "Use YYYY-MM-DD or leave empty."
-          ]
+      "name": "added_date",
+      "label": "Added date",
+      "widget": "string",
+      "required": false,
+      "hint": "Shown on the card as the date the project was added. Used for the latest-projects order on the home page.",
+      "pattern": [
+        "^$|^\\d{4}-\\d{2}-\\d{2}$",
+        "Use YYYY-MM-DD or leave empty."
+      ]
     },
     {
       "name": "research_area",
@@ -2329,6 +2365,54 @@
       "required": false,
       "default": true,
       "hint": "Turn off to hide this item without deleting its saved content."
+    },
+    {
+      "name": "publication_type",
+      "label": "Publication type",
+      "widget": "string",
+      "required": false,
+      "hint": "For example: Journal Article, Conference Paper, Preprint."
+    },
+    {
+      "name": "peer_reviewed",
+      "label": "Peer-reviewed",
+      "widget": "boolean",
+      "required": false,
+      "default": false
+    },
+    {
+      "name": "topics",
+      "label": "Research topics",
+      "widget": "list",
+      "required": false,
+      "default": [],
+      "max": 20,
+      "field": {
+        "name": "item",
+        "label": "Topic",
+        "widget": "string",
+        "required": false
+      }
+    },
+    {
+      "name": "publication_date",
+      "label": "Publication date",
+      "widget": "string",
+      "required": false,
+      "hint": "For example: 21 January 2026."
+    },
+    {
+      "name": "button_label",
+      "label": "Read paper button",
+      "widget": "string",
+      "required": false,
+      "hint": "For example: Read Paper on IEEE."
+    },
+    {
+      "name": "thumbnail",
+      "label": "Paper image (optional)",
+      "widget": "image",
+      "required": false
     }
   ]
 }
