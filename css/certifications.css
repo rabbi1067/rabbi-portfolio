@@ -5,6 +5,7 @@
 #certifications .cert-card:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(0,0,0,.17); }
 #certifications .cert-media { flex: none; aspect-ratio: 4.6 / 1; min-height: 126px; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; background: var(--bg-primary); }
 #certifications .cert-media img { object-fit: cover; object-position: center top; }
+#certifications .cert-media img[alt^="ICT Olympiad"] { object-position: center 25%; transform: scale(1.12); transform-origin: center top; }
 #certifications .cert-media img[alt*="Microsoft 365 Copilot"] { object-position: center 65%; }
 #certifications .showcase-body { padding: 14px 0 0; gap: 9px; }
 #certifications .cert-top { min-height: 32px; gap: 14px; }
