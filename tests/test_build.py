@@ -235,7 +235,7 @@ class PortfolioBuildTests(unittest.TestCase):
         view=self.document.root.find_all(id='view-all-projects')
         self.assertEqual(len(view),1)
         self.assertIn('View all projects',self.document.outside(view[0]))
-        self.assertIn(f'>{total}</span>',self.document.outside(view[0]))
+        self.assertIn(f'>{total - 6}</span>',self.document.outside(view[0]))
         config=self.json('dist/admin/config.yml')
         fields=config['collections'][1]['fields']
         self.assertEqual(next(field for field in fields if field['name']=='added_date')['pattern'][0],'^$|^\\d{4}-\\d{2}-\\d{2}$')

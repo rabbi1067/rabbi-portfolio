@@ -250,7 +250,7 @@ def render_sections(data, source_root):
     media_settings = data['site-settings'].get('media') or {}
     fallback = media_settings.get('project_fallback') or ''
     sections['projects'] = ''.join(project_card(item, fallback, index >= 6) for index, item in enumerate(projects))
-    sections['projects_view_all'] = f'<div class="projects-foot"><button type="button" id="view-all-projects" class="view-all-btn" aria-controls="project-cards">View all projects<span class="view-all-count">{len(projects)}</span></button></div>' if len(projects) > 6 else ''
+    sections['projects_view_all'] = f'<div class="projects-foot"><button type="button" id="view-all-projects" class="view-all-btn" aria-controls="project-cards">View all projects<span class="view-all-count">{len(projects) - 6}</span></button></div>' if len(projects) > 6 else ''
     sections['project_filters'] = category_filters(projects, 'project-cards', 'projects')
     sections['papers'] = ''
     for i,item in enumerate(ordered(data['papers'])):
