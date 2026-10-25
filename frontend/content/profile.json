@@ -91,5 +91,102 @@
       "source": "certifications"
     }
   ],
-  "hero_photo": "images/hero-cutout.png"
+  "hero_photo": "images/hero-cutout.png",
+  "highlights": {
+    "enabled": true,
+    "label": "A curated snapshot",
+    "heading": "Selected Highlights",
+    "subtitle": "Selected projects, achievements, and milestones from my journey.",
+    "autoplay": true,
+    "items": [
+      {
+        "title": "OrbitCart",
+        "category": "Featured project",
+        "description": "AI-assisted commerce, built end to end.",
+        "image": "uploads/orbitcart-storefront.png",
+        "image_alt": "OrbitCart online storefront",
+        "url": "#project-orbitcart",
+        "fit": "cover",
+        "order": 1,
+        "published": true
+      },
+      {
+        "title": "ICPC Asia Dhaka",
+        "category": "Competitive programming",
+        "description": "2024 preliminary contest · Honorable Mention",
+        "image": "uploads/certifications/icpc-individual-preview.png",
+        "image_alt": "ICPC Asia Dhaka honorable mention certificate",
+        "url": "#certifications",
+        "fit": "contain",
+        "order": 2,
+        "published": true
+      },
+      {
+        "title": "THIRA Research",
+        "category": "Research experience",
+        "description": "Research coordination and data collection.",
+        "image": "uploads/certifications/thira-appreciation.jpeg",
+        "image_alt": "THIRA research project certificate of appreciation",
+        "url": "#experience",
+        "fit": "contain",
+        "order": 3,
+        "published": true
+      },
+      {
+        "title": "CityFix",
+        "category": "Full-stack development",
+        "description": "Turning civic reports into tracked resolutions.",
+        "image": "uploads/cityfix-citizen-dashboard.png",
+        "image_alt": "CityFix citizen complaint dashboard",
+        "url": "#project-cityfix",
+        "fit": "cover",
+        "order": 4,
+        "published": true
+      },
+      {
+        "title": "AI & Machine Learning",
+        "category": "Skills & learning",
+        "description": "Data science, deep learning, and NLP.",
+        "image": "uploads/certifications/ds-bootcamp-preview.png",
+        "image_alt": "Data science machine learning deep learning and NLP bootcamp certificate",
+        "url": "#skills",
+        "fit": "contain",
+        "order": 5,
+        "published": true
+      },
+      {
+        "title": "Southeast University",
+        "category": "Academic journey",
+        "description": "Computer Science & Engineering · Dhaka",
+        "image": "uploads/education/southeast-university-front.jpg",
+        "image_alt": "Southeast University campus in Dhaka",
+        "url": "#education",
+        "fit": "cover",
+        "order": 6,
+        "published": true
+      },
+      {
+        "title": "100 Days of Coding",
+        "category": "Consistency & practice",
+        "description": "CodeChef Diamond Streak Badge",
+        "image": "uploads/certifications/codechef-diamond.png",
+        "image_alt": "CodeChef 100 day coding streak diamond badge",
+        "url": "#certifications",
+        "fit": "contain",
+        "order": 7,
+        "published": true
+      },
+      {
+        "title": "People & Collaboration",
+        "category": "Collaborator feedback",
+        "description": "Perspectives from the people I work with.",
+        "image": "uploads/reviewers/mijanur-rahman-cutout-v2.png",
+        "image_alt": "Md. Mijanur Rahman",
+        "url": "#reviews",
+        "fit": "portrait",
+        "order": 8,
+        "published": true
+      }
+    ]
+  }
 }

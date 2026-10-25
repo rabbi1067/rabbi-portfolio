@@ -622,6 +622,32 @@ class PortfolioBuildTests(unittest.TestCase):
         self.assertNotIn('href="#education"',self.output)
         self.assertNotIn('href="#experience"',self.output)
 
+    def test_highlights_hide_removed_targets_and_follow_admin_content(self):
+        self.compile()
+        region=self.document.root.find(id='selected-highlights')
+        self.assertIsNotNone(region)
+        self.assertEqual(len(region.find_all(cls='highlight-card')),8)
+        self.assertNotIn('View all',self.document.outside(region))
+        project=self.json('content/projects/orbitcart.json')
+        project['published']=False
+        self.write('content/projects/orbitcart.json',project)
+        site=self.json('content/site-settings.json')
+        site['sections']['education']['visible']=False
+        self.write('content/site-settings.json',site)
+        profile=self.json('content/profile.json')
+        profile['highlights']['heading']='Edited highlights'
+        profile['highlights']['items'][0]['title']='Edited project highlight'
+        self.write('content/profile.json',profile)
+        self.compile()
+        region=self.document.root.find(id='selected-highlights')
+        self.assertEqual(len(region.find_all(cls='highlight-card')),6)
+        self.assertIn('Edited highlights',self.document.outside(region))
+        self.assertNotIn('href="#project-orbitcart"',self.document.outside(region))
+        profile['highlights']['enabled']=False
+        self.write('content/profile.json',profile)
+        self.compile()
+        self.assertEqual(self.document.root.find_all(id='selected-highlights'),[])
+
     def test_output_cannot_overwrite_sources(self):
         with self.assertRaisesRegex(ValueError,'dedicated source-root/dist'):
             build.build(self.root,output=self.root)

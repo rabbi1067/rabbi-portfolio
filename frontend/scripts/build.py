@@ -216,9 +216,31 @@ def project_card(item, fallback='images/project-default.svg', extra=False):
       <div class="proj-stack">{tags}</div>{notes}{actions}</div></div>'''
 
 
+def render_highlights(data):
+    settings = data['profile'].get('highlights') or {}
+    if not settings.get('enabled', True): return ''
+    visibility = data['site-settings'].get('sections') or {}
+    targets = {'#home', '#site-footer'}
+    targets.update('#'+name for name,item in visibility.items() if item.get('visible', True))
+    if '#skills' not in targets: targets.discard('#experience')
+    if '#projects' in targets:
+        targets.update('#project-'+item['id'] for item in ordered(data['projects']+data['research']))
+    cards = []
+    for item in ordered(settings.get('items')):
+        target = item.get('url') or ''
+        if target not in targets or not item.get('image'): continue
+        fit = item.get('fit') if item.get('fit') in ['cover','contain','portrait'] else 'cover'
+        number = str(len(cards)+1).zfill(2)
+        cards.append(f'<a class="highlight-card" href="{escape(target)}" data-fit="{fit}" aria-label="{escape(item["title"])} — explore {escape(item.get("category") or "highlight")}"><div class="highlight-media"><img src="{escape(item["image"])}" alt="{escape(item.get("image_alt") or item["title"])}" loading="lazy" decoding="async" /></div><span class="highlight-category">{escape(item.get("category"))}</span><span class="highlight-arrow" aria-hidden="true">↗</span><div class="highlight-caption"><span class="highlight-number" aria-hidden="true">{number}</span><div><h3>{escape(item["title"])}</h3><p>{escape(item.get("description"))}</p></div></div></a>')
+    if not cards: return ''
+    autoplay = str(settings.get('autoplay', True)).lower()
+    return f'''<div class="selected-highlights" id="selected-highlights" role="region" aria-labelledby="highlights-heading" data-autoplay="{autoplay}"><div class="max-w"><div class="highlights-heading-row"><div><span class="highlights-eyebrow"><i aria-hidden="true"></i>{escape(settings.get('label') or 'A curated snapshot')}</span><h2 id="highlights-heading">{escape(settings.get('heading') or 'Selected Highlights')}</h2><p>{escape(settings.get('subtitle'))}</p></div><div class="highlights-controls" aria-label="Highlights controls"><button type="button" data-highlights-prev aria-label="Previous highlights" aria-controls="highlights-rail">←</button><button type="button" data-highlights-play aria-label="Pause highlight scrolling" aria-pressed="true" aria-controls="highlights-rail"><span aria-hidden="true">Ⅱ</span></button><button type="button" data-highlights-next aria-label="Next highlights" aria-controls="highlights-rail">→</button></div></div><div class="highlights-frame"><div class="highlights-rail" id="highlights-rail" tabindex="0" aria-label="Selected portfolio highlights">{''.join(cards)}</div></div><div class="highlights-footnote"><span><i aria-hidden="true"></i>Click any highlight to explore</span><span class="highlights-counter">{str(len(cards)).zfill(2)} selected stories</span></div></div></div>'''
+
+
 def render_sections(data, source_root):
     profile, contact = data['profile'], data['contact']
     sections = {}
+    sections['highlights'] = render_highlights(data)
     sections['hero_photo'] = profile.get('hero_photo') or profile.get('profile_photo') or ''
     sections['availability'] = f'<div class="available-badge"><div class="badge-dot"></div>{escape(profile.get("availability_text"))}</div>' if profile.get('available') else ''
     visible_projects = ordered(data['projects'] + data['research'])
@@ -277,7 +299,7 @@ def render_sections(data, source_root):
     if not sections['papers']:
         sections['papers'] = f'<div class="research-empty"><span aria-hidden="true">⌘</span><h3>{escape(data["site-settings"].get("copy",{}).get("research_empty_heading") or "Research in progress")}</h3><p>{escape(data["site-settings"].get("copy",{}).get("research_empty_text") or "Research papers and publication links will appear here as they are added.")}</p></div>'
     visibility = data['site-settings'].get('sections') or {}
-    sections['first_scroll_target'] = '#' + next((name for name in ['about','education','projects','skills','research','certifications','reviews','contact'] if visibility.get(name,{}).get('visible',True)), 'site-footer')
+    sections['first_scroll_target'] = '#selected-highlights' if sections['highlights'] else '#' + next((name for name in ['about','education','projects','skills','research','certifications','reviews','contact'] if visibility.get(name,{}).get('visible',True)), 'site-footer')
     sections['skills'] = ''
     for category in ordered(data['skills'].get('categories')):
         glyph = escape(category.get('icon'))

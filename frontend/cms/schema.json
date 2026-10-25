@@ -291,6 +291,124 @@
       "default": [],
       "collapsed": true,
       "hint": "Automatic project and certification counts follow published records. Add, delete, or hide a record to update its count on the next publish."
+    },
+    {
+      "name": "highlights",
+      "label": "Selected Highlights",
+      "widget": "object",
+      "required": false,
+      "fields": [
+        {
+          "name": "enabled",
+          "label": "Show highlights",
+          "widget": "boolean",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "label",
+          "label": "Eyebrow label",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "heading",
+          "label": "Heading",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "subtitle",
+          "label": "Subtitle",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "autoplay",
+          "label": "Automatic scrolling",
+          "widget": "boolean",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "items",
+          "label": "Highlight cards",
+          "widget": "list",
+          "required": false,
+          "max": 20,
+          "fields": [
+            {
+              "name": "title",
+              "label": "Title",
+              "widget": "string",
+              "required": true
+            },
+            {
+              "name": "category",
+              "label": "Category",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "description",
+              "label": "Short caption",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "image",
+              "label": "Image",
+              "widget": "image",
+              "required": true
+            },
+            {
+              "name": "image_alt",
+              "label": "Image description",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "url",
+              "label": "Destination section or project",
+              "widget": "string",
+              "required": true,
+              "pattern": [
+                "#[A-Za-z][A-Za-z0-9_:-]*",
+                "Use an internal destination such as #education, #skills or #project-orbitcart."
+              ]
+            },
+            {
+              "name": "fit",
+              "label": "Image framing",
+              "widget": "select",
+              "required": false,
+              "options": [
+                "cover",
+                "contain",
+                "portrait"
+              ],
+              "default": "cover"
+            },
+            {
+              "name": "order",
+              "label": "Order",
+              "widget": "number",
+              "required": false,
+              "value_type": "int",
+              "min": 0,
+              "default": 1
+            },
+            {
+              "name": "published",
+              "label": "Show this highlight",
+              "widget": "boolean",
+              "required": false,
+              "default": true
+            }
+          ],
+          "hint": "Up to 20 curated cards. Each card links directly to a section or project; there is no View all button."
+        }
+      ]
     }
   ],
   "contact": [

@@ -28,7 +28,7 @@
   pointer.addEventListener('change', reset);
 
   const scrollHint = document.getElementById('scrollCue');
-  const pageSections = Array.from(document.querySelectorAll('section[id]'));
+  const pageSections = Array.from(document.querySelectorAll('section[id], #selected-highlights'));
   let cueTimer = 0;
   function setScrollHint(hidden) {
     scrollHint?.classList.toggle('is-hidden', hidden);
