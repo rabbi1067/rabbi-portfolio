@@ -61,7 +61,7 @@ try {
   assert.equal(await page.locator('.cert-card').count(),8);
   assert.equal(await page.locator('.skill-card').count(),6);
   assert.equal(await page.locator('.sk-tag').count(),31);
-  assert.equal(await page.locator('a[href="CV.pdf"]').count(),1);
+  assert.equal(await page.locator('a[href^="CV.pdf?v="][download="Md_Fazle_Rabbi_CV.pdf"]').count(),1);
   assert.equal((await page.request.get(origin+'/portfolio/CV.pdf')).status(),200);
   report.checks.push('All nine sections, grouped skill chips, projects, certificates and stable CV');
   page.on('dialog',dialog=>dialog.accept());
