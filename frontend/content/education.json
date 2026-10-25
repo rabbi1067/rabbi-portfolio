@@ -32,7 +32,7 @@
       "image_zoom": 100,
       "institution_type": "College",
       "institution_url": "https://rgcc.ac.bd/",
-      "image_fit": "contain"
+      "image_fit": "cover"
     }
   ]
 }
