@@ -221,7 +221,10 @@ def render_sections(data, source_root):
     sections = {}
     sections['hero_photo'] = profile.get('hero_photo') or profile.get('profile_photo') or ''
     sections['availability'] = f'<div class="available-badge"><div class="badge-dot"></div>{escape(profile.get("availability_text"))}</div>' if profile.get('available') else ''
+    visible_projects = ordered(data['projects'] + data['research'])
     def statistic(item):
+        if item.get('source') == 'projects':
+            return str(len(visible_projects))
         if item.get('source') == 'certifications':
             return str(len(ordered(data['achievements'].get('items'))))
         return str(item.get('value') or '') + str(item.get('suffix') or '')
@@ -247,7 +250,7 @@ def render_sections(data, source_root):
         phone_digits = re.sub(r'\D', '', contact['phone'])
         sections['contacts'] += contact_card('https://wa.me/' + phone_digits, '💬', contact.get('phone_label') or 'WhatsApp', contact.get('phone_display') or contact['phone'])
     if contact.get('location'): sections['contacts'] += contact_card('', '📍', contact.get('location_label'), contact['location'])
-    projects = ordered([item for item in data['projects']+data['research'] if item.get('published', True)])
+    projects = visible_projects.copy()
     projects.sort(key=lambda item: (item.get('order') or 0, not item.get('featured', True), item['id']))
     projects.sort(key=lambda item: item.get('added_date') or '0000-00-00', reverse=True)
     media_settings = data['site-settings'].get('media') or {}

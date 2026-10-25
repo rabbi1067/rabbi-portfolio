@@ -215,15 +215,16 @@
           "required": false,
           "options": [
             "manual",
-            "certifications"
+            "certifications",
+            "projects"
           ],
           "default": "manual",
-          "hint": "Certifications uses the exact number of published certificate/award records and ignores the manual value/suffix."
+          "hint": "Projects counts all published Featured Projects, including those behind View all. Certifications counts published certificate/award records. Automatic sources ignore the manual value/suffix."
         }
       ],
       "default": [],
       "collapsed": true,
-      "hint": "Certificate counts update automatically from published Certifications & Awards records. Add, delete, or hide a record to update the count on the next build."
+      "hint": "Automatic project and certification counts follow published records. Add, delete, or hide a record to update its count on the next publish."
     },
     {
       "name": "badges",
@@ -280,15 +281,16 @@
           "required": false,
           "options": [
             "manual",
-            "certifications"
+            "certifications",
+            "projects"
           ],
           "default": "manual",
-          "hint": "Certifications uses the exact number of published certificate/award records and ignores the manual value/suffix."
+          "hint": "Projects counts all published Featured Projects, including those behind View all. Certifications counts published certificate/award records. Automatic sources ignore the manual value/suffix."
         }
       ],
       "default": [],
       "collapsed": true,
-      "hint": "Certificate counts update automatically from published Certifications & Awards records. Add, delete, or hide a record to update the count on the next build."
+      "hint": "Automatic project and certification counts follow published records. Add, delete, or hide a record to update its count on the next publish."
     }
   ],
   "contact": [

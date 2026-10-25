@@ -430,6 +430,9 @@ class PortfolioBuildTests(unittest.TestCase):
         self.assertNotIn('Find Me On',self.output)
 
     def test_certificate_counters_follow_add_hide_delete_and_manual_override(self):
+        profile=self.json('content/profile.json')
+        profile['statistics'][1].update(label='Certifications',source='certifications')
+        self.write('content/profile.json',profile)
         self.write('content/achievements.json',self.certificate_fixtures())
         def assert_count(count):
             self.compile()
@@ -583,6 +586,26 @@ class PortfolioBuildTests(unittest.TestCase):
         self.compile()
         self.assertEqual(self.document.root.find_all(cls='cert-card')[1].find_all(cls='cert-action'),[])
         self.assertNotIn('Readable-ID',self.output)
+
+    def test_project_counter_follows_published_gallery_records(self):
+        data={name:self.json(f'content/{name}.json') for name in ['profile','contact','skills','education','experience','achievements','resume','site-settings','reviews']}
+        data.update({name:[build.read_json(path) for path in (self.root/'content'/name).glob('*.json')] for name in ['projects','research','papers']})
+        def check():
+            sections=build.render_sections(data,self.root)
+            count=sum(item.get('published',True) for item in data['projects']+data['research'])
+            self.assertIn(f'<div class="stat-num">{count}</div><div class="stat-label">Projects</div>',sections['statistics'])
+            self.assertIn('Certs',sections['about_statistics'])
+        check()
+        data['projects'].append({**data['projects'][0],'id':'extra-project','published':True})
+        check()
+        data['projects'][-1]['published']=False
+        check()
+        data['projects'].pop()
+        data['projects'].pop()
+        check()
+        data['projects']=[]
+        data['research']=[]
+        check()
 
     def test_output_cannot_overwrite_sources(self):
         with self.assertRaisesRegex(ValueError,'dedicated source-root/dist'):
