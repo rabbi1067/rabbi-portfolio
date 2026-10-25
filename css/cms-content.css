@@ -185,6 +185,8 @@
 .view-all-btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 42px; padding: 9px 20px; border: 1px solid rgba(0, 212, 170, .38); border-radius: 30px; background: rgba(0, 212, 170, .08); color: var(--teal, #00d4aa); font: 600 .78rem 'Inter', sans-serif; cursor: pointer; transition: background .2s, color .2s, border-color .2s; }
 .view-all-btn:hover { background: #00d4aa; border-color: #00d4aa; color: #052b26; }
 .view-all-btn:focus-visible { outline: 2px solid #00d4aa; outline-offset: 4px; }
+.view-all-btn[hidden] { display: none !important; }
+.projects-foot:has(.view-all-btn[hidden]) { display: none; }
 .view-all-count { display: inline-grid; place-items: center; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; background: rgba(0, 212, 170, .16); font-size: .68rem; font-weight: 700; }
 .view-all-btn:hover .view-all-count { background: rgba(5, 43, 38, .18); }
 body.lb-open { overflow: hidden; }
