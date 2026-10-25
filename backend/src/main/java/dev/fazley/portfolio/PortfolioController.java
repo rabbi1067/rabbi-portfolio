@@ -35,6 +35,11 @@ public class PortfolioController implements WebMvcConfigurer {
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=portfolio-backup.zip")
             .contentType(MediaType.parseMediaType("application/zip")).body(store.export());
     }
+    @GetMapping({"/CV.pdf","/media/CV.pdf"}) ResponseEntity<Resource> downloadCv() {
+        return ResponseEntity.ok().contentType(MediaType.APPLICATION_PDF)
+            .header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=Md_Fazle_Rabbi_CV.pdf")
+            .cacheControl(CacheControl.noCache()).body(new FileSystemResource(store.dist().resolve("CV.pdf")));
+    }
     @GetMapping({"/","/admin/","/admin/github/"}) ResponseEntity<Resource> index(HttpServletRequest request) {
         String path=request.getRequestURI().equals("/")?"index.html":request.getRequestURI().substring(1)+"index.html";
         return ResponseEntity.ok().contentType(MediaType.TEXT_HTML).cacheControl(CacheControl.noCache()).body(new FileSystemResource(store.dist().resolve(path)));

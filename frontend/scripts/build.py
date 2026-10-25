@@ -513,6 +513,7 @@ def build(source_root=ROOT, output=None, repository=None, branch=None, site_url=
     result = render_template(source, dict(profile=data['profile'],site=data['site-settings'],render=render_sections(data,source_root)))
     result = hide_sections(result, data['site-settings'])
     result = responsive_images(result, output, base_path)
+    result = result.replace('href="CV.pdf"', 'href="CV.pdf?v=' + hashlib.sha256(cv.read_bytes()).hexdigest()[:12] + '"')
     (output/'index.html').write_text(result,encoding='utf-8')
     for file in ['CNAME','robots.txt','sitemap.xml']:
         if (source_root/file).exists(): shutil.copyfile(source_root/file, output/file)

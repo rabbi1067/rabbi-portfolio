@@ -128,7 +128,9 @@ class PortfolioBuildTests(unittest.TestCase):
         self.write('content/resume.json',dict(file='/portfolio/uploads/replacement.pdf'))
         self.compile(site_url='https://example.github.io/portfolio')
         self.assertEqual((self.root/'dist/CV.pdf').read_bytes(),pdf)
-        self.assertIn('href="CV.pdf"',self.output)
+        import hashlib
+        self.assertIn('href="CV.pdf?v='+hashlib.sha256(pdf).hexdigest()[:12]+'"',self.output)
+        self.assertIn('download="Md_Fazle_Rabbi_CV.pdf"',self.output)
         self.assertTrue((self.root/'CV.pdf').exists())
 
     def test_hero_photo_replacement_and_optional_fallback(self):
