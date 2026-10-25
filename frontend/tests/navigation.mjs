@@ -9,7 +9,7 @@ const origin=process.env.PREVIEW_URL || 'http://127.0.0.1:8000';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const qa=resolve(root,'.qa/navigation');
 await mkdir(qa,{recursive:true});
-const order=['home','about','projects','skills','experience','research','certifications','reviews','contact'];
+const order=['home','about','projects','skills','education','research','certifications','reviews','contact'];
 const browser=await chromium.launch({headless:true,...(process.env.BROWSER_EXECUTABLE?{executablePath:process.env.BROWSER_EXECUTABLE}:{})});
 try {
   for(const width of [1440,1200,1101,820,390]) {

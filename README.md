@@ -28,8 +28,8 @@ My portfolio brings together software projects, AI and machine learning explorat
 | Section | What you’ll find |
 | :--- | :--- |
 | [Projects](https://rabbi1067.github.io/rabbi-portfolio/#projects) | Selected work, technology tags and optional source/demo links |
-| [Skills & Tools](https://rabbi1067.github.io/rabbi-portfolio/#skills) | Languages, web development, AI, research and design tools |
-| [Experience](https://rabbi1067.github.io/rabbi-portfolio/#experience) | Roles, responsibilities and practical experience |
+| [Skills & Experience](https://rabbi1067.github.io/rabbi-portfolio/#skills) | Languages, tools, roles and practical experience |
+| [Education](https://rabbi1067.github.io/rabbi-portfolio/#education) | Academic background with campus photos, qualifications and study periods |
 | [Certifications & Awards](https://rabbi1067.github.io/rabbi-portfolio/#certifications) | Credentials with optional verification and certificate links |
 | [Reviews](https://rabbi1067.github.io/rabbi-portfolio/#reviews) | Reviewer-approved feedback in a responsive carousel |
 | [Contact](https://rabbi1067.github.io/rabbi-portfolio/#contact) | Social links, email and the contact form |

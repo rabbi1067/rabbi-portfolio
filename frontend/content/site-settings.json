@@ -25,13 +25,13 @@
     },
     "skills": {
       "label": "Expertise",
-      "heading": "Skills & Tools",
-      "subtitle": "Languages, frameworks, and tools I use to build, research, and create.",
+      "heading": "Skills & Experience",
+      "subtitle": "The tools I work with and the experience behind my work.",
       "visible": true
     },
     "experience": {
       "label": "Background",
-      "heading": "Education & Experience",
+      "heading": "Experience",
       "visible": true
     },
     "certifications": {
@@ -57,18 +57,25 @@
       "heading": "Research Papers",
       "subtitle": "Papers, preprints, and research publications — with direct access to the original work.",
       "visible": true
+    },
+    "education": {
+      "label": "Education",
+      "heading": "Academic Background",
+      "subtitle": "Education and qualifications, from college to university.",
+      "visible": true
     }
   },
   "navigation": {
     "home": "Home",
     "about": "About",
     "projects": "Projects",
-    "skills": "Skills",
+    "skills": "Skills & Experience",
     "experience": "Experience",
     "certifications": "Certifications",
     "contact": "Contact",
     "reviews": "Reviews",
-    "research": "Research"
+    "research": "Research",
+    "education": "Education"
   },
   "copy": {
     "education_title": "Education",
@@ -79,7 +86,8 @@
     "contact_introduction": "Open to research collaborations, interesting projects, internships, and learning opportunities. Don't hesitate to reach out!",
     "copyright": "© 2025 Fazley Rabbi · All rights reserved",
     "research_empty_heading": "Research in progress",
-    "research_empty_text": "Research papers and publication links will appear here as they are added."
+    "research_empty_text": "Research papers and publication links will appear here as they are added.",
+    "skills_title": "Skills & Tools"
   },
   "form": {
     "heading": "Send a Message",

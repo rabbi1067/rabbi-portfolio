@@ -647,6 +647,41 @@
           "required": false,
           "default": true,
           "hint": "Turn off to hide this item without deleting its saved content."
+        },
+        {
+          "name": "image",
+          "label": "Campus image",
+          "widget": "image",
+          "required": false
+        },
+        {
+          "name": "image_alt",
+          "label": "Campus image description",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "image_zoom",
+          "label": "Image zoom (%)",
+          "widget": "number",
+          "value_type": "int",
+          "min": 100,
+          "max": 300,
+          "default": 100,
+          "required": false,
+          "hint": "100 shows the full image. Increase to crop the preview; the original stays unchanged."
+        },
+        {
+          "name": "institution_type",
+          "label": "Institution type",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "institution_url",
+          "label": "Institution website",
+          "widget": "string",
+          "required": false
         }
       ],
       "default": [],
@@ -1119,7 +1154,7 @@
               "widget": "boolean",
               "required": false,
               "default": true,
-              "hint": "Hide the entire section and its navigation link without deleting content."
+              "hint": "Show or hide the experience panel inside Skills & Experience."
             }
           ]
         },
@@ -1258,6 +1293,40 @@
               "hint": "Hide the entire section and its navigation link without deleting content."
             }
           ]
+        },
+        {
+          "name": "education",
+          "label": "Education",
+          "widget": "object",
+          "required": false,
+          "fields": [
+            {
+              "name": "label",
+              "label": "Label",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "heading",
+              "label": "Heading",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "subtitle",
+              "label": "Subtitle",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "visible",
+              "label": "Show this section",
+              "widget": "boolean",
+              "required": false,
+              "default": true,
+              "hint": "Hide the entire section and its navigation link without deleting content."
+            }
+          ]
         }
       ]
     },
@@ -1318,6 +1387,12 @@
         {
           "name": "contact",
           "label": "Contact",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "education",
+          "label": "Education menu label",
           "widget": "string",
           "required": false
         }
@@ -1381,6 +1456,12 @@
           "name": "research_empty_text",
           "label": "Research empty text",
           "widget": "text",
+          "required": false
+        },
+        {
+          "name": "skills_title",
+          "label": "Skills panel heading",
+          "widget": "string",
           "required": false
         }
       ]

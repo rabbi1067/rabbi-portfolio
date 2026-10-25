@@ -45,9 +45,9 @@ class PortfolioBuildTests(unittest.TestCase):
 
     def test_original_sections_assets_and_effects(self):
         data=self.compile()
-        self.assertEqual([n.attrs['id'] for n in self.document.root.find_all(tag='section')], ['home','about','projects','skills','experience','research','certifications','reviews','contact'])
+        self.assertEqual([n.attrs['id'] for n in self.document.root.find_all(tag='section')], ['home','about','projects','skills','education','research','certifications','reviews','contact'])
         card_count=sum(1 for item in data['projects']+data['research'] if item.get('published',True))
-        for cls,count in [('proj-card',card_count),('skill-card',6),('tl-item',5),('footer-social',4),('cert-card',len(build.ordered(data['achievements'].get('items')))),('sk-bar-fill',0)]:
+        for cls,count in [('proj-card',card_count),('skill-card',6),('tl-item',3),('education-card',2),('footer-social',4),('cert-card',len(build.ordered(data['achievements'].get('items')))),('sk-bar-fill',0)]:
             self.assertEqual(len(self.document.root.find_all(cls=cls)),count)
         for name in ['css/styles.css','js/main.js','CV.pdf','images/My_pic.jpeg']:
             self.assertEqual((self.root/name).read_bytes(),(self.root/'dist'/name).read_bytes())
@@ -414,19 +414,19 @@ class PortfolioBuildTests(unittest.TestCase):
         for name in ['about','projects','research','skills','reviews','contact']:
             self.assertEqual(self.document.root.find_all(id=name),[])
             self.assertNotIn(f'href="#{name}"',self.output)
-        self.assertIn('href="#experience"',self.output)
+        self.assertIn('href="#education"',self.output)
         # Saved content is retained and can be shown again.
         for name in site['sections']: site['sections'][name]['visible']=True
         self.write('content/site-settings.json',site)
         counts={}
-        for name,key,cls in [('education','items','tl-item'),('experience','items','tl-item'),('achievements','items','cert-card'),('skills','categories','skill-card')]:
+        for name,key,cls in [('education','items','education-card'),('experience','items','tl-item'),('achievements','items','cert-card'),('skills','categories','skill-card')]:
             content=self.json(f'content/{name}.json')
             content[key][0]['published']=False
             self.write(f'content/{name}.json',content)
         contact=self.json('content/contact.json');contact['links'][0]['published']=False
         self.write('content/contact.json',contact)
         self.compile()
-        for cls,total in [('tl-item',3),('cert-card',7),('skill-card',5),('footer-social',3)]:
+        for cls,total in [('tl-item',2),('education-card',1),('cert-card',7),('skill-card',5),('footer-social',3)]:
             self.assertEqual(len(self.document.root.find_all(cls=cls)),total)
         self.assertEqual(self.document.root.find_all(id='competitive'),[])
         self.assertNotIn('Find Me On',self.output)
@@ -608,6 +608,19 @@ class PortfolioBuildTests(unittest.TestCase):
         data['projects']=[]
         data['research']=[]
         check()
+
+    def test_merged_experience_and_education_hide_independently(self):
+        site=self.json('content/site-settings.json')
+        site['sections']['experience']['visible']=False
+        site['sections']['education']['visible']=False
+        self.write('content/site-settings.json',site)
+        self.compile()
+        self.assertIsNotNone(self.document.root.find(id='skills'))
+        self.assertEqual(len(self.document.root.find_all(cls='skill-card')),6)
+        self.assertEqual(self.document.root.find_all(id='experience'),[])
+        self.assertEqual(self.document.root.find_all(id='education'),[])
+        self.assertNotIn('href="#education"',self.output)
+        self.assertNotIn('href="#experience"',self.output)
 
     def test_output_cannot_overwrite_sources(self):
         with self.assertRaisesRegex(ValueError,'dedicated source-root/dist'):

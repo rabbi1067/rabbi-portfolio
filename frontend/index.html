@@ -35,6 +35,7 @@
   <link rel="stylesheet" href="css/research.css?v=20261025-papers" />
   <link rel="stylesheet" href="css/footer.css?v=20261025-studio" />
   <link rel="stylesheet" href="css/certifications.css?v=20261025-ict-crop" />
+  <link rel="stylesheet" href="css/education.css?v=20261025-academic" />
 </head>
 <body>
 
@@ -60,7 +61,7 @@
     <li><a href="#about">{{site.navigation.about}}</a></li>
     <li><a href="#projects">{{site.navigation.projects}}</a></li>
     <li><a href="#skills">{{site.navigation.skills}}</a></li>
-    <li><a href="#experience">{{site.navigation.experience}}</a></li>
+    <li><a href="#education">{{site.navigation.education}}</a></li>
     <li><a href="#research">{{site.navigation.research}}</a></li>
     <li><a href="#certifications">{{site.navigation.certifications}}</a></li>
     <li><a href="#reviews">{{site.navigation.reviews}}</a></li>
@@ -203,42 +204,28 @@
 </section>
 
 
-<!-- ==================== SKILLS ==================== -->
-<section id="skills">
+<!-- ==================== SKILLS & EXPERIENCE ==================== -->
+<section id="skills" aria-labelledby="skills-heading">
   <div class="max-w">
     <div class="section-label reveal">{{site.sections.skills.label}}</div>
-    <h2 class="section-heading reveal">{{site.sections.skills.heading}}</h2>
+    <h2 class="section-heading reveal" id="skills-heading">{{site.sections.skills.heading}}</h2>
     <p class="section-sub reveal">{{site.sections.skills.subtitle}}</p>
-
-    <div class="skills-wrapper">{{{render.skills}}}</div><!-- /skills-wrapper -->
+    <div class="capabilities-grid">
+      <div class="capabilities-tools"><h3 class="capabilities-title reveal">{{site.copy.skills_title}}</h3><div class="skills-wrapper">{{{render.skills}}}</div></div>
+      <div class="capabilities-experience" id="experience"><h3 class="capabilities-title reveal">{{site.sections.experience.heading}}</h3><div class="timeline">{{{render.experience}}}</div></div>
+    </div>
   </div>
 </section>
 
-
-<!-- ==================== EXPERIENCE ==================== -->
-<section id="experience">
+<!-- ==================== EDUCATION ==================== -->
+<section id="education" aria-labelledby="education-heading">
   <div class="max-w">
-    <div class="section-label reveal">{{site.sections.experience.label}}</div>
-    <h2 class="section-heading reveal">{{site.sections.experience.heading}}</h2>
-
-    <div class="exp-grid">
-
-      <!-- Education column -->
-      <div>
-        <div class="exp-col-title reveal">{{site.copy.education_title}} <span>{{site.copy.education_subtitle}}</span></div>
-        <div class="timeline">{{{render.education}}}</div>
-      </div>
-
-      <!-- Experience column -->
-      <div>
-        <div class="exp-col-title reveal">{{site.copy.experience_title}} <span>{{site.copy.experience_subtitle}}</span></div>
-        <div class="timeline">{{{render.experience}}}</div>
-      </div>
-
-    </div><!-- /exp-grid -->
+    <div class="section-label reveal">{{site.sections.education.label}}</div>
+    <h2 class="section-heading reveal" id="education-heading">{{site.sections.education.heading}}</h2>
+    <p class="section-sub education-intro reveal">{{site.sections.education.subtitle}}</p>
+    <div class="education-grid">{{{render.education}}}</div>
   </div>
 </section>
-
 
 <section id="research" aria-labelledby="research-heading">
   <div class="max-w">

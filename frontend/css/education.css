@@ -1,0 +1,42 @@
+/* Academic cards and the combined capabilities section. */
+#skills .capabilities-grid{display:grid;grid-template-columns:1fr;gap:42px;align-items:start;margin-top:40px}
+#skills .capabilities-title{font-family:'Outfit',sans-serif;font-size:18px;font-weight:650;color:var(--text-primary);margin:0 0 22px;display:flex;align-items:center;gap:12px}
+#skills .capabilities-title:before{content:'';width:22px;height:2px;background:var(--teal,#00d4aa)}
+#skills .skills-wrapper{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+#skills .skill-card{padding:22px 20px;min-width:0}
+#skills .sk-title{font-size:15px;overflow-wrap:anywhere}
+#skills .sk-tags{gap:7px}
+#skills .sk-tag{white-space:normal}
+#skills .capabilities-experience{scroll-margin-top:100px;min-width:0}
+#skills #experience{background:transparent}
+#skills .capabilities-experience .timeline{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+#skills .capabilities-experience .tl-item{display:block;padding:0;min-width:0}
+#skills .capabilities-experience .tl-left{display:none}
+#skills .tl-card{padding:22px 24px;height:100%}
+#skills .tl-desc{font-size:13px;line-height:1.8}
+#skills .tl-desc ul{padding-left:18px;margin-top:12px}
+#skills .tl-desc li+li{margin-top:8px}
+#skills .tl-card h4{font-size:17px}
+#education{background:radial-gradient(ellipse at 12% 85%,rgba(0,212,170,.055),transparent 55%),var(--bg-secondary);position:relative}
+#education .education-intro{font-family:Georgia,serif;font-style:italic;font-size:17px;max-width:none}
+.education-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin-top:40px}
+.education-card{border:1px solid var(--border-color);border-radius:26px;overflow:hidden;background:var(--bg-card,var(--bg-primary));box-shadow:0 12px 40px rgba(0,0,0,.08);transition:transform .25s ease,border-color .25s ease;min-width:0}
+.education-card:hover{transform:translateY(-5px);border-color:rgba(0,190,155,.45)}
+.education-photo{height:clamp(230px,24vw,310px);overflow:hidden;position:relative;background:var(--bg-secondary)}
+.education-photo picture{display:block;width:100%;height:100%}
+.education-photo img{width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(var(--image-zoom,1));transform-origin:left 50%}
+.education-photo-empty{display:grid;place-items:center;font-size:65px;color:var(--text-muted);background:linear-gradient(135deg,rgba(0,212,170,.06),transparent)}
+.education-body{padding:28px 30px 32px}
+.education-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+.education-type{display:inline-block;padding:5px 10px;border-radius:20px;background:rgba(0,190,155,.13);color:var(--text-primary);font-size:10px;letter-spacing:1px;text-transform:uppercase;font-weight:700}
+.education-status{font-size:10px;color:var(--teal,#00d4aa);display:flex;align-items:center;gap:6px}
+.education-status:before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor}
+.education-body h3{font-family:'Outfit',sans-serif;font-size:clamp(19px,1.65vw,24px);line-height:1.35;letter-spacing:-.4px;margin:0 0 8px;color:var(--text-primary)}
+.education-institution{color:inherit;text-decoration:none}.education-institution:hover{color:var(--teal,#00d4aa)}
+.education-degree{font-size:15px;font-weight:500;color:var(--teal,#00d4aa);line-height:1.6;margin:0 0 7px}
+.education-period{color:var(--text-muted);font-size:12px;letter-spacing:.2px;margin:0}
+.education-description{color:var(--text-secondary);font-size:13px;line-height:1.85;margin-top:20px;padding-top:17px;border-top:1px solid var(--border-color)}
+@media(max-width:1050px){#skills .capabilities-grid{grid-template-columns:1fr;gap:42px}#skills .skills-wrapper{grid-template-columns:repeat(3,minmax(0,1fr))}.education-body{padding:24px}.education-grid{gap:22px}}
+@media(max-width:900px){#skills .capabilities-experience .timeline{grid-template-columns:1fr}}
+@media(max-width:680px){#skills .skills-wrapper{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}#skills .skill-card{padding:18px 14px}#skills .sk-head{gap:9px}#skills .sk-title{font-size:13px}#skills .sk-icon{flex-shrink:0}#skills .tl-card{padding:20px}.education-grid{grid-template-columns:1fr;gap:24px;margin-top:28px}.education-photo{height:245px}.education-body{padding:24px}.education-card{border-radius:22px}#education .education-intro{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.education-card{transition:none}.education-card:hover{transform:none}}

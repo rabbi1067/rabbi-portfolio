@@ -277,7 +277,7 @@ def render_sections(data, source_root):
     if not sections['papers']:
         sections['papers'] = f'<div class="research-empty"><span aria-hidden="true">⌘</span><h3>{escape(data["site-settings"].get("copy",{}).get("research_empty_heading") or "Research in progress")}</h3><p>{escape(data["site-settings"].get("copy",{}).get("research_empty_text") or "Research papers and publication links will appear here as they are added.")}</p></div>'
     visibility = data['site-settings'].get('sections') or {}
-    sections['first_scroll_target'] = '#' + next((name for name in ['about','projects','skills','experience','research','certifications','reviews','contact'] if visibility.get(name,{}).get('visible',True)), 'site-footer')
+    sections['first_scroll_target'] = '#' + next((name for name in ['about','projects','skills','education','research','certifications','reviews','contact'] if visibility.get(name,{}).get('visible',True)), 'site-footer')
     sections['skills'] = ''
     for category in ordered(data['skills'].get('categories')):
         glyph = escape(category.get('icon'))
@@ -305,6 +305,15 @@ def render_sections(data, source_root):
             if responsibilities: description += '<ul>' + ''.join(f'<li>{rich(row)}</li>' for row in responsibilities) + '</ul>'
             dates = ' — '.join(filter(None,[item.get('start_date'), 'Present' if item.get('current') else item.get('end_date')]))
             period = dates if item.get('start_date') or item.get('end_date') else item.get('period') or ''
+            if collection == 'education':
+                image = item.get('image') or ''
+                zoom = max(1, min(3, float(item.get('image_zoom') or 100) / 100))
+                photo = f'<div class="education-photo" style="--image-zoom:{zoom}"><img src="{escape(image)}" alt="{escape(item.get("image_alt") or item.get("organization"))}" loading="lazy" decoding="async" /></div>' if image else '<div class="education-photo education-photo-empty" aria-hidden="true">⌂</div>'
+                kind = f'<span class="education-type">{escape(item.get("institution_type") or "Education")}</span>'
+                current = f'<span class="education-status">{escape(item["badge"])}</span>' if item.get('badge') else ''
+                organization = link(item.get('institution_url'), item.get('organization') or '', 'education-institution', escape(item.get('organization'))) if item.get('institution_url') else escape(item.get('organization'))
+                sections[collection] += f'<article class="education-card reveal">{photo}<div class="education-body"><div class="education-meta">{kind}{current}</div><h3>{organization}</h3><p class="education-degree">{escape(item["title"])}</p><p class="education-period">{escape(period)}</p><div class="education-description">{description}</div></div></article>'
+                continue
             sections[collection] += f'<div class="tl-item reveal"><div class="tl-left"><div class="tl-dot"></div>{line}</div><div class="tl-card">{badge}<h4>{escape(item["title"])}</h4><div class="tl-org">{escape(item.get("organization"))}</div><div class="tl-desc">{description}</div><div class="tl-year">{escape(period)}</div></div></div>'
     sections['achievements'] = ''
     achievements = ordered(data['achievements'].get('items'))
@@ -374,7 +383,7 @@ def hide_sections(source, settings):
     hidden = {name for name,item in settings.get('sections',{}).items() if item.get('visible') is False}
     if not hidden: return source
     document = Document(source)
-    nodes = [node for node in document.root.find_all(tag='section') if node.attrs.get('id') in hidden]
+    nodes = [node for node in document.root.find_all() if node.attrs.get('id') in hidden and (node.tag == 'section' or node.attrs.get('id') == 'experience')]
     for node in document.root.find_all(tag='a'):
         if node.attrs.get('href','').lstrip('#') in hidden and node.attrs.get('href','').startswith('#'):
             nodes.append(node.parent if node.parent.tag == 'li' or 'review-contact' in node.parent.attrs.get('class','').split() else node)
@@ -421,6 +430,8 @@ def responsive_images(source, output, base_path=''):
             widths, sizes = [240,480,720], '(max-width: 640px) 52vw, 250px'
         elif 'about-photo' in classes:
             widths, sizes = [320,640,960], '(max-width: 740px) 85vw, 420px'
+        elif 'education-photo' in node.parent.attrs.get('class','').split():
+            widths, sizes = [640,1280], '(max-width: 680px) 92vw, 46vw'
         elif 'review-avatar' in node.parent.attrs.get('class','').split() or node.attrs.get('width') in ['20','24']:
             widths, sizes = [48,96], '48px'
         else:

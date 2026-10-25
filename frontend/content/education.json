@@ -9,7 +9,12 @@
       "order": 1,
       "department": "",
       "gpa": "",
-      "gpa_label": "CGPA / GPA"
+      "gpa_label": "CGPA / GPA",
+      "image": "uploads/education/southeast-university-campus.png",
+      "image_alt": "Southeast University campus in Dhaka",
+      "image_zoom": 245,
+      "institution_type": "University",
+      "institution_url": "https://seu.edu.bd/"
     },
     {
       "title": "Higher Secondary Certificate (Science)",
@@ -20,7 +25,12 @@
       "order": 2,
       "department": "",
       "gpa": "",
-      "gpa_label": "CGPA / GPA"
+      "gpa_label": "CGPA / GPA",
+      "image": "uploads/education/rajshahi-government-city-college.jpg",
+      "image_alt": "Rajshahi Government City College campus",
+      "image_zoom": 100,
+      "institution_type": "College",
+      "institution_url": "https://rgcc.ac.bd/"
     }
   ]
 }
