@@ -40,3 +40,12 @@
 @media(max-width:900px){#skills .capabilities-experience .timeline{grid-template-columns:1fr}}
 @media(max-width:680px){#skills .skills-wrapper{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}#skills .skill-card{padding:18px 14px}#skills .sk-head{gap:9px}#skills .sk-title{font-size:13px}#skills .sk-icon{flex-shrink:0}#skills .tl-card{padding:20px}.education-grid{grid-template-columns:1fr;gap:24px;margin-top:28px}.education-photo{height:245px}.education-body{padding:24px}.education-card{border-radius:22px}#education .education-intro{font-size:16px}}
 @media(prefers-reduced-motion:reduce){.education-card{transition:none}.education-card:hover{transform:none}}
+
+/* Keep institution names readable within the campus photographs. */
+.education-photo>picture{position:relative;z-index:1}
+.education-photo-backdrop{position:absolute;inset:0;display:block;overflow:hidden;opacity:.4;filter:blur(12px);transform:scale(1.12)}
+.education-photo .education-photo-backdrop img{object-fit:cover;transform:none}
+.education-fit-contain>picture>img,.education-fit-contain>img{object-fit:contain;transform:none}
+.education-photo-caption{position:absolute;z-index:2;bottom:0;left:0;right:0;padding:36px 22px 17px;background:linear-gradient(transparent,rgba(3,14,20,.86));color:#fff;pointer-events:none}
+.education-photo-caption strong{display:block;font-family:'Outfit',sans-serif;font-size:clamp(15px,1.35vw,19px);line-height:1.35;letter-spacing:.1px;text-shadow:0 1px 5px #000}
+@media(max-width:680px){.education-photo-caption{padding:30px 18px 15px}.education-photo-caption strong{font-size:16px}}

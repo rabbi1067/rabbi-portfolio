@@ -45,7 +45,7 @@ class PortfolioBuildTests(unittest.TestCase):
 
     def test_original_sections_assets_and_effects(self):
         data=self.compile()
-        self.assertEqual([n.attrs['id'] for n in self.document.root.find_all(tag='section')], ['home','about','projects','skills','education','research','certifications','reviews','contact'])
+        self.assertEqual([n.attrs['id'] for n in self.document.root.find_all(tag='section')], ['home','about','education','projects','skills','research','certifications','reviews','contact'])
         card_count=sum(1 for item in data['projects']+data['research'] if item.get('published',True))
         for cls,count in [('proj-card',card_count),('skill-card',6),('tl-item',3),('education-card',2),('footer-social',4),('cert-card',len(build.ordered(data['achievements'].get('items')))),('sk-bar-fill',0)]:
             self.assertEqual(len(self.document.root.find_all(cls=cls)),count)
@@ -334,7 +334,7 @@ class PortfolioBuildTests(unittest.TestCase):
         self.assertEqual(len(self.document.root.find_all(cls='review-card')),4)
         self.assertEqual(len(self.document.root.find_all(cls='review-sample-label')),0)
         self.assertEqual(len(self.document.root.find_all(cls='review-rating')),0)
-        self.assertIn('Reviewer approved',self.output)
+        self.assertNotIn('Reviewer approved',self.output)
         self.assertIn('Md. Mijanur Rahman',self.output)
         self.assertIn('Asaduzzaman Noor',self.output)
         self.assertIn('Abid Hasan',self.output)

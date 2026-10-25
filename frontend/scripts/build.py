@@ -277,7 +277,7 @@ def render_sections(data, source_root):
     if not sections['papers']:
         sections['papers'] = f'<div class="research-empty"><span aria-hidden="true">⌘</span><h3>{escape(data["site-settings"].get("copy",{}).get("research_empty_heading") or "Research in progress")}</h3><p>{escape(data["site-settings"].get("copy",{}).get("research_empty_text") or "Research papers and publication links will appear here as they are added.")}</p></div>'
     visibility = data['site-settings'].get('sections') or {}
-    sections['first_scroll_target'] = '#' + next((name for name in ['about','projects','skills','education','research','certifications','reviews','contact'] if visibility.get(name,{}).get('visible',True)), 'site-footer')
+    sections['first_scroll_target'] = '#' + next((name for name in ['about','education','projects','skills','research','certifications','reviews','contact'] if visibility.get(name,{}).get('visible',True)), 'site-footer')
     sections['skills'] = ''
     for category in ordered(data['skills'].get('categories')):
         glyph = escape(category.get('icon'))
@@ -308,7 +308,10 @@ def render_sections(data, source_root):
             if collection == 'education':
                 image = item.get('image') or ''
                 zoom = max(1, min(3, float(item.get('image_zoom') or 100) / 100))
-                photo = f'<div class="education-photo" style="--image-zoom:{zoom}"><img src="{escape(image)}" alt="{escape(item.get("image_alt") or item.get("organization"))}" loading="lazy" decoding="async" /></div>' if image else '<div class="education-photo education-photo-empty" aria-hidden="true">⌂</div>'
+                fit = 'contain' if item.get('image_fit') == 'contain' else 'cover'
+                caption = f'<div class="education-photo-caption"><strong>{escape(item.get("organization"))}</strong></div>'
+                backdrop = f'<span class="education-photo-backdrop" aria-hidden="true"><img src="{escape(image)}" alt="{escape(item.get("organization"))} backdrop" loading="lazy" decoding="async" /></span>' if image and fit == 'contain' else ''
+                photo = f'<div class="education-photo education-fit-{fit}" style="--image-zoom:{zoom}">{backdrop}<img src="{escape(image)}" alt="{escape(item.get("image_alt") or item.get("organization"))}" loading="lazy" decoding="async" />{caption}</div>' if image else '<div class="education-photo education-photo-empty" aria-hidden="true">⌂</div>'
                 kind = f'<span class="education-type">{escape(item.get("institution_type") or "Education")}</span>'
                 current = f'<span class="education-status">{escape(item["badge"])}</span>' if item.get('badge') else ''
                 organization = link(item.get('institution_url'), item.get('organization') or '', 'education-institution', escape(item.get('organization'))) if item.get('institution_url') else escape(item.get('organization'))
@@ -353,10 +356,12 @@ def render_sections(data, source_root):
         sample = bool(item.get('sample'))
         approved = bool(item.get('reviewer_approved')) and not sample and bool(quote)
         stars = ''
-        approval_label = 'Sample review' if sample else 'Reviewer approved' if approved else 'Review'
+        approval_label = '<span class="review-approval review-sample-label">Sample review</span>' if sample else ''
         highlight = f'<div class="review-highlight"><span aria-hidden="true">✦</span>{escape(item["highlight"])}</div>' if item.get('highlight') else ''
         body = f'<blockquote>{escape(quote)}</blockquote>' if quote else '<div class="review-pending"><span>Review coming soon</span><p>Feedback will appear here once added.</p></div>'
-        sections['reviews'] += f'<figure class="review-card" role="listitem"><div class="review-card-top">{stars}<div class="review-quote-mark" aria-hidden="true">”</div></div>{body}{highlight}<figcaption class="review-card-footer"><div class="review-person"><div class="review-avatar">{avatar}</div><div class="review-person-copy"><strong>{escape(item["name"])}</strong><span>{escape(item.get("role"))}</span></div></div><div class="review-author-meta"><span class="review-approval {"review-sample-label" if sample else ""}">{approval_label}</span><div class="review-card-links">{source if quote and approved else ""}{profile_link}</div></div></figcaption></figure>'
+        review_links = (source if quote and approved else '') + profile_link
+        author_meta = f'<div class="review-author-meta">{approval_label}<div class="review-card-links">{review_links}</div></div>' if approval_label or review_links else ''
+        sections['reviews'] += f'<figure class="review-card" role="listitem"><div class="review-card-top">{stars}<div class="review-quote-mark" aria-hidden="true">”</div></div>{body}{highlight}<figcaption class="review-card-footer"><div class="review-person"><div class="review-avatar">{avatar}</div><div class="review-person-copy"><strong>{escape(item["name"])}</strong><span>{escape(item.get("role"))}</span></div></div>{author_meta}</figcaption></figure>'
     if sections['reviews']:
         options = f'data-autoplay="{str(reviews.get("autoplay", True)).lower()}" data-delay="{(reviews.get("autoplay_seconds") or 5) * 1000}" data-initial="{reviews.get("initial_review") or 1}"'
         sections['reviews'] = f'<div class="review-carousel" {options} role="region" aria-roledescription="carousel" aria-label="Reviews and testimonials"><div class="review-track" id="review-track" role="list" tabindex="0" aria-label="Reviewer cards">' + sections['reviews'] + '</div><div class="review-controls"><div class="review-pagination" aria-label="Review positions"></div><div class="review-navigation"><button type="button" class="review-control" data-review-prev aria-label="Previous reviews" aria-controls="review-track">‹</button><button type="button" class="review-control review-autoplay" data-review-autoplay aria-label="Pause automatic review movement" aria-pressed="false">Pause</button><button type="button" class="review-control" data-review-next aria-label="Next reviews" aria-controls="review-track">›</button></div></div><p class="sr-only review-status" role="status" aria-live="polite"></p></div><div class="review-contact"><span>' + escape(reviews.get('contact_prompt') or 'Have we worked together?') + '</span><a href="#contact">' + escape(reviews.get('cta_label') or 'Share your experience') + ' <span aria-hidden="true">↗</span></a></div>'

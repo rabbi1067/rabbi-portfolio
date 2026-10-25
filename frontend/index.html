@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="css/research.css?v=20261025-papers" />
   <link rel="stylesheet" href="css/footer.css?v=20261025-studio" />
   <link rel="stylesheet" href="css/certifications.css?v=20261025-ict-crop" />
-  <link rel="stylesheet" href="css/education.css?v=20261025-academic" />
+  <link rel="stylesheet" href="css/education.css?v=20261025-signage" />
 </head>
 <body>
 
@@ -59,9 +59,9 @@
   <ul class="nav-links" id="primary-navigation">
     <li><a href="#home" class="active">{{site.navigation.home}}</a></li>
     <li><a href="#about">{{site.navigation.about}}</a></li>
+    <li><a href="#education">{{site.navigation.education}}</a></li>
     <li><a href="#projects">{{site.navigation.projects}}</a></li>
     <li><a href="#skills">{{site.navigation.skills}}</a></li>
-    <li><a href="#education">{{site.navigation.education}}</a></li>
     <li><a href="#research">{{site.navigation.research}}</a></li>
     <li><a href="#certifications">{{site.navigation.certifications}}</a></li>
     <li><a href="#reviews">{{site.navigation.reviews}}</a></li>
@@ -188,6 +188,16 @@
 </section>
 
 
+<!-- ==================== EDUCATION ==================== -->
+<section id="education" aria-labelledby="education-heading">
+  <div class="max-w">
+    <div class="section-label reveal">{{site.sections.education.label}}</div>
+    <h2 class="section-heading reveal" id="education-heading">{{site.sections.education.heading}}</h2>
+    <p class="section-sub education-intro reveal">{{site.sections.education.subtitle}}</p>
+    <div class="education-grid">{{{render.education}}}</div>
+  </div>
+</section>
+
 <!-- ==================== PROJECTS ==================== -->
 <section id="projects">
   <div class="max-w">
@@ -217,15 +227,7 @@
   </div>
 </section>
 
-<!-- ==================== EDUCATION ==================== -->
-<section id="education" aria-labelledby="education-heading">
-  <div class="max-w">
-    <div class="section-label reveal">{{site.sections.education.label}}</div>
-    <h2 class="section-heading reveal" id="education-heading">{{site.sections.education.heading}}</h2>
-    <p class="section-sub education-intro reveal">{{site.sections.education.subtitle}}</p>
-    <div class="education-grid">{{{render.education}}}</div>
-  </div>
-</section>
+
 
 <section id="research" aria-labelledby="research-heading">
   <div class="max-w">

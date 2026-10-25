@@ -682,6 +682,18 @@
           "label": "Institution website",
           "widget": "string",
           "required": false
+        },
+        {
+          "name": "image_fit",
+          "label": "Campus image framing",
+          "widget": "select",
+          "options": [
+            "cover",
+            "contain"
+          ],
+          "default": "cover",
+          "required": false,
+          "hint": "Contain keeps the entire image and institution sign visible; cover fills the frame."
         }
       ],
       "default": [],
