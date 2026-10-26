@@ -13,7 +13,7 @@ try{
   const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto(origin+'/blogs/'+slug+'/',{waitUntil:'networkidle'});
   await page.waitForFunction(()=>document.documentElement.dataset.cmsReady==='true');
-  const related=page.getByRole('complementary',{name:'Related Articles'});
+  const related=page.getByRole('complementary',{name:'More from My Journey'});
   assert.equal(await related.locator('[data-blog-card]').count(),2);
   assert.equal(await related.locator(`[data-blog-slug="${slug}"]`).count(),0);
   await related.scrollIntoViewIfNeeded();
@@ -24,7 +24,7 @@ try{
   await related.locator('.blog-read').first().click();
   await page.waitForFunction(()=>document.documentElement.dataset.cmsReady==='true');
   assert.ok(page.url().includes(destination));
-  assert.equal(await page.getByRole('heading',{name:'Related Articles',exact:true}).count(),1);
+  assert.equal(await page.getByRole('heading',{name:'More from My Journey',exact:true}).count(),1);
   assert.deepEqual(errors,[]);await context.close();
  }
  console.log('Passed: related stories exclude the current article, links open another article, photos load and layouts fit desktop/tablet/phone.');

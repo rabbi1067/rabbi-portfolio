@@ -58,7 +58,7 @@ class BlogTests(unittest.TestCase):
         candidates = [self.post, unrelated, draft, matching]
         self.assertEqual([item['id'] for item in blogs.related_posts(self.post,candidates)], ['matching','unrelated'])
         result = blogs.render_related(self.post,candidates)
-        self.assertIn('Related Articles',result)
+        self.assertIn('More from My Journey',result)
         self.assertIn('blogs/matching/',result)
         self.assertNotIn('blogs/draft/',result)
         self.assertNotIn('blogs/'+self.post['id']+'/',result)

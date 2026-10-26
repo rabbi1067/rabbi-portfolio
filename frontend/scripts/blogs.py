@@ -68,7 +68,7 @@ def render_related(current, candidates):
     related = related_posts(current, candidates)
     if not related:
         return ''
-    return '<aside class="blog-related" aria-labelledby="related-heading"><div class="blog-heading"><div><span class="blog-eyebrow">Continue reading</span><h2 id="related-heading">Related Articles</h2><p>More experiences and ideas from my journey.</p></div><a class="blog-outline" href="blogs/">All stories <span aria-hidden="true">↗</span></a></div><div class="blog-grid">' + ''.join(map(card, related)) + '</div></aside>'
+    return '<aside class="blog-related" aria-labelledby="related-heading"><div class="blog-heading"><div><span class="blog-eyebrow">Continue reading</span><h2 id="related-heading">More from My Journey</h2><p>More experiences and ideas from my journey.</p></div><a class="blog-outline" href="blogs/">All stories <span aria-hidden="true">↗</span></a></div><div class="blog-grid">' + ''.join(map(card, related)) + '</div></aside>'
 
 
 def render_body(text):
