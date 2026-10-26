@@ -1,17 +1,28 @@
+/* Six stories first; filtering and search keep their own remaining count. */
 (() => {
-  const cards=[...document.querySelectorAll('[data-blog-card]')];
+ document.querySelectorAll('[data-blog-collection]').forEach(collection=>{
+  const cards=[...collection.querySelectorAll('[data-blog-card]')];
   const search=document.querySelector('[data-blog-search]');
   const filters=[...document.querySelectorAll('[data-blog-filter]')];
-  let category='all';
+  const more=collection.querySelector('[data-blog-more]');
+  const limit=Number(collection.dataset.previewLimit)||6;
+  let category='all',expanded=false;
   function update(){
-    const query=(search?.value||'').trim().toLocaleLowerCase();
-    let count=0;
-    cards.forEach(card=>{card.hidden=!( (category==='all'||card.dataset.category===category)&&card.textContent.toLocaleLowerCase().includes(query));if(!card.hidden)count++;});
-    const result=document.querySelector('[data-blog-result]');if(result)result.textContent=`${count} ${count===1?'story':'stories'}`;
-    const empty=document.querySelector('[data-blog-empty]');if(empty)empty.hidden=count>0;
+   const query=(search?.value||'').trim().toLocaleLowerCase();
+   const matching=cards.filter(card=>(category==='all'||card.dataset.category===category)&&card.textContent.toLocaleLowerCase().includes(query));
+   cards.forEach(card=>card.hidden=true);
+   const shown=expanded?matching:matching.slice(0,limit);
+   shown.forEach(card=>card.hidden=false);
+   const remaining=matching.length-shown.length;
+   if(more){more.hidden=remaining===0;more.textContent=`View More (${remaining}) ↓`;more.setAttribute('aria-expanded',String(expanded));}
+   const result=document.querySelector('[data-blog-result]');
+   if(result)result.textContent=(remaining?`${shown.length} of ${matching.length}`:String(matching.length))+(matching.length===1?' story':' stories');
+   const empty=document.querySelector('[data-blog-empty]');if(empty)empty.hidden=matching.length>0;
   }
-  filters.forEach(button=>button.addEventListener('click',()=>{category=button.dataset.blogFilter;filters.forEach(b=>{const active=b===button;b.classList.toggle('is-active',active);b.setAttribute('aria-pressed',String(active));});update();}));
-  search?.addEventListener('input',update);update();
+  more?.addEventListener('click',()=>{expanded=true;update();});
+  filters.forEach(button=>button.addEventListener('click',()=>{category=button.dataset.blogFilter;expanded=false;filters.forEach(b=>{const active=b===button;b.classList.toggle('is-active',active);b.setAttribute('aria-pressed',String(active));});update();}));
+  search?.addEventListener('input',()=>{expanded=false;update();});update();
+ });
 })();
 
 /* Match project galleries: gentle automatic changes, with manual and reduced-motion controls. */

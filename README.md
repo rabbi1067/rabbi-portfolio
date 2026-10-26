@@ -60,7 +60,7 @@ Administrator credentials belong **only on the backend**. The frontend receives 
 
 ### Publish a blog post
 
-Open **Administrator → Blogs → New record** (or **Blogs → New Blogs** in the GitHub CMS). Add a stable lowercase ID, title, publication date, cover image and article body. The optional gallery supports photos with captions; category, tags and homepage visibility are editable too. Use blank lines between paragraphs, `##` headings and `**bold**` emphasis. Set **Published** off to hide a story, or delete the record to remove it. Blog pages live at `blogs/` and `blogs/<id>/` and work with GitHub Pages or the Spring Boot content service.
+Open **Administrator → Blogs → New record** (or **Blogs → New Blogs** in the GitHub CMS). Add a stable lowercase ID, title, publication date, cover image and article body. The optional gallery supports photos with captions; category, tags and homepage visibility are editable too. Use blank lines between paragraphs, `##` headings and `**bold**` emphasis. Set **Published** off to hide a story, or delete the record to remove it. The portfolio and blog index show six matching stories first; View More reveals the remaining stories and updates its count when filtering or searching. Blog pages live at `blogs/` and `blogs/<id>/` and work with GitHub Pages or the Spring Boot content service.
 
 ### Run the static site locally
 

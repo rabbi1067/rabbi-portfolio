@@ -63,3 +63,17 @@ class BlogTests(unittest.TestCase):
         self.assertNotIn('blogs/draft/',result)
         self.assertNotIn('blogs/'+self.post['id']+'/',result)
         self.assertEqual(blogs.render_related(self.post,[self.post]),'')
+
+    def test_collections_keep_six_initial_cards_and_correct_remaining_count(self):
+        items=[dict(self.post,id=f'fixture-{index}',title=f'Fixture {index}',gallery=[]) for index in range(9)]
+        output=blogs.render_collection(items,'fixture-grid')
+        document=build.Document(output)
+        cards=[n for n in document.root.find_all(tag='article') if 'data-blog-card' in n.attrs]
+        self.assertEqual(len(cards),9)
+        self.assertEqual(sum('hidden' not in n.attrs for n in cards),6)
+        self.assertIn('View More (3)',output)
+        self.assertIn('aria-controls="fixture-grid"',output)
+        self.assertNotIn('data-blog-more',blogs.render_collection(items[:6],'fixture-grid').split('<noscript>')[0])
+        preview=blogs.render_blog_preview(dict(self.data,blogs=items))
+        self.assertIn('View More (3)',preview)
+        self.assertIn('Fixture 8',preview)

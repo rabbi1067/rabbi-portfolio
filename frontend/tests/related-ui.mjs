@@ -14,7 +14,7 @@ try{
   await page.goto(origin+'/blogs/'+slug+'/',{waitUntil:'networkidle'});
   await page.waitForFunction(()=>document.documentElement.dataset.cmsReady==='true');
   const related=page.getByRole('complementary',{name:'More from My Journey'});
-  assert.equal(await related.locator('[data-blog-card]').count(),2);
+  assert.equal(await related.locator('[data-blog-card]').count(),3);
   assert.equal(await related.locator(`[data-blog-slug="${slug}"]`).count(),0);
   await related.scrollIntoViewIfNeeded();
   for(const img of await related.locator('.blog-slide.is-active img').all())await img.evaluate(i=>i.decode());

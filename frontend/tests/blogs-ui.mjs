@@ -12,7 +12,7 @@ try{
   const page=await context.newPage();const errors=[];page.on('pageerror',error=>errors.push(error.message));
   await page.goto(origin+'/blogs/',{waitUntil:'networkidle'});
   await page.waitForFunction(()=>document.documentElement.dataset.cmsReady==='true');
-  assert.equal(await page.locator('[data-blog-card]').count(),3);
+  assert.equal(await page.locator('[data-blog-card]').count(),4);
   await page.locator('[data-blog-search]').fill('not-a-story');assert.equal(await page.locator('[data-blog-card]:visible').count(),0);
   await page.locator('[data-blog-search]').fill('meetup');assert.equal(await page.locator('[data-blog-card]:visible').count(),1);
   await page.locator('[data-blog-card]:visible .blog-read').click();

@@ -21,3 +21,5 @@
 @media(max-width:640px){.blog-related{margin-top:54px;padding-top:30px}.blog-related .blog-heading{gap:18px}.blog-related .blog-card-copy{padding:22px}}
 
 .blog-dots{flex:0 1 auto;max-width:calc(100% - 96px)}
+
+.blog-more-wrap{display:flex;justify-content:center;margin-top:32px}.blog-more-wrap:empty{display:none}.blog-more{background:var(--bg-secondary);cursor:pointer;align-items:center;gap:12px}.blog-more:hover{border-color:#00d4aa;color:#00d4aa}.blog-more[hidden]{display:none!important}[data-blog-collection] .blog-card[hidden]{display:none!important}

@@ -49,12 +49,24 @@ def card(post):
     return f'''<article class="blog-card" data-blog-card data-category="{esc(post.get('category'))}">{carousel(post)}<a href="blogs/{esc(post['id'])}/" data-blog-slug="{esc(post['id'])}"><div class="blog-card-copy"><span class="blog-category">{esc(post.get('category') or 'Journal')}</span><p class="blog-meta">{meta(post)}</p><h3>{esc(post['title'])}</h3><p>{esc(post.get('excerpt'))}</p><span class="blog-read">Read story <span aria-hidden="true">↗</span></span></div></a></article>'''
 
 
+def render_collection(items, grid_id, empty_text='New stories will be shared here.'):
+    cards = []
+    for index, item in enumerate(items):
+        markup = card(item)
+        if index >= 6:
+            markup = markup.replace('data-blog-card ', 'data-blog-card hidden ', 1)
+        cards.append(markup)
+    more = f'<button type="button" class="blog-outline blog-more" data-blog-more aria-expanded="false" aria-controls="{esc(grid_id)}">View More ({max(0,len(items)-6)}) <span aria-hidden="true">↓</span></button>' if len(items)>6 else ''
+    fallback = '<noscript><style>[data-blog-collection] .blog-card[hidden]{display:block!important}[data-blog-more]{display:none!important}</style></noscript>'
+    return '<div data-blog-collection data-preview-limit="6"><div class="blog-grid" id="' + esc(grid_id) + '">' + (''.join(cards) or '<p class="blog-empty">' + esc(empty_text) + '</p>') + '</div><div class="blog-more-wrap">' + more + '</div>' + fallback + '</div>'
+
+
 def render_blog_preview(data):
-    visible = [p for p in posts(data) if p.get('featured', True)][:3]
+    visible = [p for p in posts(data) if p.get('featured', True)]
     if not data.get('site-settings', {}).get('sections', {}).get('blogs', {}).get('visible', True):
         return ''
     settings = data.get('site-settings', {}).get('sections', {}).get('blogs', {})
-    return '<section class="blog-preview" id="blogs" aria-label="Blog stories"><div class="blog-heading"><div><span class="blog-eyebrow">' + esc(settings.get('label') or 'Notes & Perspectives') + '</span><h2>' + esc(settings.get('heading') or 'From the Blog') + '</h2><p>' + esc(settings.get('subtitle') or 'Experiences, ideas, and lessons from my journey.') + '</p></div><a class="blog-outline" href="blogs/">Explore blog ↗</a></div><div class="blog-grid">' + (''.join(map(card, visible)) or '<p class="blog-empty">New stories will be shared here.</p>') + '</div></section>'
+    return '<section class="blog-preview" id="blogs" aria-label="Blog stories"><div class="blog-heading"><div><span class="blog-eyebrow">' + esc(settings.get('label') or 'Notes & Perspectives') + '</span><h2>' + esc(settings.get('heading') or 'From the Blog') + '</h2><p>' + esc(settings.get('subtitle') or 'Experiences, ideas, and lessons from my journey.') + '</p></div><a class="blog-outline" href="blogs/">Explore blog ↗</a></div>' + render_collection(visible, 'blog-home-grid') + '</section>'
 
 
 def related_posts(current, candidates, limit=3):
@@ -105,7 +117,7 @@ def write_blog_pages(data, output, home_html, site_url, base_path, responsive_im
         target.write_text(source, encoding='utf-8')
     categories = sorted({p.get('category') for p in visible if p.get('category')})
     filters = '<button type="button" class="is-active" data-blog-filter="all" aria-pressed="true">All posts</button>' + ''.join(f'<button type="button" data-blog-filter="{esc(c)}" aria-pressed="false">{esc(c)}</button>' for c in categories)
-    listing = '<a class="blog-back" href="index.html">← Back to portfolio</a><header class="blog-intro"><span class="blog-eyebrow">Notes & Perspectives</span><h1>Stories behind<br /><em>the journey.</em></h1><p>Experiences, ideas, and lessons from programming, research, and building software.</p></header><div class="blog-toolbar"><div class="blog-filters" aria-label="Filter blog posts">' + filters + '</div><label class="blog-search"><span class="sr-only">Search blog posts</span><input type="search" placeholder="Search stories…" data-blog-search /></label></div><p class="blog-result" aria-live="polite" data-blog-result></p><div class="blog-grid">' + ''.join(map(card, visible)) + '</div><p class="blog-empty" data-blog-empty hidden>No stories found. Try a different search.</p>'
+    listing = '<a class="blog-back" href="index.html">← Back to portfolio</a><header class="blog-intro"><span class="blog-eyebrow">Notes & Perspectives</span><h1>Stories behind<br /><em>the journey.</em></h1><p>Experiences, ideas, and lessons from programming, research, and building software.</p></header><div class="blog-toolbar"><div class="blog-filters" aria-label="Filter blog posts">' + filters + '</div><label class="blog-search"><span class="sr-only">Search blog posts</span><input type="search" placeholder="Search stories…" data-blog-search /></label></div><p class="blog-result" aria-live="polite" data-blog-result></p>' + render_collection(visible, 'blog-list-grid', 'No stories published yet.') + '<p class="blog-empty" data-blog-empty hidden>No stories found. Try a different search.</p>'
     write('blogs/index.html', 'Blog | Fazley Rabbi', 'Stories and experiences from Fazley Rabbi’s programming and research journey.', listing)
     for post in visible:
 
