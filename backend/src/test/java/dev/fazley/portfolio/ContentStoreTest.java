@@ -27,5 +27,19 @@ class ContentStoreTest {
         restarted.delete("papers","integration-paper");
         assertFalse(restarted.page().contains("Integration paper"));
         assertTrue(restarted.export().length>0);
+        var blog=mapper.readTree("{\"id\":\"integration-blog\",\"title\":\"Integration story\",\"published_date\":\"2026-10-26\",\"cover\":\"images/fr.png\",\"body\":\"A test story.\",\"published\":true}");
+        restarted.save("blogs","integration-blog",blog,true);
+        assertTrue(restarted.blogPage("integration-blog").contains("Integration story"));
+        assertTrue(restarted.blogPage(null).contains("Integration story"));
+        var edited=mapper.readTree(blog.toString().replace("Integration story","Updated story"));
+        restarted.save("blogs","integration-blog",edited,false);
+        assertTrue(restarted.blogPage("integration-blog").contains("Updated story"));
+        var hidden=mapper.readTree(edited.toString().replace("true","false"));
+        restarted.save("blogs","integration-blog",hidden,false);
+        assertThrows(ApiProblem.class,()->restarted.blogPage("integration-blog"));
+        assertFalse(restarted.blogPage(null).contains("Updated story"));
+        restarted.delete("blogs","integration-blog");
+        assertThrows(ApiProblem.class,()->restarted.blogPage("integration-blog"));
+        assertThrows(ApiProblem.class,()->restarted.blogPage("../profile"));
     }
 }

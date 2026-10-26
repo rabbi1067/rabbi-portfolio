@@ -78,6 +78,6 @@
   document.addEventListener('click', event => {
     if (!event.target.closest('#navbar')) setMenu(false);
   });
-  const smallScreen = window.matchMedia('(max-width: 1100px)');
+  const smallScreen = window.matchMedia('(max-width: 1200px)');
   smallScreen.addEventListener('change', () => setMenu(false));
 })();

@@ -104,6 +104,7 @@ const navLinks  = document.querySelectorAll('.nav-links a');
 let navFrame = 0;
 function updateActiveSection() {
   navFrame = 0;
+  if (!sections.length) return;
   const activationLine = Math.min(window.innerHeight * .25, 180);
   let current = sections[0];
   sections.forEach(section => {
@@ -154,8 +155,9 @@ document.querySelectorAll('.skill-card').forEach(c => barObserver.observe(c));
 /* ---- 6. Smooth nav click ---- */
 navLinks.forEach(a => {
   a.addEventListener('click', e => {
-    e.preventDefault();
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) target.scrollIntoView({ behavior: reducedMotion.matches ? 'auto' : 'smooth' });
+    const href = a.getAttribute('href') || '';
+    if (!href.startsWith('#')) return;
+    const target = document.getElementById(href.slice(1));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: reducedMotion.matches ? 'auto' : 'smooth' }); }
   });
 });

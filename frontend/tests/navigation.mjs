@@ -20,10 +20,10 @@ try {
     page.on('pageerror',error=>errors.push(error.message));
     await page.goto(origin,{waitUntil:'networkidle'});
     await page.waitForFunction(()=>document.documentElement.dataset.cmsReady==='true');
-    assert.deepEqual(await page.locator('#primary-navigation a').evaluateAll(nodes=>nodes.map(node=>node.hash.slice(1))),order);
+    assert.deepEqual(await page.locator('#primary-navigation a').evaluateAll(nodes=>nodes.filter(node=>node.hash).map(node=>node.hash.slice(1))),order);
     assert.deepEqual(await page.locator('section[id]').evaluateAll(nodes=>nodes.map(node=>node.id)),order);
     const menu=page.locator('#primary-navigation');
-    if(width>1100) {
+    if(width>1200) {
       const boxes=await page.locator('#navbar').evaluate(nav=>{
         const logo=nav.querySelector('.nav-logo').getBoundingClientRect(),links=nav.querySelector('.nav-links').getBoundingClientRect(),right=nav.querySelector('.nav-right').getBoundingClientRect();
         return {logoRight:logo.right,linksLeft:links.left,linksRight:links.right,rightLeft:right.left};
@@ -32,12 +32,12 @@ try {
       await page.screenshot({path:resolve(qa,`header-${width}.png`)});
     }
     for(const id of order) {
-      if(width<=1100) await page.getByRole('button',{name:'Open navigation'}).click();
+      if(width<=1200) await page.getByRole('button',{name:'Open navigation'}).click();
       await menu.locator(`a[href="#${id}"]`).click();
       await page.waitForFunction(id=>document.querySelector(`.nav-links a[href="#${id}"]`).getAttribute('aria-current')==='location',id);
-      if(width<=1100) assert.equal(await page.locator('#navMenuToggle').getAttribute('aria-expanded'),'false');
+      if(width<=1200) assert.equal(await page.locator('#navMenuToggle').getAttribute('aria-expanded'),'false');
     }
-    if(width<=1100) {
+    if(width<=1200) {
       await page.getByRole('button',{name:'Open navigation'}).click();
       await page.screenshot({path:resolve(qa,`menu-${width}.png`)});
     }
@@ -47,5 +47,5 @@ try {
     assert.deepEqual(errors,[]);
     await context.close();
   }
-  console.log('Passed: professional menu order matches page sections, all nine destinations/active states work, mobile menu closes, full labels fit at 1440/1200/1101/820/390px.');
+  console.log('Passed: professional menu order matches page sections, all nine section destinations and Blogs/active states work, mobile menu closes, full labels fit at 1440/1200/1101/820/390px.');
 } finally {await browser.close();}

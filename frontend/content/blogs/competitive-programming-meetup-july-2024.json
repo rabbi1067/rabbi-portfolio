@@ -1,0 +1,32 @@
+{
+  "id": "competitive-programming-meetup-july-2024",
+  "title": "Competitive Programming Meetup — July 2024",
+  "excerpt": "A look back at a July 2024 meetup with the Southeast University programming community.",
+  "category": "Competitive Programming",
+  "tags": [
+    "Competitive Programming",
+    "Southeast University",
+    "Community"
+  ],
+  "published_date": "2026-10-26",
+  "event_label": "July 2024",
+  "author": "Fazley Rabbi",
+  "cover": "uploads/blogs/seu-programmers-meetup-july-2024-01.jpg",
+  "cover_alt": "Southeast University programmers together at a competitive programming meetup in July 2024",
+  "body": "## Southeast University Programmers\n\nIn July 2024, I joined fellow programmers from Southeast University for a competitive programming meetup. These two group photographs capture the gathering and a moment in my programming journey.\n\nCompetitive programming is an important part of my development as a Computer Science and Engineering student. I enjoy tackling challenging problems, refining my approach to algorithms, and continuing to learn alongside other programmers.\n\n## Moments from the Meetup\n\nThe photos below are a personal record of time spent with the Southeast University programming community.",
+  "gallery": [
+    {
+      "image": "uploads/blogs/seu-programmers-meetup-july-2024-01.jpg",
+      "alt": "Group photograph of Southeast University programmers at a July 2024 meetup",
+      "caption": "Competitive programming meetup with Southeast University programmers · July 2024"
+    },
+    {
+      "image": "uploads/blogs/seu-programmers-meetup-july-2024-02.jpg",
+      "alt": "Second group photograph from the Southeast University programmers meetup in July 2024",
+      "caption": "Another moment with the Southeast University programming community · July 2024"
+    }
+  ],
+  "featured": true,
+  "order": 1,
+  "published": true
+}

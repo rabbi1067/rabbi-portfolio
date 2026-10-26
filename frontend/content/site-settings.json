@@ -63,6 +63,12 @@
       "heading": "Academic Background",
       "subtitle": "Education and qualifications, from college to university.",
       "visible": true
+    },
+    "blogs": {
+      "label": "Notes & Perspectives",
+      "heading": "From the Blog",
+      "subtitle": "Experiences, ideas, and lessons from my journey in software, research, and competitive programming.",
+      "visible": true
     }
   },
   "navigation": {
@@ -75,7 +81,8 @@
     "contact": "Contact",
     "reviews": "Testimonials",
     "research": "Research",
-    "education": "Education"
+    "education": "Education",
+    "blogs": "Blogs"
   },
   "copy": {
     "education_title": "Education",

@@ -1457,6 +1457,40 @@
               "hint": "Hide the entire section and its navigation link without deleting content."
             }
           ]
+        },
+        {
+          "name": "blogs",
+          "label": "Blogs",
+          "widget": "object",
+          "required": false,
+          "fields": [
+            {
+              "name": "label",
+              "label": "Label",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "heading",
+              "label": "Heading",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "subtitle",
+              "label": "Subtitle",
+              "widget": "string",
+              "required": false
+            },
+            {
+              "name": "visible",
+              "label": "Show this section",
+              "widget": "boolean",
+              "required": false,
+              "default": true,
+              "hint": "Hide the entire section and its navigation link without deleting content."
+            }
+          ]
         }
       ]
     },
@@ -1523,6 +1557,12 @@
         {
           "name": "education",
           "label": "Education menu label",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "blogs",
+          "label": "Blogs menu label",
           "widget": "string",
           "required": false
         }
@@ -2626,6 +2666,131 @@
       "label": "Paper image (optional)",
       "widget": "image",
       "required": false
+    }
+  ],
+  "blogs": [
+    {
+      "name": "id",
+      "label": "Id",
+      "widget": "string",
+      "required": true,
+      "pattern": [
+        "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+        "Use lowercase letters, numbers and hyphens. Keep existing IDs stable."
+      ]
+    },
+    {
+      "name": "title",
+      "label": "Title",
+      "widget": "string",
+      "required": true
+    },
+    {
+      "name": "excerpt",
+      "label": "Short excerpt",
+      "widget": "text",
+      "required": false
+    },
+    {
+      "name": "category",
+      "label": "Category",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "tags",
+      "label": "Tags",
+      "widget": "list",
+      "required": false,
+      "max": 20
+    },
+    {
+      "name": "published_date",
+      "label": "Publication date (YYYY-MM-DD)",
+      "widget": "string",
+      "required": true
+    },
+    {
+      "name": "event_label",
+      "label": "Event date or context",
+      "widget": "string",
+      "required": false,
+      "hint": "For example July 2024. This is separate from the date the article is published."
+    },
+    {
+      "name": "author",
+      "label": "Author",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "cover",
+      "label": "Cover image",
+      "widget": "image",
+      "required": true
+    },
+    {
+      "name": "cover_alt",
+      "label": "Cover image description",
+      "widget": "string",
+      "required": false
+    },
+    {
+      "name": "body",
+      "label": "Article body",
+      "widget": "text",
+      "required": false,
+      "hint": "Separate paragraphs with a blank line. Use ## for headings, ### for subheadings, and **bold** for emphasis. HTML is escaped."
+    },
+    {
+      "name": "gallery",
+      "label": "Photo gallery",
+      "widget": "list",
+      "required": false,
+      "max": 30,
+      "fields": [
+        {
+          "name": "image",
+          "label": "Image",
+          "widget": "image",
+          "required": true
+        },
+        {
+          "name": "alt",
+          "label": "Image description",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "caption",
+          "label": "Caption",
+          "widget": "string",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "featured",
+      "label": "Show in homepage preview",
+      "widget": "boolean",
+      "required": false,
+      "default": true
+    },
+    {
+      "name": "order",
+      "label": "Order",
+      "widget": "number",
+      "required": false,
+      "value_type": "int",
+      "min": 0,
+      "default": 1
+    },
+    {
+      "name": "published",
+      "label": "Published",
+      "widget": "boolean",
+      "required": false,
+      "default": true
     }
   ]
 }

@@ -20,6 +20,10 @@ public class PortfolioController implements WebMvcConfigurer {
     @GetMapping("/api/public/health") Map<String,Object> health() { return Map.of("status","ok","revision",store.revision()); }
     @GetMapping(value="/api/public/page",produces=MediaType.TEXT_HTML_VALUE)
     ResponseEntity<String> page() throws IOException { return ResponseEntity.ok().cacheControl(CacheControl.noCache()).body(store.page()); }
+    @GetMapping(value={"/api/public/blogs","/blogs/"},produces=MediaType.TEXT_HTML_VALUE)
+    ResponseEntity<String> blogs() throws IOException { return ResponseEntity.ok().cacheControl(CacheControl.noCache()).body(store.blogPage(null)); }
+    @GetMapping(value={"/api/public/blogs/{id}","/blogs/{id}/"},produces=MediaType.TEXT_HTML_VALUE)
+    ResponseEntity<String> blog(@PathVariable String id) throws IOException { return ResponseEntity.ok().cacheControl(CacheControl.noCache()).body(store.blogPage(id)); }
     @PostMapping("/api/admin/login") Map<String,Object> login(@RequestBody Map<String,String> body,HttpServletRequest request) {
         return security.login(body.getOrDefault("email",""),body.getOrDefault("password",""),request.getRemoteAddr());
     }

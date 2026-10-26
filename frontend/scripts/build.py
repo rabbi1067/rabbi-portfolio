@@ -11,6 +11,7 @@ import hashlib
 from urllib.parse import quote as urlquote, unquote, urlsplit
 
 from html_tools import Document
+from blogs import render_blog_preview, write_blog_pages
 from PIL import Image, ImageOps
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -62,7 +63,7 @@ def validate_fields(value, definitions, location):
             raise ValueError(f'{where}: choose one of {field["options"]}')
         if isinstance(item, str) and (widget in ['image','file'] or name.endswith('_url') or name in ['url','file','certificate','image','thumbnail','profile_photo','hero_photo','about_photo','favicon']):
             safe_url(item)
-        if isinstance(item, str) and name in ['start_date','end_date','completion_date','added_date']:
+        if isinstance(item, str) and name in ['start_date','end_date','completion_date','added_date','published_date']:
             try: date.fromisoformat(item)
             except ValueError as error: raise ValueError(f'{where}: invalid calendar date') from error
         if name == 'border_color' and not re.fullmatch(r'rgba?\([\d\s.,]+\)|#[a-fA-F0-9]{3,8}', str(item)):
@@ -241,6 +242,7 @@ def render_sections(data, source_root):
     profile, contact = data['profile'], data['contact']
     sections = {}
     sections['highlights'] = render_highlights(data)
+    sections['blog_preview'] = render_blog_preview(data)
     sections['hero_photo'] = profile.get('hero_photo') or profile.get('profile_photo') or ''
     sections['availability'] = f'<div class="available-badge"><div class="badge-dot"></div>{escape(profile.get("availability_text"))}</div>' if profile.get('available') else ''
     visible_projects = ordered(data['projects'] + data['research'])
@@ -407,6 +409,8 @@ def render_template(source, context):
 
 def hide_sections(source, settings):
     hidden = {name for name,item in settings.get('sections',{}).items() if item.get('visible') is False}
+    if 'blogs' in hidden:
+        source = re.sub(r'<li><a[^>]*data-blog-nav[^>]*>.*?</a></li>', '', source, flags=re.S)
     if not hidden: return source
     document = Document(source)
     nodes = [node for node in document.root.find_all() if node.attrs.get('id') in hidden and (node.tag == 'section' or node.attrs.get('id') == 'experience')]
@@ -420,13 +424,14 @@ def hide_sections(source, settings):
     return source
 
 
-def validate_output(output, base_path=''):
-    source = (output/'index.html').read_text(encoding='utf-8')
+def validate_output(output, base_path='', page='index.html'):
+    source = (output/page).read_text(encoding='utf-8')
     if re.search(r'\{\{[\w.]', source): raise ValueError('Unrendered template field')
     document = Document(source)
     ids = [node.attrs['id'] for node in document.root.find_all() if node.attrs.get('id')]
     if len(ids) != len(set(ids)): raise ValueError('Duplicate HTML IDs')
     for node in document.root.find_all():
+        if node.tag == 'base': continue
         for attr in ['href','src']:
             value = node.attrs.get(attr)
             if not value: continue
@@ -456,6 +461,8 @@ def responsive_images(source, output, base_path=''):
             widths, sizes = [240,480,720], '(max-width: 640px) 52vw, 250px'
         elif 'about-photo' in classes:
             widths, sizes = [320,640,960], '(max-width: 740px) 85vw, 420px'
+        elif 'blog-hero-image' in classes or 'blog-gallery-image' in classes:
+            widths, sizes = [640,1280,1920], '(max-width: 900px) 92vw, 900px'
         elif 'education-photo' in node.parent.attrs.get('class','').split():
             widths, sizes = [640,1280], '(max-width: 680px) 92vw, 46vw'
         elif 'review-avatar' in node.parent.attrs.get('class','').split() or node.attrs.get('width') in ['20','24']:
@@ -518,7 +525,7 @@ def build(source_root=ROOT, output=None, repository=None, branch=None, site_url=
         data[name] = read_json(source_root/f'content/{name}.json')
         validate_fields(data[name], schemas[name], name)
     ids = set()
-    for name in ['projects','research','papers']:
+    for name in ['projects','research','papers','blogs']:
         data[name] = []
         for file in sorted((source_root/f'content/{name}').glob('*.json')):
             item = read_json(file)
@@ -552,13 +559,14 @@ def build(source_root=ROOT, output=None, repository=None, branch=None, site_url=
     result = responsive_images(result, output, base_path)
     result = result.replace('href="CV.pdf"', 'href="CV.pdf?v=' + hashlib.sha256(cv.read_bytes()).hexdigest()[:12] + '"')
     (output/'index.html').write_text(result,encoding='utf-8')
+    write_blog_pages(data,output,result,site_url,base_path,responsive_images)
     for file in ['CNAME','robots.txt','sitemap.xml']:
         if (source_root/file).exists(): shutil.copyfile(source_root/file, output/file)
     (output/'.nojekyll').touch()
     shutil.copytree(source_root/'admin', output/'admin')
     collections = [dict(name='portfolio',label='Portfolio settings',format='json',editor=dict(preview=False),files=[dict(name=name,label='Testimonials' if name == 'reviews' else name.replace('-',' ').title(),file=prefix+f'content/{name}.json',fields=schemas[name]) for name in ['profile','contact','skills','education','experience','achievements','resume','site-settings','reviews']])]
-    for name in ['projects','research','papers']:
-        collections.append(dict(name=name,label={'projects':'Projects','research':'Research projects','papers':'Research papers'}[name],folder=prefix+f'content/{name}',create=True,delete=True,extension='json',format='json',identifier_field='id',slug='{{slug}}',summary='{{title}} — order {{order}}',sortable_fields=['title','order','published'],fields=schemas[name],editor=dict(preview=False)))
+    for name in ['projects','research','papers','blogs']:
+        collections.append(dict(name=name,label={'projects':'Projects','research':'Research projects','papers':'Research papers','blogs':'Blogs'}[name],folder=prefix+f'content/{name}',create=True,delete=True,extension='json',format='json',identifier_field='id',slug='{{slug}}',summary='{{title}} — order {{order}}',sortable_fields=['title','order','published'],fields=schemas[name],editor=dict(preview=False)))
     config = dict(backend=dict(name='github',repo=repository or 'OWNER/REPOSITORY',branch=branch,base_url=settings.get('oauth_base_url') or 'https://configure-oauth.invalid',auth_endpoint='auth'),publish_mode='simple',media_folder=prefix+'uploads',public_folder=base_path+'/uploads',site_url=site_url,display_url=site_url,show_preview_links=False,collections=collections)
     (output/'admin/config.yml').write_text(json.dumps(config,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     (output/'admin/status.json').write_text(json.dumps(dict(configured=ready)),encoding='utf-8')
@@ -570,6 +578,8 @@ def build(source_root=ROOT, output=None, repository=None, branch=None, site_url=
         if urlsplit(api_base).scheme not in ['http','https']: raise ValueError('API_BASE_URL must be an HTTP or HTTPS URL')
     (output/'frontend-config.js').write_text('window.PORTFOLIO_CONFIG = ' + json.dumps(dict(apiBase=api_base)).replace('<','\\u003c') + ';\n', encoding='utf-8')
     validate_output(output,base_path)
+    for page in output.glob('blogs/**/index.html'):
+        validate_output(output,base_path,str(page.relative_to(output)))
     print(f'Built {output}: {len(data["projects"])+len(data["research"])} project records; OAuth {"configured (live verification still required)" if ready else "disabled until setup"}.')
     return data
 

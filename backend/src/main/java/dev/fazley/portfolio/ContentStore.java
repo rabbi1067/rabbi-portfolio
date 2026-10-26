@@ -16,7 +16,7 @@ import tools.jackson.databind.ObjectMapper;
 @Service
 public class ContentStore {
     static final Set<String> SINGLETONS = Set.of("profile","contact","skills","education","experience","achievements","resume","site-settings","reviews");
-    static final Set<String> COLLECTIONS = Set.of("projects","research","papers");
+    static final Set<String> COLLECTIONS = Set.of("projects","research","papers","blogs");
     private final Path workspace;
     private final String python, publicUrl;
     private final ObjectMapper mapper;
@@ -64,6 +64,12 @@ public class ContentStore {
         return result;
     }
     public synchronized String schema() throws IOException { return Files.readString(workspace.resolve("cms/schema.json")); }
+    public synchronized String blogPage(String id) throws IOException {
+        if (id != null && (!id.matches("[a-z0-9]+(?:-[a-z0-9]+)*") || id.length()>120)) throw new ApiProblem(404,"Story unavailable.");
+        Path page=dist().resolve(id==null?"blogs/index.html":"blogs/"+id+"/index.html");
+        if (!Files.isRegularFile(page)) throw new ApiProblem(404,"Story unavailable.");
+        return Files.readString(page);
+    }
     public synchronized String page() throws IOException { return Files.readString(dist().resolve("index.html")); }
     public synchronized String revision() { return revision; }
 

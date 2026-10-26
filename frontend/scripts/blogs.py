@@ -1,0 +1,78 @@
+"""Static, accessible blog pages shared by GitHub Pages and the content service."""
+import html
+import re
+from datetime import date
+from html_tools import Document
+
+
+def esc(value):
+    return html.escape(str(value or ''), quote=True)
+
+
+def posts(data):
+    if not data.get('site-settings', {}).get('sections', {}).get('blogs', {}).get('visible', True):
+        return []
+    return sorted((p for p in data.get('blogs', []) if p.get('published', True)), key=lambda p: (p.get('published_date', ''), -p.get('order', 0)), reverse=True)
+
+
+def reading_time(post):
+    return max(1, (len(post.get('body', '').split()) + 199) // 200)
+
+
+def meta(post):
+    return esc(post.get('event_label') or date.fromisoformat(post['published_date']).strftime('%B %Y')) + ' · ' + str(reading_time(post)) + ' min read'
+
+
+def card(post):
+    return f'''<article class="blog-card" data-blog-card data-category="{esc(post.get('category'))}"><a href="blogs/{esc(post['id'])}/" data-blog-slug="{esc(post['id'])}"><div class="blog-card-media"><img src="{esc(post['cover'])}" alt="{esc(post.get('cover_alt') or post['title'])}" loading="lazy" /></div><div class="blog-card-copy"><span class="blog-category">{esc(post.get('category') or 'Journal')}</span><p class="blog-meta">{meta(post)}</p><h3>{esc(post['title'])}</h3><p>{esc(post.get('excerpt'))}</p><span class="blog-read">Read story <span aria-hidden="true">↗</span></span></div></a></article>'''
+
+
+def render_blog_preview(data):
+    visible = [p for p in posts(data) if p.get('featured', True)][:3]
+    if not visible:
+        return ''
+    settings = data.get('site-settings', {}).get('sections', {}).get('blogs', {})
+    return '<div class="blog-preview" id="blog-preview"><div class="blog-heading"><div><span class="blog-eyebrow">' + esc(settings.get('label') or 'Notes & Perspectives') + '</span><h2>' + esc(settings.get('heading') or 'From the Blog') + '</h2><p>' + esc(settings.get('subtitle') or 'Experiences, ideas, and lessons from my journey.') + '</p></div><a class="blog-outline" href="blogs/">Explore blog ↗</a></div><div class="blog-grid">' + ''.join(map(card, visible)) + '</div></div>'
+
+
+def render_body(text):
+    blocks = []
+    for block in re.split(r'\n\s*\n', text.strip()):
+        tag = 'p'
+        if block.startswith('### '): tag, block = 'h3', block[4:]
+        elif block.startswith('## '): tag, block = 'h2', block[3:]
+        content = re.sub(r'\*\*([^*]+)\*\*', r'<strong>\1</strong>', esc(block)).replace('\n', '<br />')
+        blocks.append(f'<{tag}>{content}</{tag}>')
+    return ''.join(blocks)
+
+
+def write_blog_pages(data, output, home_html, site_url, base_path, responsive_images):
+    document = Document(home_html)
+    head = document.inside(document.root.find(tag='head'))
+    nav = document.outside(document.root.find(tag='nav', id='navbar'))
+    footer = document.outside(document.root.find(tag='footer'))
+    nav = re.sub(r' class="active"', '', nav)
+    nav = nav.replace('data-blog-nav', 'data-blog-nav class="active" aria-current="page"')
+    shared = lambda value: re.sub(r'href="#([^" ]+)"', r'href="index.html#\1"', value)
+    nav, footer = shared(nav), shared(footer)
+    visible = posts(data)
+    def write(relative, title, description, content, slug=''):
+        page_head = re.sub(r'<title>.*?</title>', '<title>' + esc(title) + '</title>', head, flags=re.S)
+        page_head = re.sub(r'<meta (?:name="description"|property="og:(?:title|description|url|type)")[^>]*>', '', page_head)
+        page_head = re.sub(r'<link rel="canonical"[^>]*>', '', page_head)
+        url = site_url + '/' + relative.removesuffix('index.html')
+        page_head = '<base href="' + ('../../' if slug else '../') + '" />' + page_head + f'<meta name="description" content="{esc(description)}" /><meta property="og:title" content="{esc(title)}" /><meta property="og:description" content="{esc(description)}" /><meta property="og:type" content="{ "article" if slug else "website" }" /><meta property="og:url" content="{esc(url)}" /><link rel="canonical" href="{esc(url)}" />'
+        source = '<!DOCTYPE html><html lang="en" data-theme="dark"><head>' + page_head + '</head><body class="blog-page" data-blog-page="' + esc(slug) + '"><div class="cursor" id="cursor"></div><div class="cursor-follower" id="follower"></div>' + nav + '<main class="blog-main">' + content + '</main>' + footer + '<script src="frontend-config.js"></script><script src="js/blog-runtime.js"></script></body></html>'
+        source = responsive_images(source, output, base_path)
+        target = output / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(source, encoding='utf-8')
+    categories = sorted({p.get('category') for p in visible if p.get('category')})
+    filters = '<button type="button" class="is-active" data-blog-filter="all" aria-pressed="true">All posts</button>' + ''.join(f'<button type="button" data-blog-filter="{esc(c)}" aria-pressed="false">{esc(c)}</button>' for c in categories)
+    listing = '<a class="blog-back" href="index.html">← Back to portfolio</a><header class="blog-intro"><span class="blog-eyebrow">Notes & Perspectives</span><h1>Stories behind<br /><em>the journey.</em></h1><p>Experiences, ideas, and lessons from programming, research, and building software.</p></header><div class="blog-toolbar"><div class="blog-filters" aria-label="Filter blog posts">' + filters + '</div><label class="blog-search"><span class="sr-only">Search blog posts</span><input type="search" placeholder="Search stories…" data-blog-search /></label></div><p class="blog-result" aria-live="polite" data-blog-result></p><div class="blog-grid">' + ''.join(map(card, visible)) + '</div><p class="blog-empty" data-blog-empty hidden>No stories found. Try a different search.</p>'
+    write('blogs/index.html', 'Blog | Fazley Rabbi', 'Stories and experiences from Fazley Rabbi’s programming and research journey.', listing)
+    for post in visible:
+        gallery = ''.join(f'<figure class="blog-photo"><img class="blog-gallery-image" src="{esc(item["image"])}" alt="{esc(item.get("alt") or post["title"])}" loading="lazy" /><figcaption>{esc(item.get("caption"))}</figcaption></figure>' for item in post.get('gallery', []))
+        tags = ''.join('<span>' + esc(tag) + '</span>' for tag in post.get('tags', []))
+        article = '<a class="blog-back" href="blogs/">← All stories</a><article class="blog-article"><header class="blog-article-header"><span class="blog-category">' + esc(post.get('category') or 'Journal') + '</span><h1>' + esc(post['title']) + '</h1><p class="blog-deck">' + esc(post.get('excerpt')) + '</p><div class="blog-byline"><span>By ' + esc(post.get('author') or 'Fazley Rabbi') + '</span><span>' + meta(post) + '</span></div></header><div class="blog-hero"><img class="blog-hero-image" src="' + esc(post['cover']) + '" alt="' + esc(post.get('cover_alt') or post['title']) + '" fetchpriority="high" /></div><div class="blog-prose">' + render_body(post.get('body', '')) + '</div><div class="blog-photos">' + gallery + '</div><footer class="blog-article-end"><div class="blog-tags">' + tags + '</div><a href="blogs/">← Back to all stories</a></footer></article>'
+        write('blogs/' + post['id'] + '/index.html', post['title'] + ' | Fazley Rabbi', post.get('excerpt', ''), article, post['id'])

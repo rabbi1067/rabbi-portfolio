@@ -24,6 +24,7 @@
           const [url,...size]=part.trim().split(/\s+/); return [mediaUrl(url),...size].join(' ');
         }).join(', '));
       });
+      incoming.querySelectorAll('[data-blog-slug]').forEach(a=>a.href=api+'/blogs/'+encodeURIComponent(a.dataset.blogSlug)+'/');
       document.body.replaceChildren(...Array.from(incoming.body.childNodes));
       document.title=incoming.title;
       const description=incoming.querySelector('meta[name="description"]')?.content;

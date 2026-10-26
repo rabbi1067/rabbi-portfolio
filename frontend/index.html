@@ -37,6 +37,7 @@
   <link rel="stylesheet" href="css/certifications.css?v=20261025-ict-crop" />
   <link rel="stylesheet" href="css/education.css?v=20261026-campus-focus" />
   <link rel="stylesheet" href="css/highlights.css?v=20261026-compact" />
+  <link rel="stylesheet" href="css/blogs.css?v=20261026-journal" />
 </head>
 <body>
 
@@ -64,6 +65,7 @@
     <li><a href="#projects">{{site.navigation.projects}}</a></li>
     <li><a href="#skills">{{site.navigation.skills}}</a></li>
     <li><a href="#research">{{site.navigation.research}}</a></li>
+    <li><a href="blogs/" data-blog-nav>{{site.navigation.blogs}}</a></li>
     <li><a href="#certifications">{{site.navigation.certifications}}</a></li>
     <li><a href="#reviews">{{site.navigation.reviews}}</a></li>
     <li><a href="#contact">{{site.navigation.contact}}</a></li>
@@ -242,6 +244,8 @@
 </section>
 
 <!-- ==================== CERTIFICATIONS ==================== -->
+{{{render.blog_preview}}}
+
 <section id="certifications">
   <div class="max-w">
     <div class="section-label reveal">{{site.sections.certifications.label}}</div>

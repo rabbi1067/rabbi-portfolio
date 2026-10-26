@@ -58,6 +58,10 @@ The backend can also serve the frontend itself. Every portfolio section is edita
 
 Administrator credentials belong **only on the backend**. The frontend receives the public `API_BASE_URL`. Backend edits live on its persistent disk; they do not automatically become Git commits. A backup export is available in Studio.
 
+### Publish a blog post
+
+Open **Administrator → Blogs → New record** (or **Blogs → New Blogs** in the GitHub CMS). Add a stable lowercase ID, title, publication date, cover image and article body. The optional gallery supports photos with captions; category, tags and homepage visibility are editable too. Use blank lines between paragraphs, `##` headings and `**bold**` emphasis. Set **Published** off to hide a story, or delete the record to remove it. Blog pages live at `blogs/` and `blogs/<id>/` and work with GitHub Pages or the Spring Boot content service.
+
 ### Run the static site locally
 
 ```sh

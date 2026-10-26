@@ -34,7 +34,7 @@ try {
       await page.getByRole('textbox',{name:'Password',exact:true}).fill(process.env.SMOKE_PASSWORD);
       await page.getByRole('button',{name:'Sign in to Studio →',exact:true}).click();
       await page.getByRole('heading',{name:'Home & About',exact:true}).waitFor();
-      assert.equal(await page.getByRole('navigation',{name:'Content sections'}).locator('button').count(),12);
+      assert.equal(await page.getByRole('navigation',{name:'Content sections'}).locator('button').count(),13);
       await page.getByRole('button',{name:'Projects',exact:true}).click();
       assert.ok(await page.locator('.record').count()>=6);
       await page.screenshot({path:resolve(qa,'studio-projects.png')});
@@ -47,5 +47,5 @@ try {
     await context.close();
   }
   assert.deepEqual(errors,[]);
-  console.log('Passed: connected frontend, backend media URLs, preserved certificates preview, responsive dark/light footer, administrator login, all 12 editor sections, project list and publication fields.');
+  console.log('Passed: connected frontend, backend media URLs, preserved certificates preview, responsive dark/light footer, administrator login, all 13 editor sections, project list and publication fields.');
 }finally{await browser.close();}
