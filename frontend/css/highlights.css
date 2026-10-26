@@ -1,5 +1,5 @@
 /* A compact, curated gallery connecting the hero to the rest of the portfolio. */
-.selected-highlights{scroll-margin-top:100px;padding:32px 5% 60px;background:var(--bg-primary);overflow:hidden}
+.selected-highlights{scroll-margin-top:100px;padding:32px 5% 46px;background:var(--bg-primary);overflow:hidden}
 .highlights-heading-row{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;margin-bottom:22px}
 .highlights-eyebrow{display:flex;align-items:center;gap:8px;text-transform:uppercase;font-size:9px;letter-spacing:2px;color:var(--text-muted);font-weight:600;margin-bottom:10px}
 .highlights-eyebrow i,.highlights-footnote i{width:5px;height:5px;border-radius:50%;background:#00c9a5;box-shadow:0 0 12px rgba(0,212,170,.3);display:inline-block;flex:none}
@@ -12,7 +12,7 @@
 .highlights-frame{position:relative;margin:0 -4px}
 .highlights-rail{position:relative;display:flex;gap:16px;overflow-x:auto;overflow-y:hidden;padding:8px 4px 14px;scrollbar-width:none;scroll-behavior:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y}
 .highlights-rail::-webkit-scrollbar{display:none}
-.highlight-card{position:relative;isolation:isolate;flex:0 0 clamp(248px,24vw,292px);height:234px;overflow:hidden;border-radius:18px;border:1px solid var(--border-color);text-decoration:none;color:#fff;background:radial-gradient(ellipse at 40% 10%,#1d504b,#0d191e 75%);transition:transform .25s,border-color .25s,box-shadow .25s;scroll-margin-top:110px;-webkit-user-drag:none;user-select:none}
+.highlight-card{position:relative;isolation:isolate;flex:0 0 clamp(240px,24vw,275px);height:218px;overflow:hidden;border-radius:18px;border:1px solid var(--border-color);text-decoration:none;color:#fff;background:radial-gradient(ellipse at 40% 10%,#1d504b,#0d191e 75%);transition:transform .25s,border-color .25s,box-shadow .25s;scroll-margin-top:110px;-webkit-user-drag:none;user-select:none}
 .highlight-card:hover{transform:translateY(-4px);border-color:rgba(0,212,170,.7);box-shadow:0 10px 28px rgba(0,0,0,.18)}
 .highlight-media{position:absolute;inset:0;overflow:hidden;background:#0d171c}
 .highlight-media picture{display:block;width:100%;height:100%}
@@ -35,7 +35,7 @@
 .highlights-counter{font-variant-numeric:tabular-nums;white-space:nowrap}
 .highlights-rail:focus-visible,.highlight-card:focus-visible,.highlights-controls button:focus-visible{outline:2px solid #00b997;outline-offset:3px}
 .proj-card{scroll-margin-top:100px}
-@media(max-width:680px){.selected-highlights{scroll-margin-top:100px;padding:22px 5% 40px}.highlights-heading-row{gap:14px;align-items:center;margin-bottom:17px}.highlights-heading-row p{font-size:11px;max-width:270px}.highlights-heading-row h2{font-size:25px}.highlights-controls{gap:5px}.highlights-controls button{width:30px;height:30px;font-size:13px}.highlights-controls [data-highlights-prev]{display:none}.highlight-card{flex-basis:78vw;max-width:292px;height:230px}.highlights-rail{gap:12px}.highlights-eyebrow{font-size:8px;letter-spacing:1.4px}.highlights-footnote{font-size:8px}.highlights-counter{display:none}}
+@media(max-width:680px){.selected-highlights{scroll-margin-top:100px;padding:22px 5% 34px}.highlights-heading-row{gap:14px;align-items:center;margin-bottom:17px}.highlights-heading-row p{font-size:11px;max-width:270px}.highlights-heading-row h2{font-size:25px}.highlights-controls{gap:5px}.highlights-controls button{width:30px;height:30px;font-size:13px}.highlights-controls [data-highlights-prev]{display:none}.highlight-card{flex-basis:78vw;max-width:292px;height:212px}.highlights-rail{gap:12px}.highlights-eyebrow{font-size:8px;letter-spacing:1.4px}.highlights-footnote{font-size:8px}.highlights-counter{display:none}}
 @media(max-width:360px){.highlights-heading-row{align-items:flex-start}.highlights-heading-row h2{font-size:23px}.highlights-controls{padding-top:26px}.highlights-controls button{width:28px;height:28px}}
 @media(prefers-reduced-motion:reduce){.highlight-card,.highlight-media img,.highlight-arrow{transition:none}.highlight-card:hover{transform:none}}
 
