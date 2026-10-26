@@ -626,13 +626,13 @@ class PortfolioBuildTests(unittest.TestCase):
         self.compile()
         region=self.document.root.find(id='selected-highlights')
         self.assertIsNotNone(region)
-        self.assertEqual(len(region.find_all(cls='highlight-card')),8)
+        self.assertEqual(len(region.find_all(cls='highlight-card')),7)
         self.assertNotIn('View all',self.document.outside(region))
         project=self.json('content/projects/orbitcart.json')
         project['published']=False
         self.write('content/projects/orbitcart.json',project)
         site=self.json('content/site-settings.json')
-        site['sections']['education']['visible']=False
+        site['sections']['skills']['visible']=False
         self.write('content/site-settings.json',site)
         profile=self.json('content/profile.json')
         profile['highlights']['heading']='Edited highlights'
@@ -640,7 +640,7 @@ class PortfolioBuildTests(unittest.TestCase):
         self.write('content/profile.json',profile)
         self.compile()
         region=self.document.root.find(id='selected-highlights')
-        self.assertEqual(len(region.find_all(cls='highlight-card')),6)
+        self.assertEqual(len(region.find_all(cls='highlight-card')),4)
         self.assertIn('Edited highlights',self.document.outside(region))
         self.assertNotIn('href="#project-orbitcart"',self.document.outside(region))
         profile['highlights']['enabled']=False

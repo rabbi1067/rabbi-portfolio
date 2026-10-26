@@ -133,12 +133,12 @@
         "published": true
       },
       {
-        "title": "CityFix",
+        "title": "AgroLink",
         "category": "Full-stack development",
-        "description": "Turning civic reports into tracked resolutions.",
-        "image": "uploads/cityfix-citizen-dashboard.png",
-        "image_alt": "CityFix citizen complaint dashboard",
-        "url": "#project-cityfix",
+        "description": "Connecting farmers and buyers through smarter trade.",
+        "image": "uploads/argolink-hero.png",
+        "image_alt": "AgroLink farm to market platform homepage",
+        "url": "#project-argolink",
         "fit": "cover",
         "order": 4,
         "published": true
@@ -155,12 +155,12 @@
         "published": true
       },
       {
-        "title": "Southeast University",
-        "category": "Academic journey",
-        "description": "Computer Science & Engineering · Dhaka",
-        "image": "uploads/education/southeast-university-front.jpg",
-        "image_alt": "Southeast University campus in Dhaka",
-        "url": "#education",
+        "title": "Grand Meridian Resort",
+        "category": "Hotel booking platform",
+        "description": "Room discovery, reservations, and guest services.",
+        "image": "uploads/hotel-home.png",
+        "image_alt": "Grand Meridian Resort hotel booking homepage",
+        "url": "#project-hotel-booking",
         "fit": "cover",
         "order": 6,
         "published": true
@@ -174,17 +174,6 @@
         "url": "#certifications",
         "fit": "contain",
         "order": 7,
-        "published": true
-      },
-      {
-        "title": "People & Collaboration",
-        "category": "Collaborator feedback",
-        "description": "Perspectives from the people I work with.",
-        "image": "uploads/reviewers/mijanur-rahman-cutout-v2.png",
-        "image_alt": "Md. Mijanur Rahman",
-        "url": "#reviews",
-        "fit": "portrait",
-        "order": 8,
         "published": true
       }
     ]

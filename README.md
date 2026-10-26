@@ -32,7 +32,7 @@ My portfolio brings together software projects, AI and machine learning explorat
 | [Skills & Experience](https://rabbi1067.github.io/rabbi-portfolio/#skills) | Languages, tools, roles and practical experience |
 | [Education](https://rabbi1067.github.io/rabbi-portfolio/#education) | Academic background with campus photos, qualifications and study periods |
 | [Certifications & Awards](https://rabbi1067.github.io/rabbi-portfolio/#certifications) | Credentials with optional verification and certificate links |
-| [Reviews](https://rabbi1067.github.io/rabbi-portfolio/#reviews) | Reviewer-approved feedback in a responsive carousel |
+| [Testimonials](https://rabbi1067.github.io/rabbi-portfolio/#reviews) | Reviewer-approved feedback in a responsive carousel |
 | [Contact](https://rabbi1067.github.io/rabbi-portfolio/#contact) | Social links, email and the contact form |
 
 ### Built with care
@@ -83,7 +83,7 @@ mvn -f backend/pom.xml test
 
 1. Open the [admin panel](https://rabbi1067.github.io/rabbi-portfolio/admin/) and choose **Use existing GitHub content manager**, then **Login with GitHub**.
 2. Sign in with an authorized GitHub account that has repository write access.
-3. Select **Portfolio settings**, **Projects**, **Research**, **Certifications** or **Reviews**; edit the record and choose **Publish**.
+3. Select **Portfolio settings**, **Projects**, **Research**, **Certifications** or **Testimonials**; edit the record and choose **Publish**.
 4. To hide an item, turn off **Published**. Use **Delete** to remove the record.
 5. Wait for [Build and deploy portfolio](https://github.com/rabbi1067/rabbi-portfolio/actions/workflows/pages.yml) to finish, then refresh the website.
 

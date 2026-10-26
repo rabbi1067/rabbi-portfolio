@@ -19,6 +19,7 @@ try {
     const errors=[];
     page.on('pageerror',error=>errors.push(error.message));
     await page.goto(origin,{waitUntil:'networkidle'});
+    await page.waitForFunction(()=>document.documentElement.dataset.cmsReady==='true');
     assert.deepEqual(await page.locator('#primary-navigation a').evaluateAll(nodes=>nodes.map(node=>node.hash.slice(1))),order);
     assert.deepEqual(await page.locator('section[id]').evaluateAll(nodes=>nodes.map(node=>node.id)),order);
     const menu=page.locator('#primary-navigation');
@@ -41,7 +42,7 @@ try {
       await page.screenshot({path:resolve(qa,`menu-${width}.png`)});
     }
     assert.equal(await menu.getByRole('link',{name:'Certifications',exact:true}).count(),1);
-    assert.equal(await menu.getByRole('link',{name:'Reviews',exact:true}).count(),1);
+    assert.equal(await menu.getByRole('link',{name:'Testimonials',exact:true}).count(),1);
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),width);
     assert.deepEqual(errors,[]);
     await context.close();

@@ -16,4 +16,4 @@ Administrator Studio → Home & About → Selected Highlights. The same fields a
 
 The gallery scrolls gently while visible. Hover or keyboard focus pauses movement; touch scrolling temporarily pauses autoplay. Previous/next and Play/Pause controls work independently. Reduced-motion preferences disable autoplay by default. Loop duplicates are hidden from assistive technology and excluded from keyboard tab order. No animation runs while the page/gallery is out of view, or after Pause is selected.
 
-The current eight highlights use existing portfolio assets: OrbitCart, ICPC 2024, THIRA, CityFix, AI/ML training, Southeast University, CodeChef streak and collaborator feedback. Gallery selection is separate from project publication order and can be edited at any time.
+The current seven highlights use existing portfolio assets: OrbitCart, ICPC 2024, THIRA, AgroLink, AI/ML training, Grand Meridian Resort hotel booking and the CodeChef streak. Gallery selection is separate from project publication order and can be edited at any time.

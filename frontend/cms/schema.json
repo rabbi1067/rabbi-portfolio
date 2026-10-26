@@ -1324,7 +1324,7 @@
         },
         {
           "name": "reviews",
-          "label": "Reviews",
+          "label": "Testimonials",
           "widget": "object",
           "required": false,
           "fields": [
@@ -1510,7 +1510,7 @@
         },
         {
           "name": "reviews",
-          "label": "Review menu label",
+          "label": "Testimonials menu label",
           "widget": "string",
           "required": false
         },
@@ -2310,7 +2310,7 @@
   "reviews": [
     {
       "name": "items",
-      "label": "Reviews",
+      "label": "Testimonials",
       "widget": "list",
       "required": false,
       "fields": [

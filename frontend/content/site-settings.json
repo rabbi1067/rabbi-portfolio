@@ -47,9 +47,9 @@
     },
     "reviews": {
       "label": "Collaboration & Feedback",
-      "heading": "my collaborators say",
+      "heading": "Testimonials",
       "subtitle": "Thoughts and experiences from the people I work with.",
-      "heading_accent": "What",
+      "heading_accent": "",
       "visible": true
     },
     "research": {
@@ -73,7 +73,7 @@
     "experience": "Experience",
     "certifications": "Certifications",
     "contact": "Contact",
-    "reviews": "Reviews",
+    "reviews": "Testimonials",
     "research": "Research",
     "education": "Education"
   },

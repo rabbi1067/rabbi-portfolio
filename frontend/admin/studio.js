@@ -4,7 +4,7 @@
   const raw=(window.PORTFOLIO_CONFIG||{}).apiBase||'';
   const api=raw==='same-origin'?location.origin:raw.replace(/\/$/,'');
   const collections=new Set(['projects','research','papers']);
-  const labels={profile:'Home & About','site-settings':'Site settings',projects:'Projects',skills:'Skills & Tools',education:'Education',experience:'Experience',papers:'Research papers',research:'Research projects',achievements:'Certifications & Awards',reviews:'Reviews',contact:'Contact',resume:'CV & resume'};
+  const labels={profile:'Home & About','site-settings':'Site settings',projects:'Projects',skills:'Skills & Tools',education:'Education',experience:'Experience',papers:'Research papers',research:'Research projects',achievements:'Certifications & Awards',reviews:'Testimonials',contact:'Contact',resume:'CV & resume'};
   let token=sessionStorage.getItem('portfolio-admin-token')||'',data={},schema={},section='profile',recordId=null,isNew=false,readEditor=null,dirty=false;
   function message(text,error=false){$('status').textContent=text;$('status').classList.toggle('error',error);$('status').hidden=!text;}
   async function request(path,options={}){
