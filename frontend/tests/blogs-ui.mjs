@@ -15,13 +15,16 @@ try{
   assert.equal(await page.locator('[data-blog-card]').count(),1);
   await page.locator('[data-blog-search]').fill('not-a-story');assert.equal(await page.locator('[data-blog-card]:visible').count(),0);
   await page.locator('[data-blog-search]').fill('meetup');assert.equal(await page.locator('[data-blog-card]:visible').count(),1);
-  await page.locator('[data-blog-card] a').click();
+  await page.locator('[data-blog-card] .blog-read').click();
   await page.waitForFunction(()=>document.documentElement.dataset.cmsReady==='true');
   assert.match(await page.locator('h1').innerText(),/Competitive Programming Meetup/);
-  assert.equal(await page.locator('.blog-gallery-image').count(),2);
-  for(const image of await page.locator('.blog-hero img,.blog-gallery-image').all()){
-   await image.scrollIntoViewIfNeeded();await image.evaluate(img=>img.decode());
+  assert.equal(await page.locator('.blog-slide').count(),2);
+  const gallery=page.locator('[data-blog-carousel]');
+  for(const index of [1,0]){
+   await gallery.locator(`[data-blog-dot="${index}"]`).click();
+   const image=gallery.locator('.blog-slide.is-active img');await image.evaluate(img=>img.decode());
    assert.ok(await image.evaluate(img=>img.naturalWidth>0));
+   assert.equal(await gallery.getAttribute('data-index'),String(index));
   }
   for(const theme of ['dark','light']){
    if(await page.locator('html').getAttribute('data-theme')!==theme)await page.locator('#themeToggle').click();

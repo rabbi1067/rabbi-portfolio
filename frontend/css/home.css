@@ -139,7 +139,7 @@
 .hero-scene .float-card:nth-child(4n+3) { --role-color: #76bcff; animation-delay: -4s; }
 .hero-scene .float-card:nth-child(4n+4) { --role-color: #ffc382; animation-delay: -1.5s; }
 
-.hero-bottom { display: flex; flex-direction: column; align-items: center; position: relative; z-index: 3; width: min(800px, 100%); margin-top: -5px; }
+.hero-bottom { display: flex; flex-direction: column; align-items: center; position: relative; z-index: 3; width: min(800px, 100%); margin-top: 12px; }
 .hero-identity { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 8px; border: 1px solid rgba(148, 206, 204, .17); background: var(--hero-glass); padding: 7px 14px; border-radius: 30px; color: var(--hero-muted); font-size: .65rem; line-height: 1.5; backdrop-filter: blur(14px); }
 .hero-identity strong { color: var(--hero-ink); font-weight: 700; }
 .identity-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--hero-accent); box-shadow: 0 0 0 3px rgba(0, 212, 170, .10); }
@@ -297,3 +297,6 @@ section[id] { scroll-margin-top: 85px; }
 /* Hide the page scrollbar while keeping native wheel, touch and keyboard scrolling. */
 html, body { scrollbar-width: none; -ms-overflow-style: none; }
 html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; width: 0; height: 0; }
+
+/* Keep the identity badge below a softly blended portrait edge. */
+.hero-portrait { mask-image: linear-gradient(to bottom, #000 0%, #000 90%, transparent 100%); }

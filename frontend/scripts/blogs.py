@@ -23,8 +23,30 @@ def meta(post):
     return esc(post.get('event_label') or date.fromisoformat(post['published_date']).strftime('%B %Y')) + ' · ' + str(reading_time(post)) + ' min read'
 
 
+def carousel(post, hero=False):
+    images = [dict(image=post['cover'], alt=post.get('cover_alt') or post['title'], caption='')]
+    for item in post.get('gallery', []):
+        existing = next((image for image in images if image['image'] == item['image']), None)
+        if existing is not None:
+            existing.update({key:value for key,value in item.items() if value})
+        else:
+            images.append(item)
+    slides = ''
+    for index, item in enumerate(images):
+        image = f'<img class="{ "blog-hero-image" if hero else "blog-card-image" }" src="{esc(item["image"])}" alt="{esc(item.get("alt") or post["title"])}" { "fetchpriority=high" if hero and index == 0 else "loading=lazy" } />'
+        destination = item['image'] if hero else 'blogs/' + post['id'] + '/'
+        link_attrs = 'target="_blank" rel="noopener"' if hero else f'data-blog-slug="{esc(post["id"])}"'
+        slides += f'<div class="blog-slide{ " is-active" if index == 0 else "" }" data-caption="{esc(item.get("caption"))}" aria-hidden="{ "false" if index == 0 else "true" }"><a href="{esc(destination)}" {link_attrs} tabindex="{ "0" if index == 0 else "-1" }">{image}</a></div>'
+    controls = ''
+    if len(images)>1:
+        dots = ''.join(f'<button type="button" class="blog-dot{ " is-active" if i == 0 else "" }" data-blog-dot="{i}" aria-label="Show photo {i+1}" aria-pressed="{ "true" if i == 0 else "false" }"></button>' for i in range(len(images)))
+        controls = '<button type="button" class="blog-photo-arrow blog-photo-prev" aria-label="Previous photo">‹</button><button type="button" class="blog-photo-arrow blog-photo-next" aria-label="Next photo">›</button><div class="blog-photo-controls"><span class="blog-photo-count">1 / ' + str(len(images)) + '</span><div class="blog-dots">' + dots + '</div><button type="button" class="blog-photo-pause" aria-label="Pause automatic photos" aria-pressed="false">Ⅱ</button></div>'
+    caption = '<p class="blog-photo-caption">' + esc(images[0].get('caption')) + '</p>' if hero else ''
+    return '<div class="blog-carousel' + (' blog-carousel-hero' if hero else '') + '" data-blog-carousel role="group" aria-roledescription="carousel" aria-label="' + esc(post['title']) + ' photos"><div class="blog-slides">' + slides + controls + '</div>' + caption + '</div>'
+
+
 def card(post):
-    return f'''<article class="blog-card" data-blog-card data-category="{esc(post.get('category'))}"><a href="blogs/{esc(post['id'])}/" data-blog-slug="{esc(post['id'])}"><div class="blog-card-media"><img src="{esc(post['cover'])}" alt="{esc(post.get('cover_alt') or post['title'])}" loading="lazy" /></div><div class="blog-card-copy"><span class="blog-category">{esc(post.get('category') or 'Journal')}</span><p class="blog-meta">{meta(post)}</p><h3>{esc(post['title'])}</h3><p>{esc(post.get('excerpt'))}</p><span class="blog-read">Read story <span aria-hidden="true">↗</span></span></div></a></article>'''
+    return f'''<article class="blog-card" data-blog-card data-category="{esc(post.get('category'))}">{carousel(post)}<a href="blogs/{esc(post['id'])}/" data-blog-slug="{esc(post['id'])}"><div class="blog-card-copy"><span class="blog-category">{esc(post.get('category') or 'Journal')}</span><p class="blog-meta">{meta(post)}</p><h3>{esc(post['title'])}</h3><p>{esc(post.get('excerpt'))}</p><span class="blog-read">Read story <span aria-hidden="true">↗</span></span></div></a></article>'''
 
 
 def render_blog_preview(data):
@@ -72,7 +94,7 @@ def write_blog_pages(data, output, home_html, site_url, base_path, responsive_im
     listing = '<a class="blog-back" href="index.html">← Back to portfolio</a><header class="blog-intro"><span class="blog-eyebrow">Notes & Perspectives</span><h1>Stories behind<br /><em>the journey.</em></h1><p>Experiences, ideas, and lessons from programming, research, and building software.</p></header><div class="blog-toolbar"><div class="blog-filters" aria-label="Filter blog posts">' + filters + '</div><label class="blog-search"><span class="sr-only">Search blog posts</span><input type="search" placeholder="Search stories…" data-blog-search /></label></div><p class="blog-result" aria-live="polite" data-blog-result></p><div class="blog-grid">' + ''.join(map(card, visible)) + '</div><p class="blog-empty" data-blog-empty hidden>No stories found. Try a different search.</p>'
     write('blogs/index.html', 'Blog | Fazley Rabbi', 'Stories and experiences from Fazley Rabbi’s programming and research journey.', listing)
     for post in visible:
-        gallery = ''.join(f'<figure class="blog-photo"><img class="blog-gallery-image" src="{esc(item["image"])}" alt="{esc(item.get("alt") or post["title"])}" loading="lazy" /><figcaption>{esc(item.get("caption"))}</figcaption></figure>' for item in post.get('gallery', []))
+
         tags = ''.join('<span>' + esc(tag) + '</span>' for tag in post.get('tags', []))
-        article = '<a class="blog-back" href="blogs/">← All stories</a><article class="blog-article"><header class="blog-article-header"><span class="blog-category">' + esc(post.get('category') or 'Journal') + '</span><h1>' + esc(post['title']) + '</h1><p class="blog-deck">' + esc(post.get('excerpt')) + '</p><div class="blog-byline"><span>By ' + esc(post.get('author') or 'Fazley Rabbi') + '</span><span>' + meta(post) + '</span></div></header><div class="blog-hero"><img class="blog-hero-image" src="' + esc(post['cover']) + '" alt="' + esc(post.get('cover_alt') or post['title']) + '" fetchpriority="high" /></div><div class="blog-prose">' + render_body(post.get('body', '')) + '</div><div class="blog-photos">' + gallery + '</div><footer class="blog-article-end"><div class="blog-tags">' + tags + '</div><a href="blogs/">← Back to all stories</a></footer></article>'
+        article = '<a class="blog-back" href="blogs/">← All stories</a><article class="blog-article"><header class="blog-article-header"><span class="blog-category">' + esc(post.get('category') or 'Journal') + '</span><h1>' + esc(post['title']) + '</h1><p class="blog-deck">' + esc(post.get('excerpt')) + '</p><div class="blog-byline"><span>By ' + esc(post.get('author') or 'Fazley Rabbi') + '</span><span>' + meta(post) + '</span></div></header>' + carousel(post, hero=True) + '<div class="blog-prose">' + render_body(post.get('body', '')) + '</div><footer class="blog-article-end"><div class="blog-tags">' + tags + '</div><a href="blogs/">← Back to all stories</a></footer></article>'
         write('blogs/' + post['id'] + '/index.html', post['title'] + ' | Fazley Rabbi', post.get('excerpt', ''), article, post['id'])

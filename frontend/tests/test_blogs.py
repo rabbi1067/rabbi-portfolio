@@ -38,7 +38,7 @@ class BlogTests(unittest.TestCase):
             self.assertIn('href="index.html#home"', page)
             self.assertIn('aria-current="page"', page)
             self.assertIn('July 2024', page)
-            self.assertEqual(page.count('class="blog-gallery-image"'), 2)
+            self.assertEqual(page.count('class="blog-slide is-active"') + page.count('class="blog-slide"'), 2)
             self.assertIn('seu-programmers-meetup-july-2024-02.jpg', page)
             self.assertNotIn('cms-runtime.js', page)
             self.post['published'] = False

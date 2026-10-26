@@ -33,7 +33,7 @@
       console.info('Showing the published static portfolio while the content service wakes up.');
     }
   }
-  const scripts=['js/main.js','js/home.js','js/showcase.js','js/certifications.js','js/gallery.js','js/reviews.js','js/highlights.js',
+  const scripts=['js/main.js','js/home.js','js/showcase.js','js/certifications.js','js/gallery.js','js/reviews.js','js/highlights.js','js/blogs.js',
     'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js','js/contact.js'];
   for(const path of scripts) await new Promise(resolve=>{
     const script=document.createElement('script');
