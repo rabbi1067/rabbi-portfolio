@@ -10,6 +10,7 @@ import build
 
 class BlogTests(unittest.TestCase):
     def setUp(self):
+        (build.ROOT/'.qa').mkdir(exist_ok=True)
         self.post = build.read_json(build.ROOT / 'content/blogs/competitive-programming-meetup-july-2024.json')
         self.data = {'blogs': [self.post], 'site-settings': {}}
 

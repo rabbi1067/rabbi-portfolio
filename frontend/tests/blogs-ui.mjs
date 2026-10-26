@@ -12,10 +12,10 @@ try{
   const page=await context.newPage();const errors=[];page.on('pageerror',error=>errors.push(error.message));
   await page.goto(origin+'/blogs/',{waitUntil:'networkidle'});
   await page.waitForFunction(()=>document.documentElement.dataset.cmsReady==='true');
-  assert.equal(await page.locator('[data-blog-card]').count(),1);
+  assert.equal(await page.locator('[data-blog-card]').count(),2);
   await page.locator('[data-blog-search]').fill('not-a-story');assert.equal(await page.locator('[data-blog-card]:visible').count(),0);
   await page.locator('[data-blog-search]').fill('meetup');assert.equal(await page.locator('[data-blog-card]:visible').count(),1);
-  await page.locator('[data-blog-card] .blog-read').click();
+  await page.locator('[data-blog-card]:visible .blog-read').click();
   await page.waitForFunction(()=>document.documentElement.dataset.cmsReady==='true');
   assert.match(await page.locator('h1').innerText(),/Competitive Programming Meetup/);
   assert.equal(await page.locator('.blog-slide').count(),2);
