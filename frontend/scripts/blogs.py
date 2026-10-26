@@ -51,10 +51,24 @@ def card(post):
 
 def render_blog_preview(data):
     visible = [p for p in posts(data) if p.get('featured', True)][:3]
-    if not visible:
+    if not data.get('site-settings', {}).get('sections', {}).get('blogs', {}).get('visible', True):
         return ''
     settings = data.get('site-settings', {}).get('sections', {}).get('blogs', {})
-    return '<div class="blog-preview" id="blog-preview"><div class="blog-heading"><div><span class="blog-eyebrow">' + esc(settings.get('label') or 'Notes & Perspectives') + '</span><h2>' + esc(settings.get('heading') or 'From the Blog') + '</h2><p>' + esc(settings.get('subtitle') or 'Experiences, ideas, and lessons from my journey.') + '</p></div><a class="blog-outline" href="blogs/">Explore blog ↗</a></div><div class="blog-grid">' + ''.join(map(card, visible)) + '</div></div>'
+    return '<section class="blog-preview" id="blogs" aria-label="Blog stories"><div class="blog-heading"><div><span class="blog-eyebrow">' + esc(settings.get('label') or 'Notes & Perspectives') + '</span><h2>' + esc(settings.get('heading') or 'From the Blog') + '</h2><p>' + esc(settings.get('subtitle') or 'Experiences, ideas, and lessons from my journey.') + '</p></div><a class="blog-outline" href="blogs/">Explore blog ↗</a></div><div class="blog-grid">' + (''.join(map(card, visible)) or '<p class="blog-empty">New stories will be shared here.</p>') + '</div></section>'
+
+
+def related_posts(current, candidates, limit=3):
+    """Prefer shared categories and tags, then keep the published listing order."""
+    tags = set(current.get('tags') or [])
+    others = [item for item in candidates if item['id'] != current['id'] and item.get('published', True)]
+    return sorted(others, key=lambda item: (item.get('category') == current.get('category'), len(tags.intersection(item.get('tags') or []))), reverse=True)[:limit]
+
+
+def render_related(current, candidates):
+    related = related_posts(current, candidates)
+    if not related:
+        return ''
+    return '<aside class="blog-related" aria-labelledby="related-heading"><div class="blog-heading"><div><span class="blog-eyebrow">Continue reading</span><h2 id="related-heading">Related Articles</h2><p>More experiences and ideas from my journey.</p></div><a class="blog-outline" href="blogs/">All stories <span aria-hidden="true">↗</span></a></div><div class="blog-grid">' + ''.join(map(card, related)) + '</div></aside>'
 
 
 def render_body(text):
@@ -84,7 +98,7 @@ def write_blog_pages(data, output, home_html, site_url, base_path, responsive_im
         page_head = re.sub(r'<link rel="canonical"[^>]*>', '', page_head)
         url = site_url + '/' + relative.removesuffix('index.html')
         page_head = '<base href="' + ('../../' if slug else '../') + '" />' + page_head + f'<meta name="description" content="{esc(description)}" /><meta property="og:title" content="{esc(title)}" /><meta property="og:description" content="{esc(description)}" /><meta property="og:type" content="{ "article" if slug else "website" }" /><meta property="og:url" content="{esc(url)}" /><link rel="canonical" href="{esc(url)}" />'
-        source = '<!DOCTYPE html><html lang="en" data-theme="dark"><head>' + page_head + '</head><body class="blog-page" data-blog-page="' + esc(slug) + '"><div class="cursor" id="cursor"></div><div class="cursor-follower" id="follower"></div>' + nav + '<main class="blog-main">' + content + '</main>' + footer + '<script src="frontend-config.js"></script><script src="js/blog-runtime.js"></script></body></html>'
+        source = '<!DOCTYPE html><html lang="en" data-theme="dark"><head>' + page_head + '</head><body class="blog-page" data-blog-page="' + esc(slug) + '"><div class="cursor" id="cursor"></div><div class="cursor-follower" id="follower"></div>' + nav + '<main class="blog-main">' + content + '</main>' + footer + '<script src="frontend-config.js"></script><script src="js/blog-runtime.js?v=20261026-blog-navigation"></script></body></html>'
         source = responsive_images(source, output, base_path)
         target = output / relative
         target.parent.mkdir(parents=True, exist_ok=True)
@@ -97,4 +111,4 @@ def write_blog_pages(data, output, home_html, site_url, base_path, responsive_im
 
         tags = ''.join('<span>' + esc(tag) + '</span>' for tag in post.get('tags', []))
         article = '<a class="blog-back" href="blogs/">← All stories</a><article class="blog-article"><header class="blog-article-header"><span class="blog-category">' + esc(post.get('category') or 'Journal') + '</span><h1>' + esc(post['title']) + '</h1><p class="blog-deck">' + esc(post.get('excerpt')) + '</p><div class="blog-byline"><span>By ' + esc(post.get('author') or 'Fazley Rabbi') + '</span><span>' + meta(post) + '</span></div></header>' + carousel(post, hero=True) + '<div class="blog-prose">' + render_body(post.get('body', '')) + '</div><footer class="blog-article-end"><div class="blog-tags">' + tags + '</div><a href="blogs/">← Back to all stories</a></footer></article>'
-        write('blogs/' + post['id'] + '/index.html', post['title'] + ' | Fazley Rabbi', post.get('excerpt', ''), article, post['id'])
+        write('blogs/' + post['id'] + '/index.html', post['title'] + ' | Fazley Rabbi', post.get('excerpt', ''), article + render_related(post, visible), post['id'])

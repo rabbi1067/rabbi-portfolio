@@ -27,6 +27,7 @@
    index=(at+slides.length)%slides.length;carousel.dataset.index=String(index);
    slides.forEach((slide,i)=>{const active=i===index;slide.classList.toggle('is-active',active);slide.setAttribute('aria-hidden',String(!active));slide.querySelector('a').tabIndex=active?0:-1;});
    dots.forEach((dot,i)=>{dot.classList.toggle('is-active',i===index);dot.setAttribute('aria-pressed',String(i===index));});
+   const selected=dots[index];if(selected)selected.parentElement.scrollTo({left:selected.offsetLeft-selected.parentElement.offsetLeft-(selected.parentElement.clientWidth-selected.clientWidth)/2,behavior:reduced.matches?'instant':'smooth'});
    carousel.querySelector('.blog-photo-count').textContent=`${index+1} / ${slides.length}`;
    const caption=carousel.querySelector('.blog-photo-caption');if(caption)caption.textContent=slides[index].dataset.caption||'';
   }

@@ -9,7 +9,7 @@ const origin=process.env.PREVIEW_URL || 'http://127.0.0.1:8000';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const qa=resolve(root,'.qa/navigation');
 await mkdir(qa,{recursive:true});
-const order=['home','about','education','projects','skills','research','certifications','reviews','contact'];
+const order=['home','about','education','projects','skills','research','blogs','certifications','reviews','contact'];
 const browser=await chromium.launch({headless:true,...(process.env.BROWSER_EXECUTABLE?{executablePath:process.env.BROWSER_EXECUTABLE}:{})});
 try {
   for(const width of [1440,1200,1101,820,390]) {
@@ -47,5 +47,5 @@ try {
     assert.deepEqual(errors,[]);
     await context.close();
   }
-  console.log('Passed: professional menu order matches page sections, all nine section destinations and Blogs/active states work, mobile menu closes, full labels fit at 1440/1200/1101/820/390px.');
+  console.log('Passed: professional menu order matches page sections, all ten section destinations including Blogs/active states work, mobile menu closes, full labels fit at 1440/1200/1101/820/390px.');
 } finally {await browser.close();}

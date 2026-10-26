@@ -17,7 +17,7 @@ class BlogTests(unittest.TestCase):
     def test_visibility_and_preview(self):
         self.assertIn(self.post['title'], blogs.render_blog_preview(self.data))
         self.post['published'] = False
-        self.assertEqual(blogs.render_blog_preview(self.data), '')
+        self.assertNotIn('data-blog-card', blogs.render_blog_preview(self.data))
         self.post['published'] = True
         self.data['site-settings'] = {'sections': {'blogs': {'visible': False}}}
         self.assertEqual(blogs.posts(self.data), [])
@@ -50,3 +50,16 @@ class BlogTests(unittest.TestCase):
         build.validate_fields(self.post,fields,'blogs')
         self.post['published_date']='2026-99-42'
         with self.assertRaises(ValueError):build.validate_fields(self.post,fields,'blogs')
+
+    def test_related_excludes_current_and_drafts_and_prefers_shared_topics(self):
+        unrelated = dict(self.post, id='unrelated', title='Unrelated', category='Other', tags=[])
+        matching = dict(self.post, id='matching', title='Matching')
+        draft = dict(self.post, id='draft', published=False)
+        candidates = [self.post, unrelated, draft, matching]
+        self.assertEqual([item['id'] for item in blogs.related_posts(self.post,candidates)], ['matching','unrelated'])
+        result = blogs.render_related(self.post,candidates)
+        self.assertIn('Related Articles',result)
+        self.assertIn('blogs/matching/',result)
+        self.assertNotIn('blogs/draft/',result)
+        self.assertNotIn('blogs/'+self.post['id']+'/',result)
+        self.assertEqual(blogs.render_related(self.post,[self.post]),'')

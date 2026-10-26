@@ -12,14 +12,14 @@ try{
   const page=await context.newPage();const errors=[];page.on('pageerror',error=>errors.push(error.message));
   await page.goto(origin+'/blogs/',{waitUntil:'networkidle'});
   await page.waitForFunction(()=>document.documentElement.dataset.cmsReady==='true');
-  assert.equal(await page.locator('[data-blog-card]').count(),2);
+  assert.equal(await page.locator('[data-blog-card]').count(),3);
   await page.locator('[data-blog-search]').fill('not-a-story');assert.equal(await page.locator('[data-blog-card]:visible').count(),0);
   await page.locator('[data-blog-search]').fill('meetup');assert.equal(await page.locator('[data-blog-card]:visible').count(),1);
   await page.locator('[data-blog-card]:visible .blog-read').click();
   await page.waitForFunction(()=>document.documentElement.dataset.cmsReady==='true');
   assert.match(await page.locator('h1').innerText(),/Competitive Programming Meetup/);
-  assert.equal(await page.locator('.blog-slide').count(),2);
-  const gallery=page.locator('[data-blog-carousel]');
+  assert.equal(await page.locator('.blog-article > [data-blog-carousel] .blog-slide').count(),2);
+  const gallery=page.locator('.blog-article > [data-blog-carousel]');
   for(const index of [1,0]){
    await gallery.locator(`[data-blog-dot="${index}"]`).click();
    const image=gallery.locator('.blog-slide.is-active img');await image.evaluate(img=>img.decode());
