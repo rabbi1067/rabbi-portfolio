@@ -1,0 +1,54 @@
+{
+  "id": "monthly-competitive-programming-contest-august-2025",
+  "title": "Monthly Competitive Programming Contest — August 2025",
+  "excerpt": "Competing as team SEU_HOTASHA in the SEUCC Monthly Programming Contest 004 in August 2025, solving algorithmic challenges and gaining valuable contest experience with teammates.",
+  "category": "Competitive Programming",
+  "tags": [
+    "SEUCC",
+    "Competitive Programming",
+    "Southeast University",
+    "Contest",
+    "Problem Solving"
+  ],
+  "published_date": "2026-10-27",
+  "event_label": "August 2025",
+  "author": "Fazley Rabbi",
+  "cover": "uploads/blogs/monthly-competitive-programming-contest-august-2025-01.jpg",
+  "cover_alt": "A group photograph of contestants and friends gathered at the campus entrance during the SEUCC Monthly Programming Contest 004.",
+  "body": "## Stepping into SEUCC Monthly Programming Contest 004\n\nIn **August 2025**, the **Southeast Computer Club (SEUCC)** organized the **SEUCC Monthly Programming Contest 004** on **9 August, 2025**. Competing together with my teammates under team name **SEU_HOTASHA**, this contest provided an exciting platform to test our algorithmic problem-solving skills under timed conditions.\n\n## Contest Day Experience and Teamwork\n\nFrom receiving our team instructions to brainstorming problem approaches at our lab workstation, the contest challenged our understanding of data structures, speed, and analytical reasoning. Working side-by-side with teammates, debugging edge cases, and pushing for accepted solutions gave us hands-on team contest practice.\n\n## Building Consistency and Skills\n\nRegular participation in SEUCC monthly contests helps maintain competitive sharpness, identify knowledge gaps, and strengthen team coordination for larger regional contests like ICPC.\n\nThese photographs capture team SEU_HOTASHA at our contest workstation, holding our team credentials, and celebrating contest day with fellow programmers at Southeast University.",
+  "gallery": [
+    {
+      "image": "uploads/blogs/monthly-competitive-programming-contest-august-2025-01.jpg",
+      "alt": "A group photograph of contestants and friends gathered at the campus entrance during the SEUCC Monthly Programming Contest 004.",
+      "caption": "Participants and friends gathered at the Southeast University campus entrance on contest day."
+    },
+    {
+      "image": "uploads/blogs/monthly-competitive-programming-contest-august-2025-02.jpg",
+      "alt": "Team SEU_HOTASHA standing together at their contest workstation in the computer lab.",
+      "caption": "Team SEU_HOTASHA standing at their contest computer desk in the lab ready for problem solving."
+    },
+    {
+      "image": "uploads/blogs/monthly-competitive-programming-contest-august-2025-03.jpg",
+      "alt": "Fazley Rabbi holding the SEUCC Monthly Programming Contest 004 credential slip for team SEU_HOTASHA.",
+      "caption": "Fazley Rabbi holding the official SEUCC Monthly Programming Contest 004 credential slip for team SEU_HOTASHA."
+    },
+    {
+      "image": "uploads/blogs/monthly-competitive-programming-contest-august-2025-04.jpg",
+      "alt": "Teammate holding the SEUCC Monthly Programming Contest 004 credential slip.",
+      "caption": "Teammate holding the contest credential slip on contest day."
+    },
+    {
+      "image": "uploads/blogs/monthly-competitive-programming-contest-august-2025-05.jpg",
+      "alt": "Teammate holding the contest credential slip for team SEU_HOTASHA.",
+      "caption": "Teammate holding the contest credential slip for team SEU_HOTASHA."
+    },
+    {
+      "image": "uploads/blogs/monthly-competitive-programming-contest-august-2025-06.jpg",
+      "alt": "A close group selfie with teammates and fellow participants at the campus entrance on contest day.",
+      "caption": "Teammates and fellow participants smiling together in the campus lobby during SEUCC Monthly Programming Contest 004."
+    }
+  ],
+  "featured": true,
+  "order": 0,
+  "published": true
+}
