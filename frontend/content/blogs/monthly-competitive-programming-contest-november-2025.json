@@ -1,0 +1,40 @@
+{
+  "id": "monthly-competitive-programming-contest-november-2025",
+  "title": "Monthly Competitive Programming Contest — November 2025",
+  "excerpt": "Competing as team SEU_HOTASHA in the November 2025 Monthly Competitive Programming Contest at Southeast University, tackling intricate algorithmic problems and deepening team collaboration.",
+  "category": "Competitive Programming",
+  "tags": [
+    "SEUCC",
+    "SEU_HOTASHA",
+    "Competitive Programming",
+    "Southeast University",
+    "Contest",
+    "Problem Solving"
+  ],
+  "published_date": "2026-10-27",
+  "event_label": "November 2025",
+  "author": "Fazley Rabbi",
+  "cover": "uploads/blogs/monthly-competitive-programming-contest-november-2025-01.jpg",
+  "cover_alt": "Team SEU_HOTASHA smiling at their contest workstation with problem sheets during the November 2025 contest.",
+  "body": "## Tackling New Algorithmic Challenges\n\nIn **November 2025**, our team **SEU_HOTASHA** took part in the **Monthly Competitive Programming Contest** organized by the Southeast Computer Club (SEUCC) at Southeast University. Each monthly edition brings a fresh problem set, pushing us to refine our analytical thinking, algorithmic efficiency, and team strategies under the pressure of the clock.\n\n## Intense Focus and Problem Solving\n\nContest sessions demand swift communication, clean implementations, and deep debugging focus. Working closely at our contest workstation, our team dissected algorithmic problems, optimized time and space complexities, and tackled edge cases with pen, paper, and code. The shared intensity of the room created an inspiring environment for every team.\n\n## Strengthening Consistency and Team Chemistry\n\nConsistently participating in monthly contests as **SEU_HOTASHA** has been central to our development as competitive programmers. Beyond the scoreboard, each contest reinforces our resilience, solidifies our problem-solving habits, and prepares us for larger national competitions.\n\nThese photographs capture team SEU_HOTASHA in deep concentration at the contest desk, collaborative debugging moments, and team smiles during the November 2025 contest.",
+  "gallery": [
+    {
+      "image": "uploads/blogs/monthly-competitive-programming-contest-november-2025-01.jpg",
+      "alt": "Team SEU_HOTASHA smiling at their contest workstation with problem sheets during the November 2025 contest.",
+      "caption": "Team SEU_HOTASHA smiling at their contest workstation with problem sets and notes on contest day."
+    },
+    {
+      "image": "uploads/blogs/monthly-competitive-programming-contest-november-2025-02.jpg",
+      "alt": "Teammates focused on the monitor analyzing algorithmic problem code during the contest.",
+      "caption": "Teammates analyzing problem logic and code on the contest monitor."
+    },
+    {
+      "image": "uploads/blogs/monthly-competitive-programming-contest-november-2025-03.jpg",
+      "alt": "Team members deep in thought working through complex problem constraints and edge cases.",
+      "caption": "Deep concentration and collaborative problem solving during a challenging contest problem."
+    }
+  ],
+  "featured": true,
+  "order": 0,
+  "published": true
+}
