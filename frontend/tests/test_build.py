@@ -626,7 +626,7 @@ class PortfolioBuildTests(unittest.TestCase):
         self.compile()
         region=self.document.root.find(id='selected-highlights')
         self.assertIsNotNone(region)
-        self.assertEqual(len(region.find_all(cls='highlight-card')),7)
+        self.assertEqual(len(region.find_all(cls='highlight-card')),10)
         self.assertNotIn('View all',self.document.outside(region))
         project=self.json('content/projects/orbitcart.json')
         project['published']=False
@@ -640,7 +640,7 @@ class PortfolioBuildTests(unittest.TestCase):
         self.write('content/profile.json',profile)
         self.compile()
         region=self.document.root.find(id='selected-highlights')
-        self.assertEqual(len(region.find_all(cls='highlight-card')),4)
+        self.assertEqual(len(region.find_all(cls='highlight-card')),7)
         self.assertIn('Edited highlights',self.document.outside(region))
         self.assertNotIn('href="#project-orbitcart"',self.document.outside(region))
         profile['highlights']['enabled']=False

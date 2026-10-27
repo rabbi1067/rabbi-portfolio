@@ -16,4 +16,4 @@ Administrator Studio → Home & About → Selected Highlights. The same fields a
 
 The gallery scrolls gently while visible. Hover or keyboard focus pauses movement; touch scrolling temporarily pauses autoplay. Previous/next and Play/Pause controls work independently. Reduced-motion preferences disable autoplay by default. Loop duplicates are hidden from assistive technology and excluded from keyboard tab order. No animation runs while the page/gallery is out of view, or after Pause is selected.
 
-The current seven highlights use existing portfolio assets: OrbitCart, ICPC 2024, THIRA, AgroLink, AI/ML training, Grand Meridian Resort hotel booking and the CodeChef streak. Gallery selection is separate from project publication order and can be edited at any time.
+The current ten highlights feature core portfolio milestones and featured blog stories: OrbitCart, ICPC 2024, THIRA, AgroLink, AI/ML training, Grand Meridian Resort hotel booking, CodeChef streak, DUET CSE Carnival 2026, AI CodeLab 2026, and IUT Mega Quiz 2026. Gallery selection is separate from project publication order and can be edited at any time.

@@ -14,7 +14,7 @@ for(const width of [1440,820,390,320]){
  await page.goto(origin+'/#selected-highlights',{waitUntil:'networkidle'});
  const region=page.locator('#selected-highlights');const rail=page.locator('#highlights-rail');
  await region.scrollIntoViewIfNeeded();
- assert.equal(await rail.locator('.highlight-card:not([data-highlight-clone])').count(),7);
+ assert.equal(await rail.locator('.highlight-card:not([data-highlight-clone])').count(),10);
  assert.equal(await region.getByRole('button',{name:/view all/i}).count(),0);
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),width);
  assert.equal(await page.getByRole('button',{name:'Play highlight scrolling'}).count(),1,'Reduced motion disables autoplay');
@@ -53,5 +53,5 @@ const bounds=await page.locator('#highlights-rail').boundingBox();await page.mou
 await page.mouse.move(1400,950);
 await page.getByRole('button',{name:'Pause highlight scrolling'}).click();start=await position();await page.waitForTimeout(500);assert.ok(Math.abs((await position())-start)<2,'Pause control stops movement');
 await page.close();
-console.log('Passed: 7 highlights; no View all; direct image/text links; filtered project navigation; autoplay/hover/pause; reduced motion; dark/light 1440/820/390/320px; no overflow or JS errors.');
+console.log('Passed: 10 highlights; no View all; direct image/text links; filtered project navigation; autoplay/hover/pause; reduced motion; dark/light 1440/820/390/320px; no overflow or JS errors.');
 }finally{await browser.close()}

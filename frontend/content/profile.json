@@ -175,6 +175,39 @@
         "fit": "contain",
         "order": 7,
         "published": true
+      },
+      {
+        "title": "DUET CSE Carnival 2026",
+        "category": "National Olympiad",
+        "description": "Representing SEU at the National ICT Olympiad.",
+        "image": "uploads/blogs/duet-cse-carnival-2026-ict-olympiad-01.jpg",
+        "image_alt": "Southeast University participants at DUET CSE Carnival 2026",
+        "url": "#blogs",
+        "fit": "cover",
+        "order": 8,
+        "published": true
+      },
+      {
+        "title": "AI CodeLab 2026",
+        "category": "Agentic AI Workshop",
+        "description": "Exploring Agentic AI solutions and real-world workflows.",
+        "image": "uploads/blogs/ai-codelab-2026-agentic-ai-solutions-01.jpg",
+        "image_alt": "AI CodeLab 2026 keynote and crest presentation ceremony",
+        "url": "#blogs",
+        "fit": "cover",
+        "order": 9,
+        "published": true
+      },
+      {
+        "title": "IUT Mega Quiz 2026",
+        "category": "Techathon & Robotics",
+        "description": "National Techathon & Rover Summit at IUT campus.",
+        "image": "uploads/blogs/iut-robotics-society-mega-quiz-techathon-2026-01.jpg",
+        "image_alt": "Inauguration ceremony of Techathon Nationals 2026 at IUT",
+        "url": "#blogs",
+        "fit": "cover",
+        "order": 10,
+        "published": true
       }
     ]
   }
