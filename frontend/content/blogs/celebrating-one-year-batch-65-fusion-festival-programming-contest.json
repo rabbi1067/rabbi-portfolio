@@ -1,0 +1,49 @@
+{
+  "id": "celebrating-one-year-batch-65-fusion-festival-programming-contest",
+  "title": "Celebrating One Year with the Batch 65 Fusion Festival Programming Contest",
+  "excerpt": "Marking one memorable year of Batch 65 at Southeast University with problem-solving passion, friendly rivalry, and camaraderie at the 1st Intra-Batch Fusion Festival Programming Contest.",
+  "category": "Competitive Programming",
+  "tags": [
+    "Competitive Programming",
+    "Southeast University",
+    "Batch 65",
+    "Programming Contest",
+    "Community"
+  ],
+  "published_date": "2026-10-27",
+  "event_label": "December 2024",
+  "author": "Fazley Rabbi",
+  "cover": "uploads/blogs/batch-65-fusion-festival-contest-december-2024-01.jpg",
+  "cover_alt": "Participants coding in the computer lab during the Batch 65 Fusion Festival Programming Contest.",
+  "body": "## One Year of Brotherhood, Learning, and Code\n\nCompleting our **first year** at **Southeast University (SEU)** as part of **CSE Batch 65** was a milestone worth celebrating. Over the past twelve months, we navigated introductory coursework, spent countless evenings debugging syntax errors, and gradually built a shared love for algorithms and problem-solving. To commemorate this special anniversary, we organized the **1st Intra Batch 65 Fusion Festival Programming Contest** in **December 2024**.\n\n## The Contest Arena: Energy, Logic, and Balloons\n\nThe university computer lab transformed into a buzzing arena of focus and friendly rivalry. Monitors glowed with code editors, keyboards clicked in rapid unison, and balloons were delivered to workstations to celebrate each accepted solution. The contest featured a thoughtfully crafted set of algorithmic challenges designed to push our logical thinking while encouraging newcomers to experience competitive programming firsthand. Watching the live scoreboard shift turn-by-turn brought both tension and great cheer.\n\n## Mentorship and Community Spirit\n\nBeyond the competition, the event reflected the growing strength of our community. Senior mentors and faculty members stood by to encourage participants, review problem approaches, and share insights on competitive programming strategies. Events like the Fusion Festival remind us that growth in computer science is not an isolated endeavor—it thrives when classmates learn, compete, and celebrate milestones together.\n\nThese photographs capture the contest atmosphere, scoreboard presentations, and moments with our teammates and friends from Batch 65.",
+  "gallery": [
+    {
+      "image": "uploads/blogs/batch-65-fusion-festival-contest-december-2024-01.jpg",
+      "alt": "Participants coding in the computer lab during the Batch 65 Fusion Festival Programming Contest.",
+      "caption": "The computer lab buzzing with focus during the 1st Intra Batch 65 Fusion Festival Programming Contest."
+    },
+    {
+      "image": "uploads/blogs/batch-65-fusion-festival-contest-december-2024-02.jpg",
+      "alt": "Mentor presenting the live contest scoreboard and problem analysis on the whiteboard screen.",
+      "caption": "Contestants analyzing the live scoreboard projection and problem performance."
+    },
+    {
+      "image": "uploads/blogs/batch-65-fusion-festival-contest-december-2024-03.jpg",
+      "alt": "Mentors and organizing members addressing participants at the front of the lab.",
+      "caption": "Mentors and organizing committee members sharing insights and encouraging the participants."
+    },
+    {
+      "image": "uploads/blogs/batch-65-fusion-festival-contest-december-2024-04.jpg",
+      "alt": "Participants in CSE-65 community jerseys attending the contest discussion session.",
+      "caption": "Batch 65 programming community members following the contest walkthrough."
+    },
+    {
+      "image": "uploads/blogs/batch-65-fusion-festival-contest-december-2024-05.jpg",
+      "alt": "Teammates wearing customized SEU CSE and CP Rookies hoodies in the campus corridor.",
+      "caption": "Celebrating teamwork and friendship in our CP Rookies hoodies after the event."
+    }
+  ],
+  "featured": true,
+  "order": 0,
+  "published": true
+}
