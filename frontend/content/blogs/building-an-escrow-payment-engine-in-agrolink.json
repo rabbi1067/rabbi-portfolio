@@ -1,0 +1,41 @@
+{
+  "id": "building-an-escrow-payment-engine-in-agrolink",
+  "title": "Building a Multi-Stage Escrow Payment Engine in AgroLink: Securing B2B Agricultural Trade",
+  "excerpt": "A deep dive into architecting a multi-stage escrow transaction and dispute workflow using Spring Boot, ensuring cryptographic trust and zero fraud between farmers and institutional buyers.",
+  "category": "System Architecture",
+  "tags": [
+    "Spring Boot",
+    "Escrow",
+    "System Architecture",
+    "Java",
+    "B2B Trade",
+    "Security",
+    "Backend"
+  ],
+  "published_date": "2026-03-20",
+  "event_label": "Architecture Deep Dive",
+  "author": "Fazley Rabbi",
+  "cover": "uploads/argolink-orders.png",
+  "cover_alt": "AgroLink purchase orders and escrow workflow dashboard with active transaction states",
+  "gallery": [
+    {
+      "image": "uploads/argolink-orders.png",
+      "alt": "AgroLink purchase orders dashboard showing live escrow status and tracking",
+      "caption": "Escrow Purchase Orders with stage-by-stage transaction tracking."
+    },
+    {
+      "image": "uploads/argolink-supply.png",
+      "alt": "AgroLink produce supply marketplace with verified batch listings",
+      "caption": "Live crop inventory linked directly to verified farmer contracts."
+    },
+    {
+      "image": "uploads/argolink-control.png",
+      "alt": "AgroLink admin control center with escrow reserve balance and dispute monitor",
+      "caption": "Administrative control center for escrow reserves and dispute resolution."
+    }
+  ],
+  "body": "## The Trust Dilemma in Agricultural Supply Chains\n\nIn traditional B2B agriculture, trade suffers from a fundamental paradox of trust: **farmers cannot afford to harvest and dispatch perishables without guaranteed payment**, while **wholesale buyers refuse to wire advance funds without inspecting crop quality and moisture levels**.\n\nWhen building **AgroLink**, our goal was to eliminate this friction entirely. We engineered an automated, stateful **Multi-Stage Escrow Engine** that acts as an unbiased digital arbiter, holding funds in secure reserve until inspection conditions are mathematically and procedurally satisfied.\n\n## Escrow State Machine Architecture\n\nRather than treating orders as simple binary records, we modeled transactions as a strictly regulated finite state machine (FSM):\n\n- **ORDER_INITIATED:** Buyer submits a purchase offer specifying volume, target harvest date, and price per quintal.\n- **ESCROW_LOCKED:** Buyer deposits total funds into the escrow vault. The farmer receives instant cryptographic proof of deposit before harvesting begins.\n- **DISPATCHED_IN_TRANSIT:** Produce is packaged and tagged with logistics dispatch coordinates, triggering real-time delivery countdowns.\n- **INSPECTION_WINDOW:** Upon arrival at the buyer's warehouse, a 48-hour inspection timer activates for quality and weight verification.\n- **FUNDS_SETTLED:** Upon buyer approval (or automated release after 48 hours without dispute), funds disburse directly to the farmer's account.\n\nIn case of discrepancies, either party can trigger **DISPUTE_RAISED**, locking the funds and escalating sensor telemetry and weighbridge receipts to the platform's arbitration dashboard.\n\n## Concurrency Control and Transactional Integrity\n\nHandling financial balances and stock quantities concurrently requires bulletproof guarantees. In Spring Boot, we implemented:\n\n- **Serializable Transaction Isolation:** Critical balance transitions use strict transaction boundaries to eliminate phantom reads and double-spend attacks.\n- **Pessimistic Locking on Inventories:** When multiple institutional buyers place simultaneous bids during peak morning harvests, row-level locks prevent inventory over-allocation.\n- **Audit-Proof Double-Entry Ledger:** Every credit in the buyer's escrow account mirrors a debit in the platform reserve ledger, making balance drift mathematically impossible.\n\n## Key Takeaways (কী শিখলাম)\n\n- **FSM-Driven State Hygiene:** Modeling multi-party payments as explicit finite state machines prevents illegal state bypasses and untraceable edge cases.\n- **Double-Entry Financial Accounting:** Separating transaction records into immutable ledger journals is essential for auditability and fault recovery.\n- **Designing for Low-Trust Environments:** Technology creates the highest impact when it eliminates human bias and subjective delays through automated timers and escrow safeguards.\n",
+  "featured": true,
+  "order": 0,
+  "published": true
+}

@@ -1,0 +1,31 @@
+{
+  "id": "architecting-orbitcart-scalable-ai-commerce-platform",
+  "title": "Architecting OrbitCart: Building a Scalable AI-Powered E-Commerce Platform with Spring Boot",
+  "excerpt": "How we engineered OrbitCart from the ground up, featuring stateless JWT security, optimistic locking for high-volume inventory, and an intelligent recommendation pipeline.",
+  "category": "Full-Stack Engineering",
+  "tags": [
+    "Spring Boot",
+    "System Design",
+    "JWT",
+    "AI",
+    "E-Commerce",
+    "Java",
+    "Tailwind CSS"
+  ],
+  "published_date": "2026-02-15",
+  "event_label": "System Design Showcase",
+  "author": "Fazley Rabbi",
+  "cover": "uploads/orbitcart-storefront.png",
+  "cover_alt": "OrbitCart online storefront featuring dynamic catalog and AI product recommendations",
+  "gallery": [
+    {
+      "image": "uploads/orbitcart-storefront.png",
+      "alt": "OrbitCart storefront with modern dark aesthetic and instant search filtering",
+      "caption": "OrbitCart storefront architecture built for responsive, low-latency catalog browsing."
+    }
+  ],
+  "body": "## Beyond Generic Storefronts: Modern E-Commerce Demands\n\nModern commerce applications require vastly more than static CRUD endpoints. Users expect sub-second catalog filtering, instant cart synchronizations, personalized AI recommendations, and zero tolerance for stock inconsistencies during flash sales.\n\n**OrbitCart** was conceived as an end-to-end, production-grade e-commerce platform designed to test real-world scalability, robust security patterns, and machine learning integration.\n\n## Stateless Authentication with Revocable JWTs\n\nOne of the central design challenges was balancing stateless scalability with instant session revocation:\n\n- **Stateless Tokens:** Access tokens carry claims including user roles, allowing distributed service endpoints to validate identity without database roundtrips.\n- **Token Blacklisting & Refresh Mechanism:** To handle password resets and administrative logouts, short-lived access tokens (15 minutes) are paired with rotating refresh tokens stored with cryptographically hashed fingerprints.\n- **Role-Based Access Control (RBAC):** Clean segregation between customer storefront interactions, vendor management suites, and administrative platform analytics.\n\n## Preventing Flash-Sale Overselling with Optimistic Locking\n\nWhen hundreds of shoppers simultaneously attempt to check out the last remaining inventory units, naive read-modify-write patterns result in devastating overselling bugs.\n\nInstead of heavy database table locks that cripple throughput, OrbitCart employs **Optimistic Concurrency Control (OCC)** using JPA `@Version` annotations. If a conflict occurs during simultaneous commits, the transaction aborts and cleanly retries or informs the user, maintaining absolute stock integrity without latency bottlenecks.\n\n## Real-Time AI Recommendations\n\nTo enhance discovery, OrbitCart integrates an algorithmic recommendation pipeline:\n- Tracks user browsing journeys, category dwells, and purchase co-occurrences.\n- Computes lightweight vector similarity to suggest contextual add-ons in the cart view without slowing page load speeds.\n\n## Key Takeaways (কী শিখলাম)\n\n- **Optimistic Locking Wins at Scale:** For read-heavy, write-burst commerce catalogs, optimistic locking outperforms pessimistic locks in both latency and scalability.\n- **Defense-in-Depth API Security:** Combining short-lived JWTs with server-side revocation lists gives you the best of stateless performance and immediate access control.\n- **Data-Driven Personalization:** Integrating recommendation algorithms directly into the checkout pipeline significantly enhances user engagement and cross-sell metrics.\n",
+  "featured": true,
+  "order": 1,
+  "published": true
+}

@@ -1,0 +1,35 @@
+{
+  "id": "from-brute-force-to-dynamic-programming-algorithmic-patterns",
+  "title": "From Brute Force to Dynamic Programming: Core Algorithmic Patterns I Learned in 1,000+ Problems",
+  "excerpt": "A synthesis of mental models, state space reductions, and runtime optimization techniques refined while solving over 1,000 algorithmic problems across Codeforces and CodeChef.",
+  "category": "Algorithms & Optimization",
+  "tags": [
+    "Competitive Programming",
+    "Algorithms",
+    "Dynamic Programming",
+    "Graph Theory",
+    "Codeforces",
+    "Optimization"
+  ],
+  "published_date": "2026-01-20",
+  "event_label": "Algorithmic Masterclass",
+  "author": "Fazley Rabbi",
+  "cover": "uploads/certifications/codechef-diamond.png",
+  "cover_alt": "CodeChef Diamond Streak Badge commemorating 100+ consecutive days of competitive coding",
+  "gallery": [
+    {
+      "image": "uploads/certifications/codechef-diamond.png",
+      "alt": "CodeChef Diamond Streak Badge for 100 days of disciplined algorithmic practice",
+      "caption": "Consistency badge representing 100+ consecutive days of problem-solving on CodeChef."
+    },
+    {
+      "image": "uploads/certifications/icpc-individual-preview.png",
+      "alt": "ICPC Asia Dhaka Preliminary certificate of achievement",
+      "caption": "ICPC Asia Dhaka Preliminary milestone celebrating team problem solving."
+    }
+  ],
+  "body": "## The Journey Past 1,000 Solved Problems\n\nReaching the milestone of **1,000+ solved algorithmic problems** across competitive programming platforms like **Codeforces**, **CodeChef**, and **LeetCode** transformed how I view software engineering.\n\nWhat began as memorizing syntax and struggling with time limit exceeded (TLE) verdicts gradually evolved into a deep, intuitive mastery of **state transitions, graph topologies, and asymptotic optimization**.\n\n## Reading the Hidden Clues in Constraints\n\nThe single most valuable lesson in competitive programming is that **problem constraints dictate the optimal algorithm before you write a single line of code**:\n\n- **$N \\le 20$:** Strongly hints at bitmask dynamic programming or exponential backtracking ($O(2^N)$ or $O(N!)$).\n- **$N \\le 2,000$:** Suggests an $O(N^2)$ algorithm, such as all-pairs Floyd-Warshall, dynamic programming matrix fills, or nested loops.\n- **$N \\le 2 \\times 10^5$:** Strictly rules out quadratic logic. The solution must run in $O(N)$ or $O(N \\log N)$, pointing to binary search, divide & conquer, Segment Trees, or greedy sweeps.\n- **$N \\le 10^{18}$:** Requires logarithmic or constant time math—matrix exponentiation, modular inverse, or bitwise patterns ($O(\\log N)$ or $O(1)$).\n\n## The Mental Shift to Dynamic Programming\n\nMany beginners view Dynamic Programming (DP) as intimidating magic. In reality, DP is simply **recursion without amnesia**:\n\n1. **State Definition:** Explicitly defining what `dp[i][j]` represents in plain English (e.g., *the minimum cost to cover the first $i$ elements with $j$ active segments*).\n2. **Transition Formulation:** Formulating how the current state depends strictly on previously solved, smaller subproblems.\n3. **Space Optimization:** Frequently, computing row $i$ only requires row $i-1$. Collapsing full 2D tables into 1D rolling buffers slashes memory complexity from $O(N^2)$ to $O(N)$, eliminating cache misses.\n\n## Fast I/O and Standard Library Dominance\n\nBeyond pure logic, contest execution demands defensive coding habits:\n- Decoupling standard streams (`cin.tie(NULL); ios_base::sync_with_stdio(false);`) to prevent I/O bottlenecks.\n- Using `std::vector` and flat arrays rather than fragmented pointer-based trees to leverage CPU L1/L2 cache locality.\n- Always guarding against integer overflow by using 64-bit integers (`long long`) when accumulating cumulative sums or products.\n\n## Key Takeaways (কী শিখলাম)\n\n- **Constraints Are the Roadmap:** Always evaluate input bounds first; they tell you which complexity class will pass within the 1.0-second limit.\n- **Break Down, Don't Guess:** Complex problems surrender when decomposed into familiar primitive patterns: Two Pointers, DSU, Prefix Sums, or Topological Sort.\n- **Discipline Beats Motivation:** Solving two thoughtful problems daily with thorough upsolving develops far more lasting engineering intuition than irregular contest sprints.\n",
+  "featured": true,
+  "order": 2,
+  "published": true
+}
