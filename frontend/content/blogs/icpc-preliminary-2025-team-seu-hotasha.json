@@ -1,0 +1,41 @@
+{
+  "id": "icpc-preliminary-2025-team-seu-hotasha",
+  "title": "ICPC Preliminary 2025 — Team SEU_HOTASHA",
+  "excerpt": "Representing Southeast University at the ICPC Asia Dhaka Preliminary on 15 November 2025 with team SEU_HOTASHA, tackling challenging algorithmic problems in an intense five-hour national contest.",
+  "category": "Competitive Programming",
+  "tags": [
+    "ICPC",
+    "Competitive Programming",
+    "SEU_HOTASHA",
+    "Southeast University",
+    "Algorithms",
+    "Team Contest",
+    "BAPSOJ"
+  ],
+  "published_date": "2026-10-27",
+  "event_label": "15 November 2025",
+  "author": "Fazley Rabbi",
+  "cover": "uploads/blogs/icpc-preliminary-2025-seu-hotasha-01.jpg",
+  "cover_alt": "Team SEU_HOTASHA smiling at their contest workstation with problem sheets during ICPC Preliminary 2025.",
+  "gallery": [
+    {
+      "image": "uploads/blogs/icpc-preliminary-2025-seu-hotasha-01.jpg",
+      "alt": "Team SEU_HOTASHA smiling at their contest workstation with problem sheets during ICPC Preliminary 2025.",
+      "caption": "Team SEU_HOTASHA seated with problem sets and notes at their workstation during ICPC Preliminary 2025."
+    },
+    {
+      "image": "uploads/blogs/icpc-preliminary-2025-seu-hotasha-02.jpg",
+      "alt": "Teammates focused on the contest monitor analyzing algorithmic logic and code during ICPC 2025.",
+      "caption": "Teammates analyzing problem logic and implementation details on the contest terminal."
+    },
+    {
+      "image": "uploads/blogs/icpc-preliminary-2025-seu-hotasha-03.jpg",
+      "alt": "Team members deep in thought working through complex problem constraints and edge cases during the contest.",
+      "caption": "Collaborative problem solving, edge case stress-testing, and strategy discussions during the contest."
+    }
+  ],
+  "body": "## Stepping onto the ICPC 2025 Stage\n\nOn **15 November 2025**, our team **SEU_HOTASHA** had the privilege of representing **Southeast University** at the **ICPC Asia Dhaka Preliminary 2025**. Building upon the lessons from our debut ICPC appearance in 2024, our team stepped into the national arena with sharpened algorithmic preparation, deeper domain knowledge, and a unified competitive strategy.\n\nThe ICPC Preliminary stands as one of the most prestigious and demanding collegiate programming contests in the region, bringing together top problem solvers from universities across Bangladesh.\n\n## Five Hours of Intense Algorithmic Focus\n\nThe contest hall buzzed with focused intensity as teams navigated a carefully crafted set of challenging algorithmic problems. Working collaboratively at our workstation with scratch paper, problem sheets, and the coding terminal, team **SEU_HOTASHA** dissected problems across graph theory, dynamic programming, number theory, and combinatorics.\n\nEvery submission required rigorous verification. We held each other accountable for analyzing runtime bounds, avoiding integer overflows, and constructing stress tests on edge cases before pressing submit on the BAPSOJ contest portal.\n\n## Growth, Resilience, and Brotherhood\n\nCompeting in ICPC 2025 as **SEU_HOTASHA** marked a defining chapter in our university journey. Beyond the scoreboard and balloon distributions, the true reward was the deep mutual trust, the joy of overcoming difficult algorithmic hurdles together, and the resilience forged through five uninterrupted hours of problem solving.\n\nThese photographs capture team **SEU_HOTASHA** at our contest desk, moments of collaborative debugging, and the shared camaraderie on contest day.\n\n## Key Takeaways\n\n- **Precision Under Contest Pressure:** Learned that disciplined mathematical proofs on scratch paper before coding prevent costly wrong answer penalties and save precious contest minutes.\n- **Dynamic Team Synergy:** Refined our team workflow by dividing initial problem sweeps based on individual strengths in graph algorithms, greedy logic, and data structures.\n- **Resilience in National Arenas:** Strengthened mental endurance and optimism, staying composed through mid-contest plateaus to find breakthroughs in the final hour.\n",
+  "featured": true,
+  "order": 3,
+  "published": true
+}
