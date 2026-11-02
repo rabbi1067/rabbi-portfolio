@@ -1,0 +1,51 @@
+{
+  "id": "icpc-preliminary-2026-team-seu-dynamites",
+  "title": "My Last ICPC Preliminary 2026 — Team SEU_Dynamites",
+  "excerpt": "A memorable milestone marked by intense teamwork, emotional reflections, and faculty encouragement as team SEU_Dynamites (Fazle Rabbi, Rakib, and Abid) competed in my final collegiate ICPC Preliminary contest on 30 October 2026.",
+  "category": "Competitive Programming",
+  "tags": [
+    "ICPC",
+    "Competitive Programming",
+    "SEU_Dynamites",
+    "Southeast University",
+    "Algorithms",
+    "Team Contest",
+    "BAPSOJ"
+  ],
+  "published_date": "2026-10-30",
+  "event_label": "30 October 2026",
+  "author": "Fazley Rabbi",
+  "cover": "uploads/blogs/icpc-preliminary-2026-seu-dynamites-01.jpg",
+  "cover_alt": "Team SEU_Dynamites (Fazle Rabbi, Rakib, and Abid) smiling at the contest workstation during ICPC Preliminary 2026.",
+  "gallery": [
+    {
+      "image": "uploads/blogs/icpc-preliminary-2026-seu-dynamites-01.jpg",
+      "alt": "Team SEU_Dynamites seated together at the computer lab workstation during ICPC Preliminary 2026.",
+      "caption": "Team SEU_Dynamites (Fazle Rabbi, Rakib, and Abid) at the workstation desk during the ICPC Preliminary 2026 contest."
+    },
+    {
+      "image": "uploads/blogs/icpc-preliminary-2026-seu-dynamites-02.jpg",
+      "alt": "Team SEU_Dynamites in deep concentration reading problem sheets and analyzing code on the monitor.",
+      "caption": "Deep concentration, problem sheet analysis, and collaborative debugging during the heat of competition."
+    },
+    {
+      "image": "uploads/blogs/icpc-preliminary-2026-seu-dynamites-03.jpg",
+      "alt": "Respected faculty members of Southeast University CSE Department standing before the contest whiteboard.",
+      "caption": "Honorable faculty members and mentors standing proudly in the contest arena at Southeast University."
+    },
+    {
+      "image": "uploads/blogs/icpc-preliminary-2026-seu-dynamites-04.jpg",
+      "alt": "Faculty members briefing contestants and distributing official ICPC Preliminary problem packets.",
+      "caption": "Faculty mentors distributing official problem sets and offering opening guidance before the contest began."
+    },
+    {
+      "image": "uploads/blogs/icpc-preliminary-2026-seu-dynamites-05.jpg",
+      "alt": "Selfie of teammates Fazle Rabbi, Rakib, and Abid on the campus corridor after the contest.",
+      "caption": "A cherished post-contest memory with teammates Rakib and Abid on campus after hours of intense problem solving."
+    }
+  ],
+  "body": "## The Final Chapter of My Collegiate ICPC Journey\n\nOn **30 October 2026**, I stepped into the computer laboratory of **Southeast University** to compete in my **final collegiate ICPC Preliminary contest**. From taking my first tentative steps in competitive programming back in 2024 to sitting at this workstation today, this contest represented not just another contest on the scoreboard, but the emotional and professional culmination of years of relentless practice, late-night debugging, and deep algorithmic exploration.\n\nCompeting under the team name **SEU_Dynamites**, I had the honor of sharing the contest desk with my dedicated teammates **Rakib** and **Abid**. Together, we spent the five hours communicating intensely, breaking down intricate problem statements, formulating proofs on scratch paper, and verifying edge cases before submitting our solutions on the BAPSOJ platform.\n\n## Inspiring Guidance from Respected Faculty Mentors\n\nWhat made this event truly extraordinary was the inspiring presence, continuous encouragement, and close supervision of our respected teachers and departmental leaders who stood by us in the lab throughout the contest:\n\n- **Shahriar Manzoor** — Chairman & Associate Professor\n- **Dr. Md. Ruhul Amin** — Associate Professor\n- **Shifat Ahmed** — Assistant Professor\n- **Tashreef Muhammad** — Co-ordinator & Lecturer\n- **Sakib Mahmud** — Lecturer\n- **Rifat Ahommed** — Lecturer\n- **Md. Shamim** — Lecturer\n\nHaving distinguished academic mentors—especially world-renowned competitive programming pioneer Shahriar Manzoor Sir and our faculty members—standing right beside us in the arena gave all participating teams an immense boost in morale and confidence.\n\nWe also express our heartfelt appreciation to the dedicated **student volunteers** whose meticulous support with system preparations, problem distribution, lab management, and refreshments ensured a flawless and professional contest environment.\n\n## Cherishing Every Moment with Team SEU_Dynamites\n\nThroughout the contest, our team synergy was at its absolute best. When one of us tackled the mathematical nuances of a problem on paper, another crafted clean, optimized code on the terminal, while the third maintained vigilance over boundary constraints and potential runtime pitfalls. The camaraderie, shared laughter, and high-fives over successful verdicts made this final contest an unforgettable memory of my university life.\n\nThese photographs capture team **SEU_Dynamites** at work, our honorable faculty members overseeing the contest hall, the initial problem distribution, and a memorable post-contest moment with my teammates.\n\n## Key Takeaways (কী শিখলাম)\n\n- **The Emotional & Professional Climax of Collegiate CP:** Experiencing my final ICPC reinforced that competitive programming is not just about rankings—it is an enduring foundation of grit, mental stamina, and mathematical discipline that will continue to guide my software engineering career.\n- **Synergistic Team Chemistry Under Fire:** Competing as SEU_Dynamites with Rakib and Abid proved that transparent communication, rapid task delegation, and mutual trust under relentless countdown timers are the decisive factors in tackling complex contest problem sets.\n- **The Power of Academic Mentorship & Community:** Having our esteemed professors, department chairman, and student volunteers standing together in the arena highlighted the rich, empowering problem-solving ecosystem fostered within Southeast University.\n",
+  "featured": true,
+  "order": 0,
+  "published": true
+}
